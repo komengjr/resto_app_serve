@@ -146,6 +146,7 @@
                                     <div>{{ Auth::user()->fullname }}</div>
                                     {{-- <span class="fa fa-chevron-down"></span> --}}
                                     <ul>
+                                        <li><a href="{{ route('dashboard.home') }}">Dashboard</a></li>
                                         <li><a href="{{ route('logout') }}">Logout</a></li>
                                     </ul>
                                 @endguest
