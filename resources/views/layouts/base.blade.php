@@ -10,21 +10,21 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>Resto | Dashboard &amp;</title>
+    <title>Resto | Dashboard Page</title>
 
 
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="../assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/dashboard.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/dashboard.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/dashboard.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/dashboard.png') }}">
+    <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('img/dashboard.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <script src="../assets/js/config.js"></script>
-    <script src="../vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
 
 
     <!-- ===============================================-->
@@ -34,11 +34,16 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap"
         rel="stylesheet">
-    <link href="../vendors/overlayscrollbars/OverlayScrollbars.min.css" rel="stylesheet">
-    <link href="../assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
-    <link href="../assets/css/theme.min.css" rel="stylesheet" id="style-default">
-    <link href="../assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
-    <link href="../assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+    <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/theme-rtl.min.css') }}" rel="stylesheet" id="style-rtl">
+    <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
+    <link href="{{ asset('assets/css/user-rtl.min.css') }}" rel="stylesheet" id="user-style-rtl">
+    <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
+
+    @yield('base.css')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var isRTL = JSON.parse(localStorage.getItem('isRTL'));
         if (isRTL) {
@@ -125,17 +130,17 @@
                                         <hr class="mb-0 navbar-vertical-divider" />
                                     </div>
                                 </div>
-                                <!-- parent pages--><a class="nav-link" href="#" role="button"
-                                    aria-expanded="false">
+                                <!-- parent pages--><a class="nav-link" href="{{ route('app_category') }}"
+                                    role="button" aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-calendar-alt"></span></span><span
+                                                class="far fa-list-alt"></span></span><span
                                             class="nav-link-text ps-1">Categories</span>
                                     </div>
                                 </a>
-                                <!-- parent pages--><a class="nav-link" href="#" role="button"
+                                <!-- parent pages--><a class="nav-link" href="{{ route('app_product') }}" role="button"
                                     aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-comments"></span></span><span
+                                                class="fas fa-clipboard-list"></span></span><span
                                             class="nav-link-text ps-1">Product</span>
                                     </div>
                                 </a>
@@ -143,12 +148,12 @@
                                     role="button" data-bs-toggle="collapse" aria-expanded="false"
                                     aria-controls="email">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-envelope-open"></span></span><span
+                                                class="fas fa-cart-arrow-down"></span></span><span
                                             class="nav-link-text ps-1">Order</span>
                                     </div>
                                 </a>
                                 <ul class="nav collapse false" id="email">
-                                    <li class="nav-item"><a class="nav-link" href="../app/email/inbox.html"
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('list_order') }}"
                                             aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">List Order</span>
@@ -172,14 +177,14 @@
                                 <!-- parent pages--><a class="nav-link" href="#" role="button"
                                     aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-calendar-alt"></span></span><span
+                                                class="fas fa-user-alt"></span></span><span
                                             class="nav-link-text ps-1">User</span>
                                     </div>
                                 </a>
                                 <!-- parent pages--><a class="nav-link" href="#" role="button"
                                     aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-comments"></span></span><span
+                                                class="fas fa-cog"></span></span><span
                                             class="nav-link-text ps-1">Setting</span>
                                     </div>
                                 </a>
@@ -541,7 +546,7 @@
                         <div class="col-12 col-sm-auto text-center">
                             <p class="mb-0 text-600">Thank you for creating with Resto <span
                                     class="d-none d-sm-inline-block">| </span><br class="d-sm-none" /> 2025 &copy;
-                                <a href="#">{{Env('APP_NAME')}}</a>
+                                <a href="#">{{ Env('APP_NAME') }}</a>
                             </p>
                         </div>
                         <div class="col-12 col-sm-auto text-center">
@@ -775,15 +780,15 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="../vendors/popper/popper.min.js"></script>
-    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../vendors/anchorjs/anchor.min.js"></script>
-    <script src="../vendors/is/is.min.js"></script>
-    <script src="../vendors/fontawesome/all.min.js"></script>
-    <script src="../vendors/lodash/lodash.min.js"></script>
-    <script src="../vendors/list.js/list.min.js"></script>
-    <script src="../assets/js/theme.js"></script>
-
+    <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
+    <script src="{{ asset('vendors/is/is.min.js') }}"></script>
+    <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
+    <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
+    <script src="{{ asset('vendors/list.js/list.min.js') }}"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
+    @yield('base.js')
 </body>
 
 </html>

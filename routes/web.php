@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\DashboarController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,10 @@ Route::prefix('dashboard')->group(function () {
     Route::get('profile', [DashboarController::class, 'profile'])->name('dashboard.profile');
     Route::get('setting', [DashboarController::class, 'setting'])->name('dashboard.setting');
 });
+
+Route::prefix('app')->group(function () {
+    Route::get('category', [AppController::class, 'app_category'])->name('app_category');
+    Route::get('product', [AppController::class, 'app_product'])->name('app_product');
+    Route::get('order-list', [AppController::class, 'list_order'])->name('list_order');
+});
+
