@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboarController;
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,10 @@ Route::controller(App\Http\Controllers\Auth\AuthController::class)->group(functi
     Route::post('post-registration', 'postRegistration')->name('register.post');
     Route::post('post-login', 'postLogin')->name('login.post');
     // Route::get('dashboard', [AuthController::class, 'dashboard']);
+});
+
+Route::prefix('menu')->group(function () {
+    Route::get('list', [PublicController::class, 'list_menu'])->name('list_menu');
 });
 
 Route::prefix('dashboard')->group(function () {

@@ -10,7 +10,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>e - Trans | Login Page</title>
+    <title>Resto | Login Page</title>
 
 
     <!-- ===============================================-->
@@ -78,8 +78,8 @@
 
                                         <div class="z-index-1 position-relative"><a
                                                 class="link-light mb-4 font-sans-serif fs-4 d-inline-block fw-bolder"
-                                                href="../../../index.html">E - Trans Login</a>
-                                            <p class="opacity-75 text-white">With the power of Falcon, you can now focus
+                                                href="#">E - Resto Login</a>
+                                            <p class="opacity-75 text-white">With the power of Resto, you can now focus
                                                 only on functionaries for your digital products, while leaving the UI
                                                 design on us!</p>
                                         </div>

@@ -12,10 +12,12 @@ class DashboarController extends Controller
     }
     public function index()
     {
-        if (Auth::user()->access_code == 'user') {
-            return view('dashboard.user');
-        } elseif (Auth::user()->access_code == 'admin') {
-            return view('admin.dashboard');
+        if (Auth::user()->access_code == 'admin') {
+            return view('dashboard.admin');
+        } elseif (Auth::user()->access_code == 'kasir') {
+            return view('dashboard.kasir');
+        } elseif (Auth::user()->access_code == 'user') {
+            return Redirect('/');
         }
     }
     public function profile(){

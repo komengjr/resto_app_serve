@@ -8,13 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aplikasi Demo</title>
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('logo.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo.png') }}">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css" integrity="sha512-v8QQ0YQ3H4K6Ic3PJkym91KoeNT5S3PnDKvqnwqFD1oiqIl653crGZplPdU5KKtHjO0QKcQ2aUlQZYjHczkmGw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
@@ -24,6 +25,13 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <style>
+        @media only screen and (max-width: 950px) {
+            #list-category {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -43,20 +51,29 @@
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">item: <span>@currency(20000)</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
                 <img src="img/language.png" alt="">
                 <div>English</div>
-                <span class="arrow_carrot-down"></span>
+                <span class="fa fa-chevron-down"></span>
                 <ul>
                     <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
+                    <li><a href="#">Indonesia</a></li>
                 </ul>
             </div>
-            <div class="header__top__right__auth">
-                <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+            <div class="header__top__right__language  ml-3">
+                @guest
+                    <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+                @else
+                    <i class="fa fa-user"></i>
+                    <div>{{ Auth::user()->fullname }}</div>
+                    {{-- <span class="fa fa-chevron-down"></span> --}}
+                    <ul>
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                    </ul>
+                @endguest
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -115,14 +132,23 @@
                             <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">
                                 <div>English</div>
-                                <span class="arrow_carrot-down"></span>
+                                <span class="fa fa-chevron-down"></span>
                                 <ul>
                                     <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
+                                    <li><a href="#">Indonesia</a></li>
                                 </ul>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+                            <div class="header__top__right__language">
+                                @guest
+                                    <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
+                                @else
+                                    <i class="fa fa-user"></i>
+                                    <div>{{ Auth::user()->fullname }}</div>
+                                    {{-- <span class="fa fa-chevron-down"></span> --}}
+                                    <ul>
+                                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                                    </ul>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -133,24 +159,23 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="{{ asset('img/logo.png') }}" alt="" width="50"></a>
+                        <a href="./index.html"><img src="{{ asset('img/logo.png') }}" alt=""
+                                width="100"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Order</a></li>
-                            <li><a href="#">Berita</a>
+                            <li class="active"><a href="{{ route('/') }}">Home</a></li>
+                            <li>
+                                <a href="./shop-grid.html">Menu</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="{{ route('list_menu') }}">List Menu</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Tentang</a></li>
-                            <li><a href="./contact.html">Hubungi</a></li>
+                            <li> <a href="#">Brand</a> </li>
+                            <li><a href="./blog.html">About</a></li>
+                            <li><a href="./contact.html">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -160,7 +185,7 @@
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
+                        <div class="header__cart__price">Cost: <span>@currency(100000)</span></div>
                     </div>
                 </div>
             </div>
@@ -181,7 +206,7 @@
                             <i class="fa fa-bars"></i>
                             <span>Category Item</span>
                         </div>
-                        <ul>
+                        <ul id="list-category">
                             <li><a href="#">Makanan A</a></li>
                             <li><a href="#">Makanan B</a></li>
                             <li><a href="#">Minuman A</a></li>
@@ -214,8 +239,8 @@
                     <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
                         <div class="hero__text">
                             <span>Promo Makanan</span>
-                            <h2 class="text-white">Nasi Goreng  <br />Spesial</h2>
-                            <p>Free Pickup and Delivery Available</p>
+                            <h2 class="text-white">Nasi Goreng <br />Spesial</h2>
+                            <p class="text-white">Free Pickup and Delivery Available</p>
                             <a href="#" class="primary-btn">ORDER SEKARANG</a>
                         </div>
                     </div>
@@ -292,7 +317,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -307,7 +332,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -322,7 +347,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -337,7 +362,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -352,7 +377,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -367,7 +392,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -382,7 +407,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -397,7 +422,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h5>@currency(100000)</h5>
                         </div>
                     </div>
                 </div>
@@ -493,12 +518,13 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="{{ route('/') }}"><img src="img/logo.png" alt=""
+                                    width="200"></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Address: Jl Sultan Mempawah</li>
                             <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>Email: hello@resto.com</li>
                         </ul>
                     </div>
                 </div>
@@ -506,17 +532,15 @@
                     <div class="footer__widget">
                         <h6>Useful Links</h6>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Order</a></li>
+                            <li><a href="#">List Order</a></li>
+                            <li><a href="#">Payment Order</a></li>
+
                         </ul>
                         <ul>
                             <li><a href="#">Who We Are</a></li>
                             <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
                             <li><a href="#">Contact</a></li>
                             <li><a href="#">Innovation</a></li>
                             <li><a href="#">Testimonials</a></li>
@@ -548,9 +572,8 @@
                                 Copyright &copy;
                                 <script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i
-                                    class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
+                                </script> All rights reserved | This template is made with by
+                                {{ Env('APP_NAME') }}</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
