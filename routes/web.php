@@ -44,6 +44,9 @@ Route::prefix('dashboard')->group(function () {
 Route::prefix('app')->group(function () {
     Route::get('category', [AppController::class, 'app_category'])->name('app_category');
     Route::get('product', [AppController::class, 'app_product'])->name('app_product');
+    Route::get('stok', [AppController::class, 'app_stok'])->name('app_stok');
+    Route::get('inventaris', [AppController::class, 'inventaris'])->name('inventaris');
     Route::get('order-list', [AppController::class, 'list_order'])->name('list_order');
+    Route::get('order-menu', [AppController::class, 'menu_order'])->name('menu_order');
 });
 

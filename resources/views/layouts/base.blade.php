@@ -137,14 +137,30 @@
                                             class="nav-link-text ps-1">Categories</span>
                                     </div>
                                 </a>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('app_product') }}" role="button"
+                                <!-- parent pages-->
+                                <a class="nav-link" href="{{ route('app_product') }}" role="button"
                                     aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                                 class="fas fa-clipboard-list"></span></span><span
                                             class="nav-link-text ps-1">Product</span>
                                     </div>
                                 </a>
-                                <!-- parent pages--><a class="nav-link dropdown-indicator" href="#email"
+                                <a class="nav-link" href="{{ route('app_stok') }}" role="button"
+                                    aria-expanded="false">
+                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                class="fas fa-cube"></span></span><span
+                                            class="nav-link-text ps-1">Stok</span>
+                                    </div>
+                                </a>
+                                <a class="nav-link" href="{{ route('inventaris') }}" role="button"
+                                    aria-expanded="false">
+                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                class="fas fa-database"></span></span><span
+                                            class="nav-link-text ps-1">Inventaris</span>
+                                    </div>
+                                </a>
+                                <!-- parent pages-->
+                                <a class="nav-link dropdown-indicator" href="#email"
                                     role="button" data-bs-toggle="collapse" aria-expanded="false"
                                     aria-controls="email">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
@@ -161,7 +177,33 @@
                                         </a>
                                         <!-- more inner pages-->
                                     </li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('menu_order') }}"
+                                            aria-expanded="false">
+                                            <div class="d-flex align-items-center"><span
+                                                    class="nav-link-text ps-1">Menu Order</span>
+                                            </div>
+                                        </a>
+                                        <!-- more inner pages-->
+                                    </li>
 
+                                </ul>
+                                <a class="nav-link dropdown-indicator" href="#rekap"
+                                    role="button" data-bs-toggle="collapse" aria-expanded="false"
+                                    aria-controls="email">
+                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                class="fab fa-wpforms"></span></span><span
+                                            class="nav-link-text ps-1">Rekap</span>
+                                    </div>
+                                </a>
+                                <ul class="nav collapse false" id="rekap">
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('list_order') }}"
+                                            aria-expanded="false">
+                                            <div class="d-flex align-items-center"><span
+                                                    class="nav-link-text ps-1">Laporan</span>
+                                            </div>
+                                        </a>
+                                        <!-- more inner pages-->
+                                    </li>
                                 </ul>
 
                             </li>
