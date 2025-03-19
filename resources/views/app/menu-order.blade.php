@@ -49,16 +49,13 @@
                                 <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
                                     <div class="overflow-hidden">
                                         <div class="position-relative rounded-top overflow-hidden">
-                                            <a class="d-block"
-                                                href="#"><img
-                                                    class="img-fluid rounded-top" src="{{ asset('img/product/nasgor.jpg') }}"
-                                                    alt="" /></a><span
+                                            <a class="d-block" href="#"><img class="img-fluid rounded-top"
+                                                    src="{{ asset('img/product/nasgor.jpg') }}" alt="" /></a><span
                                                 class="badge rounded-pill bg-success position-absolute mt-2 me-2 z-index-2 top-0 end-0">New</span>
                                         </div>
                                         <div class="p-3">
                                             <h5 class="fs-0">
-                                                <a class="text-dark"
-                                                    href="#">Nasi Goreng Spesial</a>
+                                                <a class="text-dark" href="#">Nasi Goreng Spesial</a>
                                             </h5>
                                             <p class="fs--1 mb-3">
                                                 <a class="text-500" href="#!">Makanan</a>
@@ -107,13 +104,60 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="col-xl-4 order-xl-1">
+            <div class="card mb-3">
+                <div class="card-header bg-light btn-reveal-trigger d-flex flex-between-center">
+                    <h5 class="mb-0">Order Summary</h5><a class="btn btn-link btn-sm btn-reveal text-600"
+                        href="#"><span class="fas fa-pencil-alt"></span></a>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless fs--1 mb-0">
+                        <tr class="border-bottom">
+                            <th class="ps-0 pt-0">Apple MacBook Pro 15" x 1
+                                <div class="text-400 fw-normal fs--2">Z0V20008N: 2.9GHz 6-core 8th-Gen Intel Core i9, 32GB
+                                    RAM</div>
+                            </th>
+                            <th class="pe-0 text-end pt-0">$1345</th>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="ps-0">Apple iMac Pro x 1
+                                <div class="text-400 fw-normal fs--2">27-inch with Retina 5K Display, 3.0GHz 10-core Intel
+                                    Xeon W, 1TB</div>
+                            </th>
+                            <th class="pe-0 text-end">$2010</th>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="ps-0">Subtotal</th>
+                            <th class="pe-0 text-end">$3355</th>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="ps-0">Coupon: <span class="text-success">40SITEWIDE</span></th>
+                            <th class="pe-0 text-end">-$55</th>
+                        </tr>
+                        <tr class="border-bottom">
+                            <th class="ps-0">Shipping</th>
+                            <th class="pe-0 text-end">$20</th>
+                        </tr>
+                        <tr>
+                            <th class="ps-0 pb-0">Total</th>
+                            <th class="pe-0 text-end pb-0">$3320</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-footer d-flex justify-content-between bg-light">
+                    <div class="fw-semi-bold">Payable Total</div>
+                    <div class="fw-bold">$3320</div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header bg-light">
                     <h5 class="mb-0">Payment Method</h5>
                 </div>
                 <div class="card-body">
                     <form>
-                        <div class="form-check mb-0">
+                        {{-- <div class="form-check mb-0">
                             <input class="form-check-input" type="radio" value="" id="credit-card"
                                 checked="checked" name="payment-method" />
                             <label class="form-check-label mb-2 fs-1" for="credit-card">Credit Card
@@ -157,8 +201,8 @@
                             <label class="form-check-label mb-0 ms-2" for="paypal"><img
                                     src="../../assets/img/icons/icon-paypal-full.png" height="20" alt="" />
                             </label>
-                        </div>
-                        <div class="border-dashed-bottom my-5"></div>
+                        </div> --}}
+                        {{-- <div class="border-dashed-bottom my-5"></div> --}}
                         <div class="row">
                             <div class="col-md-7 col-xl-12 col-xxl-7 px-md-3 mb-xxl-0 position-relative">
                                 <div class="d-flex"><img class="me-3" src="../../assets/img/icons/shield.png"
@@ -187,59 +231,13 @@
                             <div
                                 class="col-md-5 col-xl-12 col-xxl-5 ps-lg-4 ps-xl-2 ps-xxl-5 text-center text-md-start text-xl-center text-xxl-start">
                                 <div class="border-dashed-bottom d-block d-md-none d-xl-block d-xxl-none my-4"></div>
-                                <div class="fs-2 fw-semi-bold">All Total: <span class="text-primary">$3320</span></div>
+                                <div class="fs-2 fw-semi-bold">All Total: <span class="text-primary">@currency(240000)</span></div>
                                 <button class="btn btn-success mt-3 px-5" type="submit">Confirm &amp; Pay</button>
                                 <p class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to
                                     the <a href="#!">Terms &amp; Conditions</a></p>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 order-xl-1">
-            <div class="card">
-                <div class="card-header bg-light btn-reveal-trigger d-flex flex-between-center">
-                    <h5 class="mb-0">Order Summary</h5><a class="btn btn-link btn-sm btn-reveal text-600"
-                        href="#"><span class="fas fa-pencil-alt"></span></a>
-                </div>
-                <div class="card-body">
-                    <table class="table table-borderless fs--1 mb-0">
-                        <tr class="border-bottom">
-                            <th class="ps-0 pt-0">Apple MacBook Pro 15" x 1
-                                <div class="text-400 fw-normal fs--2">Z0V20008N: 2.9GHz 6-core 8th-Gen Intel Core i9, 32GB
-                                    RAM</div>
-                            </th>
-                            <th class="pe-0 text-end pt-0">$1345</th>
-                        </tr>
-                        <tr class="border-bottom">
-                            <th class="ps-0">Apple iMac Pro x 1
-                                <div class="text-400 fw-normal fs--2">27-inch with Retina 5K Display, 3.0GHz 10-core Intel
-                                    Xeon W, 1TB</div>
-                            </th>
-                            <th class="pe-0 text-end">$2010</th>
-                        </tr>
-                        <tr class="border-bottom">
-                            <th class="ps-0">Subtotal</th>
-                            <th class="pe-0 text-end">$3355</th>
-                        </tr>
-                        <tr class="border-bottom">
-                            <th class="ps-0">Coupon: <span class="text-success">40SITEWIDE</span></th>
-                            <th class="pe-0 text-end">-$55</th>
-                        </tr>
-                        <tr class="border-bottom">
-                            <th class="ps-0">Shipping</th>
-                            <th class="pe-0 text-end">$20</th>
-                        </tr>
-                        <tr>
-                            <th class="ps-0 pb-0">Total</th>
-                            <th class="pe-0 text-end pb-0">$3320</th>
-                        </tr>
-                    </table>
-                </div>
-                <div class="card-footer d-flex justify-content-between bg-light">
-                    <div class="fw-semi-bold">Payable Total</div>
-                    <div class="fw-bold">$3320</div>
                 </div>
             </div>
         </div>
