@@ -48,9 +48,9 @@
                     <h5 class="mb-0">Data Product</h5>
                 </div>
                 <div class="col-auto">
-                    <a class="btn btn-outline-success btn-sm" href="#!" data-bs-toggle="modal"
-                        data-bs-target="#send-all-modal">
-                        <span class="far fa-plus-square fs--2 me-1"></span>Add Category</a>
+                    <a class="btn btn-falcon-primary btn-sm" href="#!" data-bs-toggle="modal"
+                        data-bs-target="#modal-product" id="button-add-product">
+                        <span class="far fa-plus-square fs--2 me-1"></span>Add Product</a>
                 </div>
             </div>
         </div>
@@ -72,13 +72,66 @@
                     @php
                         $no = 1;
                     @endphp
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>{{$no++}}</td>
+                            <td>{{$item->t_product_name}}</td>
+                            <td>{{$item->t_category_name}}</td>
+                            <td>{{$item->t_product_type}}</td>
+                            <td>0</td>
+                            <td>
+                                @if ($item->t_product_status == 1)
+                                    <span class="badge bg-success">Aktif</span>
+                                @else
+                                    <span class="badge bg-danger">Tidak Aktif</span>
+                                @endif
+                            </td>
+                            <td>{{$item->created_at}}</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-sm btn-primary dropdown-toggle" id="btnGroupVerticalDrop2"
+                                        type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"><span class="fas fa-align-left me-1"
+                                            data-fa-transform="shrink-3"></span>Option</button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
 
+                                        <button class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#modal-product" id="button-display-product"
+                                            data-code="{{ $item->t_product_code }}"><span class="fas fa-chalkboard-teacher"></span>
+                                            Display</button>
+                                        <button class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#modal-category" id="button-edit-category"
+                                            data-code="{{ $item->t_product_code }}"><span class="far fa-edit"></span>
+                                            Edit</button>
+                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loading-modal"
+                                            id="button-send-replay-massage-wa" data-code="123"><span
+                                                class="far fa-folder-open"></span> Detail Product</button>
+
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
 @section('base.js')
+    <div class="modal fade" id="modal-product" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg mt-6" role="document" style="max-width: 60%;">
+            <div class="modal-content border-0">
+                <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1">
+                    <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="menu-product"></div>
+            </div>
+        </div>
+    </div>
+
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> --}}
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
@@ -89,6 +142,52 @@
     <script>
         new DataTable('#example', {
             responsive: true
+        });
+    </script>
+    <script>
+        $(document).on("click", "#button-add-product", function(e) {
+            e.preventDefault();
+            // var code = $(this).data("code");
+            $('#menu-product').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('app_product_add') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": 0
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-product').html(data);
+            }).fail(function() {
+                $('#menu-product').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-display-product", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-product').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('app_product_display') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-product').html(data);
+            }).fail(function() {
+                $('#menu-product').html('eror');
+            });
+
         });
     </script>
 @endsection

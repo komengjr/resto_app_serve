@@ -15,6 +15,9 @@ class CreateMOrderListTable extends Migration
     {
         Schema::create('m_order_list', function (Blueprint $table) {
             $table->id();
+            $table->string('no_reg_order')->unique();
+            $table->string('m_order_user');
+            $table->string('m_order_date');
             $table->timestamps();
         });
     }

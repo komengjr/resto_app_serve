@@ -43,8 +43,16 @@ Route::prefix('dashboard')->group(function () {
 
 Route::prefix('app')->group(function () {
     Route::get('category', [AppController::class, 'app_category'])->name('app_category');
+    Route::post('category/add', [AppController::class, 'app_category_add'])->name('app_category_add');
+    Route::post('category/save', [AppController::class, 'app_category_save'])->name('app_category_save');
+    Route::post('category/edit', [AppController::class, 'app_category_edit'])->name('app_category_edit');
+    Route::post('category/update', [AppController::class, 'app_category_update'])->name('app_category_update');
     Route::get('product', [AppController::class, 'app_product'])->name('app_product');
+    Route::post('product/add', [AppController::class, 'app_product_add'])->name('app_product_add');
+    Route::post('product/save', [AppController::class, 'app_product_save'])->name('app_product_save');
+    Route::post('product/display', [AppController::class, 'app_product_display'])->name('app_product_display');
     Route::get('stok', [AppController::class, 'app_stok'])->name('app_stok');
+    Route::post('stok/find', [AppController::class, 'app_stok_find'])->name('app_stok_find');
     Route::get('inventaris', [AppController::class, 'inventaris'])->name('inventaris');
     Route::get('order-list', [AppController::class, 'list_order'])->name('list_order');
     Route::get('order-menu', [AppController::class, 'menu_order'])->name('menu_order');

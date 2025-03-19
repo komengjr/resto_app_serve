@@ -8,7 +8,7 @@
 
                 </div>
                 <div class="col-auto d-none d-sm-block">
-                    <button class="btn btn-falcon-default btn-sm" data-bs-toggle="modal" data-bs-target="#modal-stok">
+                    <button class="btn btn-falcon-default btn-sm" data-bs-toggle="modal" data-bs-target="#modal-stok" id="button-search-data">
                         <span class="fas fa-search fs--2 me-1"></span> Cari Data</button>
                 </div>
             </div>
@@ -170,22 +170,33 @@
                     <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-0">
-                    <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
-                        <h4 class="mb-1" id="staticBackdropLabel">Cari Product</h4>
-                        <p class="fs--2 mb-0">Support by <a class="link-600 fw-semi-bold" href="#!">Resto</a></p>
-                    </div>
-                    <form class="row gy-2 gx-2 align-items-center p-4">
-                        <div class="col-10">
-                            <label class="visually-hidden" for="autoSizingInput">Nama Product</label>
-                            <input class="form-control" id="autoSizingInput" type="text" placeholder="Nasi Goreng" />
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    </form>
-                </div>
+                <div id="menu-stok"></div>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).on("click", "#button-search-data", function(e) {
+            e.preventDefault();
+            // var code = $(this).data("code");
+            $('#menu-stok').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('app_stok_find') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": 0
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-stok').html(data);
+            }).fail(function() {
+                $('#menu-stok').html('eror');
+            });
+
+        });
+    </script>
 @endsection
