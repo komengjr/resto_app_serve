@@ -51,10 +51,18 @@ Route::prefix('app')->group(function () {
     Route::post('product/add', [AppController::class, 'app_product_add'])->name('app_product_add');
     Route::post('product/save', [AppController::class, 'app_product_save'])->name('app_product_save');
     Route::post('product/display', [AppController::class, 'app_product_display'])->name('app_product_display');
+    Route::post('product/edit', [AppController::class, 'app_product_edit'])->name('app_product_edit');
+    Route::post('product/update', [AppController::class, 'app_product_update'])->name('app_product_update');
+    Route::post('product/detail', [AppController::class, 'app_product_detail'])->name('app_product_detail');
     Route::get('stok', [AppController::class, 'app_stok'])->name('app_stok');
     Route::post('stok/find', [AppController::class, 'app_stok_find'])->name('app_stok_find');
+    Route::get('table', [AppController::class, 'app_table'])->name('app_table');
     Route::get('inventaris', [AppController::class, 'inventaris'])->name('inventaris');
     Route::get('order-list', [AppController::class, 'list_order'])->name('list_order');
     Route::get('order-menu', [AppController::class, 'menu_order'])->name('menu_order');
+    Route::post('order-menu/create-order', [AppController::class, 'menu_order_create'])->name('menu_order_create');
+    Route::post('order-menu/menu-search-category', [AppController::class, 'menu_search_category'])->name('menu_search_category');
+    Route::post('order-menu/add-cart-product', [AppController::class, 'menu_add_cart_product'])->name('menu_add_cart_product');
+    Route::post('order-menu/confrim-order-customer', [AppController::class, 'menu_confrim_order_customer'])->name('menu_confrim_order_customer');
 });
 

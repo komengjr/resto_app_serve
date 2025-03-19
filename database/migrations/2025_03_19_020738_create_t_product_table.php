@@ -19,6 +19,8 @@ class CreateTProductTable extends Migration
             $table->string('t_category_code');
             $table->string('t_product_name');
             $table->string('t_product_type');
+            $table->bigInteger('t_product_price');
+            $table->integer('t_product_disc');
             $table->string('t_product_status');
             $table->text('t_product_desc');
             $table->text('t_product_file');

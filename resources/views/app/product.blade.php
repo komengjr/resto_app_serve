@@ -62,7 +62,8 @@
                         <th>Nama Product</th>
                         <th>Categories</th>
                         <th>Variants</th>
-                        <th>Availablity</th>
+                        <th>Price</th>
+                        <th>Discount</th>
                         <th>Status</th>
                         <th>Created</th>
                         <th>Action</th>
@@ -78,7 +79,8 @@
                             <td>{{$item->t_product_name}}</td>
                             <td>{{$item->t_category_name}}</td>
                             <td>{{$item->t_product_type}}</td>
-                            <td>0</td>
+                            <td>@currency($item->t_product_price)</td>
+                            <td>{{$item->t_product_disc}} %</td>
                             <td>
                                 @if ($item->t_product_status == 1)
                                     <span class="badge bg-success">Aktif</span>
@@ -100,11 +102,11 @@
                                             data-code="{{ $item->t_product_code }}"><span class="fas fa-chalkboard-teacher"></span>
                                             Display</button>
                                         <button class="dropdown-item" data-bs-toggle="modal"
-                                            data-bs-target="#modal-category" id="button-edit-category"
+                                            data-bs-target="#modal-product" id="button-edit-product"
                                             data-code="{{ $item->t_product_code }}"><span class="far fa-edit"></span>
                                             Edit</button>
-                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#loading-modal"
-                                            id="button-send-replay-massage-wa" data-code="123"><span
+                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-product"
+                                            id="button-detail-product" data-code="{{ $item->t_product_code }}"><span
                                                 class="far fa-folder-open"></span> Detail Product</button>
 
 
@@ -175,6 +177,50 @@
             );
             $.ajax({
                 url: "{{ route('app_product_display') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-product').html(data);
+            }).fail(function() {
+                $('#menu-product').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-edit-product", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-product').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('app_product_edit') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-product').html(data);
+            }).fail(function() {
+                $('#menu-product').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-detail-product", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-product').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('app_product_detail') }}",
                 type: "POST",
                 cache: false,
                 data: {

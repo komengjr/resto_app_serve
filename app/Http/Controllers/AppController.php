@@ -73,6 +73,8 @@ class AppController extends Controller
             't_category_code' => $request->category,
             't_product_name' => $request->name,
             't_product_type' => $request->type,
+            't_product_price' => $request->price,
+            't_product_disc' => $request->disc,
             't_product_status' => 1,
             't_product_desc' => $request->desc,
             't_product_file' => $tujuan_upload.'/'.$file->getClientOriginalName(),
@@ -84,6 +86,42 @@ class AppController extends Controller
         $data = DB::table('t_product')->where('t_product_code',$request->code)->first();
         return view('app.product.display-product',['data'=>$data]);
     }
+    public function app_product_edit(Request $request){
+        $option = DB::table('t_category')->get();
+        $data = DB::table('t_product')
+        ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')
+        ->where('t_product.t_product_code',$request->code)->first();
+        return view('app.product.form-edit',['option'=>$option,'data'=>$data]);
+    }
+    public function app_product_update(Request $request){
+        $file = $request->file('file');
+        $tujuan_upload = 'data_file';
+        if ($file == "") {
+            DB::table('t_product')->where('t_product_code',$request->code)->update([
+                't_product_name' => $request->name,
+                't_product_type' => $request->type,
+                't_product_status' => 1,
+                't_product_desc' => $request->desc,
+                'created_at' => now()
+            ]);
+        } else {
+            $random = mt_rand(1000000, 9999999);
+            $file->move($tujuan_upload, $random.$file->getClientOriginalName());
+            DB::table('t_product')->where('t_product_code',$request->code)->update([
+                't_product_name' => $request->name,
+                't_product_type' => $request->type,
+                't_product_status' => 1,
+                't_product_desc' => $request->desc,
+                't_product_file' => $tujuan_upload.'/'.$random.$file->getClientOriginalName(),
+                'created_at' => now()
+            ]);
+        }
+
+        return redirect()->back()->withSuccess('Great!');
+    }
+    public function app_product_detail(Request $request){
+        return view('app.product.detail-product');
+    }
     public function app_stok()
     {
         return view('app.stok');
@@ -91,6 +129,9 @@ class AppController extends Controller
     public function app_stok_find()
     {
         return view('app.stok.cari-data');
+    }
+    public function app_table(){
+        return view('app.table-service');
     }
     public function inventaris()
     {
@@ -102,6 +143,41 @@ class AppController extends Controller
     }
     public function menu_order()
     {
-        return view('app.menu-order');
+        $data = DB::table('t_product')->where('t_product_status',1)->get();
+        $cat = DB::table('t_category')->get();
+        return view('app.menu-order',['data'=>$data,'cat'=>$cat]);
+    }
+    public function menu_order_create(){
+        return view('app.menu-order.detail-order');
+    }
+    public function menu_search_category(Request $request){
+        if ($request->id == "all") {
+            $data = DB::table('t_product')
+            ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')->get();
+        } else {
+            $data = DB::table('t_product')
+            ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')
+            ->where('t_category.t_category_code',$request->id)->get();
+        }
+        return view('app.menu-order.option-category',['data'=>$data]);
+    }
+    public function menu_add_cart_product(Request $request){
+        $cek = DB::table('log_order_request')->where('no_order',$request->order)->where('t_product_code',$request->code)->first();
+        if ($cek) {
+            DB::table('log_order_request')->where('no_order',$request->order)->where('t_product_code',$request->code)->update([
+                'quantity'=>$cek->quantity+1
+            ]);
+        } else {
+            DB::table('log_order_request')->insert([
+                'no_order'=>$request->order,
+                't_product_code'=>$request->code,
+                'quantity'=>1
+            ]);
+        }
+        $data = DB::table('log_order_request')->join('t_product','t_product.t_product_code','=','log_order_request.t_product_code')->where('no_order',$request->order)->get();
+        return view('app.menu-order.list-order',['data'=>$data]);
+    }
+    public function menu_confrim_order_customer(Request $request){
+        return view('app.menu-order.confrim-order');
     }
 }
