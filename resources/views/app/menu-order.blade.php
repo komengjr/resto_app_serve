@@ -122,7 +122,7 @@
             <div class="card mb-3" id="detail">
                 <div class="card-header bg-light btn-reveal-trigger d-flex flex-between-center">
                     <h5 class="mb-0">No Order : </h5>
-
+                    <input type="text" name="no_order" value="" id="no_order" hidden>
                 </div>
                 <div class="card-body">
                 </div>
@@ -202,24 +202,28 @@
             e.preventDefault();
             var code = $(this).data("code");
             var order = document.getElementById("no_order").value;
-            $('#menu-table-order').html(
-                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
-            );
-            $.ajax({
-                url: "{{ route('menu_add_cart_product') }}",
-                type: "POST",
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "code": code,
-                    "order": order
-                },
-                dataType: 'html',
-            }).done(function(data) {
-                $('#menu-table-order').html(data);
-            }).fail(function() {
-                $('#menu-table-order').html('eror');
-            });
+            if (order == "") {
+                $('#liveToastBtn').click();
+            } else {
+                $('#menu-table-order').html(
+                    '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+                );
+                $.ajax({
+                    url: "{{ route('menu_add_cart_product') }}",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "code": code,
+                        "order": order
+                    },
+                    dataType: 'html',
+                }).done(function(data) {
+                    $('#menu-table-order').html(data);
+                }).fail(function() {
+                    $('#menu-table-order').html('eror');
+                });
+            }
 
         });
         $(document).on("click", "#button-confrim-order", function(e) {

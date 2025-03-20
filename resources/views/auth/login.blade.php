@@ -166,23 +166,27 @@
         </div>
     </main>
     @if (session('success'))
-        <div class="toast hide notice shadow-none bg-transparent my-9" id="cookie-notice" role="alert"
-            data-options='{"autoShow":true,"showOnce":true,"cookieExpireTime":20}' data-autohide="false"
-            aria-live="assertive" aria-atomic="true" style="">
-            <div class="toast-body my-2 ms-1 md-2">
-                <div class="card border-2 border-secondary">
-                    <div class="card-body ">
-                        <div class="d-flex">
-                            <div class="pe-3"><img src="{{ asset('assets/img/icons/alert.png') }}"
-                                    width="40" alt="cookie" /></div>
-                            <div>
-                                <p>{{ session('success') }}</p>
-                                <button class="btn btn-sm btn-falcon-primary me-3" type="button"
-                                    data-bs-dismiss="toast" aria-label="Close">Okay</button>
-                            </div>
-                        </div>
-                    </div>
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+            <div class="toast show" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                data-options='{"autoShow":true,"showOnce":true,"cookieExpireTime":720}' data-autohide="false">
+                <div class="toast-header bg-danger text-white"><strong class="me-auto">Notice</strong><small>1 sec
+                        ago</small>
+                    <button class="btn-close btn-close-white" type="button" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
+                <div class="toast-body">{{ session('success') }}</div>
+            </div>
+        </div>
+    @elseif (session('error'))
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+            <div class="toast show" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
+                data-options='{"autoShow":true,"showOnce":true,"cookieExpireTime":720}' data-autohide="false">
+                <div class="toast-header bg-danger text-white"><strong class="me-auto">Notice</strong><small>1 sec
+                        ago</small>
+                    <button class="btn-close btn-close-white" type="button" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+                <div class="toast-body">{{ session('error') }}</div>
             </div>
         </div>
     @endif

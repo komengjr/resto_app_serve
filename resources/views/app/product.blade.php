@@ -6,117 +6,290 @@
     <script src="{{ asset('vendors/typed.js/typed.js') }}"></script>
 @endsection
 @section('content')
-    <div class="card mb-3">
-        <div class="card-body">
-            <div class="row flex-between-center">
-                <div class="col-sm-auto mb-2 mb-sm-0">
-                    <h6 class="mb-0">Showing 1-24 of 205 Products</h6>
-                </div>
-                <div class="col-sm-auto">
-                    <div class="row gx-2 align-items-center">
-                        <div class="col-auto">
-                            <form class="row gx-2">
-                                <div class="col-auto"><small>Sort by: </small></div>
-                                <div class="col-auto">
-                                    <select class="form-select form-select-sm" aria-label="Bulk actions">
-                                        <option selected="">Best Match</option>
-                                        <option value="Refund">Newest</option>
-                                        <option value="Delete">Price</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-auto pe-0"><a class="text-600 px-1"
-                                href="../../../app/e-commerce/product/product-grid.html" data-bs-toggle="tooltip"
-                                title="" data-bs-original-title="Product Grid" aria-label="Product Grid"><svg
-                                    class="svg-inline--fa fa-th fa-w-16" aria-hidden="true" focusable="false"
-                                    data-prefix="fas" data-icon="th" role="img" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512" data-fa-i2svg="">
-                                    <path fill="currentColor"
-                                        d="M149.333 56v80c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24h101.333c13.255 0 24 10.745 24 24zm181.334 240v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm32-240v80c0 13.255 10.745 24 24 24H488c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24zm-32 80V56c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.256 0 24.001-10.745 24.001-24zm-205.334 56H24c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24zM0 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm386.667-56H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zm0 160H488c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H386.667c-13.255 0-24 10.745-24 24v80c0 13.255 10.745 24 24 24zM181.333 376v80c0 13.255 10.745 24 24 24h101.333c13.255 0 24-10.745 24-24v-80c0-13.255-10.745-24-24-24H205.333c-13.255 0-24 10.745-24 24z">
-                                    </path>
-                                </svg><!-- <span class="fas fa-th"></span> Font Awesome fontawesome.com --></a></div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card bg-100 shadow-none border">
+                <div class="row gx-0 flex-between-center">
+                    <div class="col-sm-auto d-flex align-items-center"><img class="ms-n2"
+                            src="../assets/img/illustrations/crm-bar-chart.png" alt="" width="90" />
+                        <div>
+                            <h6 class="text-primary fs--1 mb-0">Welcome to </h6>
+                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">Prduct Detail</span></h4>
+                        </div><img class="ms-n4 d-md-none d-lg-block" src="../assets/img/illustrations/crm-line-chart.png"
+                            alt="" width="150" />
+                    </div>
+                    <div class="col-md-auto p-3">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="card mb-3">
-        <div class="card-header">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h5 class="mb-0">Data Product</h5>
+    <div class="row mb-3 g-3">
+        <div class="col-xl-9 col-xxl-9">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4 border-lg-end border-bottom border-lg-0 pb-3 pb-lg-0">
+                            <div class="d-flex flex-between-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
+                                        <span class="fs--2 fas fa-table text-primary"></span>
+                                    </div>
+                                    <h6 class="mb-0">Category Data</h6>
+                                </div>
+                                <div class="dropdown font-sans-serif btn-reveal-trigger">
+                                    <button
+                                        class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                                        type="button" id="dropdown-new-contact" data-bs-toggle="dropdown"
+                                        data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span
+                                            class="fas fa-ellipsis-h fs--2"></span></button>
+                                    <div class="dropdown-menu dropdown-menu-end border py-2"
+                                        aria-labelledby="dropdown-new-contact"><a class="dropdown-item"
+                                            href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+                                            href="#!">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="d-flex">
+                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">100%</p>
+                                    <div class="d-flex flex-column"> <span
+                                            class="me-1 text-success fas fa-caret-up text-primary"></span>
+                                        <p class="fs--2 mb-0 text-nowrap">{{ $data->count() }} </p>
+                                    </div>
+                                </div>
+                                <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                    data-echarts='{"series":[{"type":"line","data":[220,230,150,175,200,170,70,160],"color":"#2c7be5","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#2c7be53A"},{"offset":1,"color":"#2c7be50A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 border-lg-end border-bottom border-lg-0 py-3 py-lg-0">
+                            <div class="d-flex flex-between-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info"><span
+                                            class="fs--2 far fa-file-alt text-info"></span></div>
+                                    <h6 class="mb-0">Category Aktif</h6>
+                                </div>
+                                <div class="dropdown font-sans-serif btn-reveal-trigger">
+                                    <button
+                                        class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                                        type="button" id="dropdown-new-users" data-bs-toggle="dropdown"
+                                        data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span
+                                            class="fas fa-ellipsis-h fs--2"></span></button>
+                                    <div class="dropdown-menu dropdown-menu-end border py-2"
+                                        aria-labelledby="dropdown-new-users"><a class="dropdown-item"
+                                            href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+                                            href="#!">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="d-flex">
+                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">13%</p>
+                                    <div class="d-flex flex-column"> <span
+                                            class="me-1 text-success fas fa-caret-up text-success"></span>
+                                        <p class="fs--2 mb-0 text-nowrap">5 </p>
+                                    </div>
+                                </div>
+                                <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                    data-echarts='{"series":[{"type":"line","data":[90,160,150,120,230,155,220,240],"color":"#27bcfd","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#27bcfd3A"},{"offset":1,"color":"#27bcfd0A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pt-3 pt-lg-0">
+                            <div class="d-flex flex-between-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-item icon-item-sm bg-soft-danger shadow-none me-2 bg-soft-success">
+                                        <span class="fs--2 far fa-file-excel text-danger"></span>
+                                    </div>
+                                    <h6 class="mb-0">Category Non Aktif</h6>
+                                </div>
+                                <div class="dropdown font-sans-serif btn-reveal-trigger">
+                                    <button
+                                        class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                                        type="button" id="dropdown-new-leads" data-bs-toggle="dropdown"
+                                        data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span
+                                            class="fas fa-ellipsis-h fs--2"></span></button>
+                                    <div class="dropdown-menu dropdown-menu-end border py-2"
+                                        aria-labelledby="dropdown-new-leads"><a class="dropdown-item"
+                                            href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+                                            href="#!">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="d-flex">
+                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">16%</p>
+                                    <div class="d-flex flex-column"> <span
+                                            class="me-1 text-success fas fa-caret-down text-danger"></span>
+                                        <p class="fs--2 mb-0 text-nowrap">1 </p>
+                                    </div>
+                                </div>
+                                <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                    data-echarts='{"series":[{"type":"line","data":[200,150,175,130,150,115,130,100],"color":"#00d27a","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#00d27a3A"},{"offset":1,"color":"#00d27a0A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <a class="btn btn-falcon-primary btn-sm" href="#!" data-bs-toggle="modal"
-                        data-bs-target="#modal-product" id="button-add-product">
-                        <span class="far fa-plus-square fs--2 me-1"></span>Add Product</a>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h5 class="mb-0">Data Product</h5>
+                        </div>
+                        <div class="col-auto">
+                            <a class="btn btn-falcon-primary btn-sm" href="#!" data-bs-toggle="modal"
+                                data-bs-target="#modal-product" id="button-add-product">
+                                <span class="far fa-plus-square fs--2 me-1"></span>Add Product</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body border-top p-2">
+                    <table id="example" class="table table-striped nowrap" style="width:100%">
+                        <thead class="bg-200 text-700">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Product</th>
+                                <th>Categories</th>
+                                <th>Variants</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $item->t_product_name }}</td>
+                                    <td>{{ $item->t_category_name }}</td>
+                                    <td>{{ $item->t_product_type }}</td>
+                                    <td>@currency($item->t_product_price)</td>
+                                    <td>{{ $item->t_product_disc }} %</td>
+                                    <td>
+                                        @if ($item->t_product_status == 1)
+                                            <span class="badge bg-success">Aktif</span>
+                                        @else
+                                            <span class="badge bg-danger">Tidak Aktif</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-primary dropdown-toggle"
+                                                id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false"><span
+                                                    class="fas fa-align-left me-1"
+                                                    data-fa-transform="shrink-3"></span>Option</button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
+
+                                                <button class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-product" id="button-display-product"
+                                                    data-code="{{ $item->t_product_code }}"><span
+                                                        class="fas fa-chalkboard-teacher"></span>
+                                                    Display</button>
+                                                <button class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-product" id="button-edit-product"
+                                                    data-code="{{ $item->t_product_code }}"><span
+                                                        class="far fa-edit"></span>
+                                                    Edit</button>
+                                                <button class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-product" id="button-detail-product"
+                                                    data-code="{{ $item->t_product_code }}"><span
+                                                        class="far fa-folder-open"></span> Detail Product</button>
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="card-body border-top p-2">
-            <table id="example" class="table table-striped nowrap" style="width:100%">
-                <thead class="bg-200 text-700">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Product</th>
-                        <th>Categories</th>
-                        <th>Variants</th>
-                        <th>Price</th>
-                        <th>Discount</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $no = 1;
-                    @endphp
-                    @foreach ($data as $item)
-                        <tr>
-                            <td>{{$no++}}</td>
-                            <td>{{$item->t_product_name}}</td>
-                            <td>{{$item->t_category_name}}</td>
-                            <td>{{$item->t_product_type}}</td>
-                            <td>@currency($item->t_product_price)</td>
-                            <td>{{$item->t_product_disc}} %</td>
-                            <td>
-                                @if ($item->t_product_status == 1)
-                                    <span class="badge bg-success">Aktif</span>
-                                @else
-                                    <span class="badge bg-danger">Tidak Aktif</span>
-                                @endif
-                            </td>
-                            <td>{{$item->created_at}}</td>
-                            <td class="text-center">
-                                <div class="btn-group" role="group">
-                                    <button class="btn btn-sm btn-primary dropdown-toggle" id="btnGroupVerticalDrop2"
-                                        type="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"><span class="fas fa-align-left me-1"
-                                            data-fa-transform="shrink-3"></span>Option</button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
-
-                                        <button class="dropdown-item" data-bs-toggle="modal"
-                                            data-bs-target="#modal-product" id="button-display-product"
-                                            data-code="{{ $item->t_product_code }}"><span class="fas fa-chalkboard-teacher"></span>
-                                            Display</button>
-                                        <button class="dropdown-item" data-bs-toggle="modal"
-                                            data-bs-target="#modal-product" id="button-edit-product"
-                                            data-code="{{ $item->t_product_code }}"><span class="far fa-edit"></span>
-                                            Edit</button>
-                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-product"
-                                            id="button-detail-product" data-code="{{ $item->t_product_code }}"><span
-                                                class="far fa-folder-open"></span> Detail Product</button>
-
-
-                                    </div>
+        <div class="col-xl-3">
+            <div class="card">
+                <div class="card-header d-flex flex-between-center py-2 border-bottom">
+                    <h6 class="mb-0">Analis Category</h6>
+                    <div class="dropdown font-sans-serif btn-reveal-trigger">
+                        <button class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                            type="button" id="dropdown-most-leads" data-bs-toggle="dropdown" data-boundary="viewport"
+                            aria-haspopup="true" aria-expanded="false"><span
+                                class="fas fa-ellipsis-h fs--2"></span></button>
+                        <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown-most-leads"><a
+                                class="dropdown-item" href="#!">View</a><a class="dropdown-item"
+                                href="#!">Export</a>
+                            <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+                                href="#!">Remove</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 col-xl-12 mb-xl-3">
+                            <div class="position-relative">
+                                <!-- Find the JS file for the following chart at: src/js/charts/echarts/most-leads.js-->
+                                <!-- If you are not using gulp based workflow, you can find the transpiled code at: public/assets/js/theme.js-->
+                                <div class="echart-most-leads my-2" data-echart-responsive="true"></div>
+                                <div class="position-absolute top-50 start-50 translate-middle text-center">
+                                    <p class="fs--1 mb-0 text-400 font-sans-serif fw-medium">Total</p>
+                                    <p class="fs-3 mb-0 font-sans-serif fw-medium mt-n2">15.6k</p>
                                 </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-md-7">
+                            <hr class="mx-ncard mb-0 d-md-none d-xxl-block" />
+                            <div class="d-flex flex-between-center border-bottom py-3 pt-md-0 pt-xxl-3">
+                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/email.svg "
+                                        width="16" height="16" alt="..." />
+                                    <h6 class="text-700 mb-0">Email </h6>
+                                </div>
+                                <p class="fs--1 text-500 mb-0 fw-semi-bold">5200 vs 1052</p>
+                                <h6 class="text-700 mb-0">12%</h6>
+                            </div>
+                            <div class="d-flex flex-between-center border-bottom py-3">
+                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/social.svg "
+                                        width="16" height="16" alt="..." />
+                                    <h6 class="text-700 mb-0">Social </h6>
+                                </div>
+                                <p class="fs--1 text-500 mb-0 fw-semi-bold">5623 vs 4929</p>
+                                <h6 class="text-700 mb-0">25%</h6>
+                            </div>
+                            <div class="d-flex flex-between-center border-bottom py-3">
+                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/call.svg " width="16"
+                                        height="16" alt="..." />
+                                    <h6 class="text-700 mb-0">Call </h6>
+                                </div>
+                                <p class="fs--1 text-500 mb-0 fw-semi-bold">2535 vs 1486</p>
+                                <h6 class="text-700 mb-0">63%</h6>
+                            </div>
+                            <div class="d-flex flex-between-center border-bottom py-3 border-bottom-0 pb-0">
+                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/other.svg "
+                                        width="16" height="16" alt="..." />
+                                    <h6 class="text-700 mb-0">Other </h6>
+                                </div>
+                                <p class="fs--1 text-500 mb-0 fw-semi-bold">256 vs 189</p>
+                                <h6 class="text-700 mb-0">53%</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light p-0"><a class="btn btn-sm btn-link d-block py-2"
+                        href="#!">Primary<span class="fas fa-chevron-right ms-1 fs--2"></span></a></div>
+            </div>
         </div>
     </div>
 @endsection
@@ -139,7 +312,7 @@
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.4/js/responsive.bootstrap5.js"></script>
-
+    <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/img/animated-icons/loading.json') }}"></script> --}}
     <script>
         new DataTable('#example', {

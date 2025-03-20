@@ -33,7 +33,7 @@ class AppController extends Controller
             't_category_desc' => $request->desc,
             'created_at' => now(),
         ]);
-        return redirect()->back()->withSuccess('Great! Kamu Telah Menambah SUb Event');
+        return redirect()->back()->withSuccess('Great! Berhasil Menambahkan Data');
     }
     public function app_category_edit(Request $request)
     {
@@ -48,7 +48,7 @@ class AppController extends Controller
             't_category_desc' => $request->desc,
             'updated_at' => now(),
         ]);
-        return redirect()->back()->withSuccess('Great! Kamu Telah Menambah SUb Event');
+        return redirect()->back()->withSuccess('Great! Berhasil Menambahkan Data');
     }
 
     // PRODUCT
@@ -80,7 +80,7 @@ class AppController extends Controller
             't_product_file' => $tujuan_upload.'/'.$file->getClientOriginalName(),
             'created_at' => now()
         ]);
-        return redirect()->back()->withSuccess('Great! Kamu Telah Menambah SUb Event');
+        return redirect()->back()->withSuccess('Great! Berhasil Menambahkan Data');
     }
     public function app_product_display(Request $request){
         $data = DB::table('t_product')->where('t_product_code',$request->code)->first();
