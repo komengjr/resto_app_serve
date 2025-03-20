@@ -36,7 +36,7 @@
                                     <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
                                         <span class="fs--2 fas fa-table text-primary"></span>
                                     </div>
-                                    <h6 class="mb-0">Category Data</h6>
+                                    <h6 class="mb-0">Product Data</h6>
                                 </div>
                                 <div class="dropdown font-sans-serif btn-reveal-trigger">
                                     <button
@@ -70,7 +70,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info"><span
                                             class="fs--2 far fa-file-alt text-info"></span></div>
-                                    <h6 class="mb-0">Category Aktif</h6>
+                                    <h6 class="mb-0">Product Aktif</h6>
                                 </div>
                                 <div class="dropdown font-sans-serif btn-reveal-trigger">
                                     <button
@@ -105,7 +105,7 @@
                                     <div class="icon-item icon-item-sm bg-soft-danger shadow-none me-2 bg-soft-success">
                                         <span class="fs--2 far fa-file-excel text-danger"></span>
                                     </div>
-                                    <h6 class="mb-0">Category Non Aktif</h6>
+                                    <h6 class="mb-0">Product Non Aktif</h6>
                                 </div>
                                 <div class="dropdown font-sans-serif btn-reveal-trigger">
                                     <button
