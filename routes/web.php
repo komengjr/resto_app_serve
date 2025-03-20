@@ -57,6 +57,8 @@ Route::prefix('app')->group(function () {
     Route::get('stok', [AppController::class, 'app_stok'])->name('app_stok');
     Route::post('stok/find', [AppController::class, 'app_stok_find'])->name('app_stok_find');
     Route::get('table', [AppController::class, 'app_table'])->name('app_table');
+    Route::post('table/add', [AppController::class, 'app_table_add'])->name('app_table_add');
+    Route::post('table/save', [AppController::class, 'app_table_save'])->name('app_table_save');
     Route::get('inventaris', [AppController::class, 'inventaris'])->name('inventaris');
     Route::get('order-list', [AppController::class, 'list_order'])->name('list_order');
     Route::get('order-menu', [AppController::class, 'menu_order'])->name('menu_order');

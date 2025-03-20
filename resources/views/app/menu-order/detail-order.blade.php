@@ -7,10 +7,7 @@
         </button>
     </div>
     <div id="menu-table-order">
-
-
     </div>
-
 </div>
 <div class="card">
     <div class="card-header bg-light">

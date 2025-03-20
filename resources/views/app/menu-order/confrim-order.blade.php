@@ -83,42 +83,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    <h6 class="mb-0 text-nowrap">Platinum web hosting package</h6>
-                                    <p class="mb-0">Down 35mb, Up 100mb</p>
-                                </td>
-                                <td class="align-middle text-center">2</td>
-                                <td class="align-middle text-end">$65.00</td>
-                                <td class="align-middle text-end">$130.00</td>
-                            </tr>
-                            <tr>
-                                <td class="align-middle">
-                                    <h6 class="mb-0 text-nowrap">2 Page website design</h6>
-                                    <p class="mb-0">Includes basic wireframes and responsive templates</p>
-                                </td>
-                                <td class="align-middle text-center">1</td>
-                                <td class="align-middle text-end">$2,100.00</td>
-                                <td class="align-middle text-end">$2,100.00</td>
-                            </tr>
-                            <tr>
-                                <td class="align-middle">
-                                    <h6 class="mb-0 text-nowrap">Mobile App Development</h6>
-                                    <p class="mb-0">Includes responsive navigation</p>
-                                </td>
-                                <td class="align-middle text-center">8</td>
-                                <td class="align-middle text-end">$5,00.00</td>
-                                <td class="align-middle text-end">$4,000.00</td>
-                            </tr>
-                            <tr>
-                                <td class="align-middle">
-                                    <h6 class="mb-0 text-nowrap">Web App Development</h6>
-                                    <p class="mb-0">Includes react spa</p>
-                                </td>
-                                <td class="align-middle text-center">6</td>
-                                <td class="align-middle text-end">$2,000.00</td>
-                                <td class="align-middle text-end">$12,000.00</td>
-                            </tr>
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td class="align-middle">
+                                        <h6 class="mb-0 text-nowrap">{{$item->t_product_name}}</h6>
+                                        <p class="mb-0">{{$item->t_product_code}}</p>
+                                    </td>
+                                    <td class="align-middle text-center">2</td>
+                                    <td class="align-middle text-end">$65.00</td>
+                                    <td class="align-middle text-end">$130.00</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -14,7 +14,8 @@
                             src="../assets/img/illustrations/crm-bar-chart.png" alt="" width="90" />
                         <div>
                             <h6 class="text-primary fs--1 mb-0">Welcome to </h6>
-                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">Table</span></h4>
+                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">Table
+                                    Management</span></h4>
                         </div><img class="ms-n4 d-md-none d-lg-block" src="../assets/img/illustrations/crm-line-chart.png"
                             alt="" width="150" />
                     </div>
@@ -26,7 +27,7 @@
         </div>
     </div>
     <div class="row mb-3 g-3">
-        <div class="col-xl-9 col-xxl-9">
+        <div class="col-xl-8 col-xxl-9">
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
@@ -54,10 +55,10 @@
                             </div>
                             <div class="d-flex">
                                 <div class="d-flex">
-                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">15%</p>
+                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">100%</p>
                                     <div class="d-flex flex-column"> <span
                                             class="me-1 text-success fas fa-caret-up text-primary"></span>
-                                        <p class="fs--2 mb-0 text-nowrap">2500 vs 2683 </p>
+                                        <p class="fs--2 mb-0 text-nowrap">0</p>
                                     </div>
                                 </div>
                                 <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
@@ -70,7 +71,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-info"><span
                                             class="fs--2 fas fa-user text-info"></span></div>
-                                    <h6 class="mb-0">New Users</h6>
+                                    <h6 class="mb-0">Table Ready</h6>
                                 </div>
                                 <div class="dropdown font-sans-serif btn-reveal-trigger">
                                     <button
@@ -88,10 +89,10 @@
                             </div>
                             <div class="d-flex">
                                 <div class="d-flex">
-                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">13%</p>
+                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">0%</p>
                                     <div class="d-flex flex-column"> <span
                                             class="me-1 text-success fas fa-caret-up text-success"></span>
-                                        <p class="fs--2 mb-0 text-nowrap">1635 vs 863 </p>
+                                        <p class="fs--2 mb-0 text-nowrap">0</p>
                                     </div>
                                 </div>
                                 <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
@@ -105,7 +106,7 @@
                                     <div class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-success">
                                         <span class="fs--2 fas fa-bolt text-success"></span>
                                     </div>
-                                    <h6 class="mb-0">New Leads</h6>
+                                    <h6 class="mb-0">Table Proses</h6>
                                 </div>
                                 <div class="dropdown font-sans-serif btn-reveal-trigger">
                                     <button
@@ -123,10 +124,10 @@
                             </div>
                             <div class="d-flex">
                                 <div class="d-flex">
-                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">16%</p>
+                                    <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">0%</p>
                                     <div class="d-flex flex-column"> <span
                                             class="me-1 text-success fas fa-caret-down text-danger"></span>
-                                        <p class="fs--2 mb-0 text-nowrap">1423 vs 256 </p>
+                                        <p class="fs--2 mb-0 text-nowrap">0</p>
                                     </div>
                                 </div>
                                 <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
@@ -141,10 +142,12 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h5 class="mb-0">Data Product</h5>
+                            <h5 class="mb-0">Data Table</h5>
                         </div>
                         <div class="col-auto">
-                           
+                            <a class="btn btn-falcon-primary btn-sm" href="#!" data-bs-toggle="modal"
+                                data-bs-target="#modal-table" id="button-add-table">
+                                <span class="fas fa-calendar-plus fs--2 me-1"></span>Add Table</a>
                         </div>
                     </div>
                 </div>
@@ -165,18 +168,35 @@
                             @php
                                 $no = 1;
                             @endphp
-        
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>{{$item->m_table_master_name}}</td>
+                                    <td>{{$item->m_table_master_cat}}</td>
+                                    <td>{{$item->m_table_master_type}}</td>
+                                    <td>
+                                        @if ($item->m_table_master_status == 1)
+                                            <span class="badge bg-success">Aktif</span>
+                                        @else
+                                            <span class="badge bg-danger">Tidak Aktif</span>
+                                        @endif
+                                    </td>
+                                    <td>{{$item->created_at}}</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-xl-4">
             <div class="card">
                 <div class="card-header d-flex flex-between-center py-2 border-bottom">
-                    <h6 class="mb-0">Table Persent</h6>
+                    <h5 class="mb-0">Table Status Order</h5>
                     <div class="dropdown font-sans-serif btn-reveal-trigger">
-                        <button class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                        <button
+                            class="btn btn-falcon-primary text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
                             type="button" id="dropdown-most-leads" data-bs-toggle="dropdown" data-boundary="viewport"
                             aria-haspopup="true" aria-expanded="false"><span
                                 class="fas fa-ellipsis-h fs--2"></span></button>
@@ -188,65 +208,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body d-flex flex-column justify-content-between">
-                    <div class="row align-items-center">
-                        <div class="col-md-5 col-xl-12 mb-xl-3">
-                            <div class="position-relative">
-                                <!-- Find the JS file for the following chart at: src/js/charts/echarts/most-leads.js-->
-                                <!-- If you are not using gulp based workflow, you can find the transpiled code at: public/assets/js/theme.js-->
-                                <div class="echart-most-leads my-2" data-echart-responsive="true"></div>
-                                <div class="position-absolute top-50 start-50 translate-middle text-center">
-                                    <p class="fs--1 mb-0 text-400 font-sans-serif fw-medium">Total</p>
-                                    <p class="fs-3 mb-0 font-sans-serif fw-medium mt-n2">15.6k</p>
-                                </div>
+                <div class="card m-2">
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action flex-column align-items-start p-2 p-sm-3"
+                            href="#">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between mb-1 mb-md-0">
+                                <h5 class="mb-0">Nama Table</h5><small class="text-muted">23 Minutes ago</small>
                             </div>
-                        </div>
-                        <div class="col-xl-12 col-md-7">
-                            <hr class="mx-ncard mb-0 d-md-none d-xxl-block" />
-                            <div class="d-flex flex-between-center border-bottom py-3 pt-md-0 pt-xxl-3">
-                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/email.svg "
-                                        width="16" height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Email </h6>
-                                </div>
-                                <p class="fs--1 text-500 mb-0 fw-semi-bold">5200 vs 1052</p>
-                                <h6 class="text-700 mb-0">12%</h6>
+                            <p class="mb-0">Order</p><small
+                                class="text-muted">Donec id elit non mi porta.</small>
+                        </a>
+                    </div>
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action flex-column align-items-start p-2 p-sm-3"
+                            href="#">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between mb-1 mb-md-0">
+                                <h5 class="mb-0">Nama Table</h5><small class="text-muted">23 Minutes ago</small>
                             </div>
-                            <div class="d-flex flex-between-center border-bottom py-3">
-                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/social.svg "
-                                        width="16" height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Social </h6>
-                                </div>
-                                <p class="fs--1 text-500 mb-0 fw-semi-bold">5623 vs 4929</p>
-                                <h6 class="text-700 mb-0">25%</h6>
-                            </div>
-                            <div class="d-flex flex-between-center border-bottom py-3">
-                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/call.svg " width="16"
-                                        height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Call </h6>
-                                </div>
-                                <p class="fs--1 text-500 mb-0 fw-semi-bold">2535 vs 1486</p>
-                                <h6 class="text-700 mb-0">63%</h6>
-                            </div>
-                            <div class="d-flex flex-between-center border-bottom py-3 border-bottom-0 pb-0">
-                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/other.svg "
-                                        width="16" height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Other </h6>
-                                </div>
-                                <p class="fs--1 text-500 mb-0 fw-semi-bold">256 vs 189</p>
-                                <h6 class="text-700 mb-0">53%</h6>
-                            </div>
-                        </div>
+                            <p class="mb-0">Order</p><small
+                                class="text-muted">Donec id elit non mi porta.</small>
+                        </a>
                     </div>
                 </div>
-                <div class="card-footer bg-light p-0"><a class="btn btn-sm btn-link d-block py-2"
-                        href="#!">Primary<span class="fas fa-chevron-right ms-1 fs--2"></span></a></div>
             </div>
         </div>
     </div>
-  
 @endsection
 @section('base.js')
-    <div class="modal fade" id="modal-product" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
+    <div class="modal fade" id="modal-table" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg mt-6" role="document" style="max-width: 60%;">
             <div class="modal-content border-0">
@@ -254,7 +243,7 @@
                     <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="menu-product"></div>
+                <div id="menu-table"></div>
             </div>
         </div>
     </div>
@@ -265,7 +254,7 @@
     <script src="https://cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.4/js/responsive.bootstrap5.js"></script>
     <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
-  
+
 
     {{-- <script src="{{ asset('assets/img/animated-icons/loading.json') }}"></script> --}}
     <script>
@@ -274,14 +263,14 @@
         });
     </script>
     <script>
-        $(document).on("click", "#button-add-product", function(e) {
+        $(document).on("click", "#button-add-table", function(e) {
             e.preventDefault();
             // var code = $(this).data("code");
-            $('#menu-product').html(
+            $('#menu-table').html(
                 '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
             );
             $.ajax({
-                url: "{{ route('app_product_add') }}",
+                url: "{{ route('app_table_add') }}",
                 type: "POST",
                 cache: false,
                 data: {
@@ -290,9 +279,9 @@
                 },
                 dataType: 'html',
             }).done(function(data) {
-                $('#menu-product').html(data);
+                $('#menu-table').html(data);
             }).fail(function() {
-                $('#menu-product').html('eror');
+                $('#menu-table').html('eror');
             });
 
         });

@@ -130,8 +130,25 @@ class AppController extends Controller
     {
         return view('app.stok.cari-data');
     }
+    // Table Management
     public function app_table(){
-        return view('app.table-service');
+        $data = DB::table('m_table_master')->get();
+        return view('app.table-service',['data'=>$data]);
+    }
+    public function app_table_add(){
+        return view('app.table.form-add');
+    }
+    public function app_table_save(Request $request){
+        DB::table('m_table_master')->insert([
+            'm_table_master_code'=>str::uuid(),
+            'm_table_master_name'=> $request->name,
+            'm_table_master_cat'=> $request->category,
+            'm_table_master_type'=> $request->type,
+            'm_table_master_status'=> 1,
+            'm_table_master_desc'=> $request->desc,
+            'created_at'=> now(),
+        ]);
+        return redirect()->back()->withSuccess('Great! Berhasil Menambahkan Data');
     }
     public function inventaris()
     {
@@ -178,6 +195,9 @@ class AppController extends Controller
         return view('app.menu-order.list-order',['data'=>$data]);
     }
     public function menu_confrim_order_customer(Request $request){
-        return view('app.menu-order.confrim-order');
+        $data = DB::table('log_order_request')
+        ->join('t_product','t_product.t_product_code','=','log_order_request.t_product_code')
+        ->where('log_order_request.no_order',$request->order)->get();
+        return view('app.menu-order.confrim-order',['data'=>$data]);
     }
 }
