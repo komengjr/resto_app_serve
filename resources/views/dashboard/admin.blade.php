@@ -19,11 +19,11 @@
                                 <div class="d-flex py-3">
                                     <div class="pe-3">
                                         <p class="text-600 fs--1 fw-medium">Today's visit </p>
-                                        <h4 class="text-800 mb-0">14,209</h4>
+                                        <h4 class="text-800 mb-0">{{$ordertoday->count()}}</h4>
                                     </div>
                                     <div class="ps-3">
-                                        <p class="text-600 fs--1">Today’s total sales </p>
-                                        <h4 class="text-800 mb-0">$21,349.29 </h4>
+                                        <p class="text-600 fs--1">Total Orders </p>
+                                        <h4 class="text-800 mb-0">{{$order->count()}} Order</h4>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto d-flex align-items-center"><a
-                                                class="alert-link fs--1 fw-medium" href="#!">View products<i
+                                                class="alert-link fs--1 fw-medium" href="#!">View Order<i
                                                     class="fas fa-chevron-right ms-1 fs--2"></i></a></div>
                                     </div>
                                 </li>
@@ -55,21 +55,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto d-flex align-items-center"><a
-                                                class="alert-link fs--1 fw-medium" href="#!">View payments<i
-                                                    class="fas fa-chevron-right ms-1 fs--2"></i></a></div>
-                                    </div>
-                                </li>
-                                <li class="alert mb-0 rounded-0 py-3 px-card greetings-item border-top  border-0">
-                                    <div class="row flex-between-center">
-                                        <div class="col">
-                                            <div class="d-flex">
-                                                <div class="fas fa-circle mt-1 fs--2 text-primary"></div>
-                                                <p class="fs--1 ps-2 mb-0"><strong>50+ orders</strong> need to be fulfilled
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto d-flex align-items-center"><a
-                                                class="alert-link fs--1 fw-medium" href="#!">View orders<i
+                                                class="alert-link fs--1 fw-medium" href="#!">View Order<i
                                                     class="fas fa-chevron-right ms-1 fs--2"></i></a></div>
                                     </div>
                                 </li>

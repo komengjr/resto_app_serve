@@ -11,8 +11,13 @@ use Hash;
 use Illuminate\Support\Str;
 class AuthController extends Controller
 {
-    public function fisrt(){
-        return view('auth.login');
+    public function fisrt()
+    {
+        if (Auth::check()) {
+            return Redirect('dashboard/home');
+        } else {
+            return view('auth.login');
+        }
     }
 
     public function index()
@@ -48,10 +53,10 @@ class AuthController extends Controller
             if (Auth::user()->access_status == 0) {
                 Auth::logout();
                 return redirect()->intended('register_status')
-                ->withSuccess('Gagal Login');
+                    ->withSuccess('Gagal Login');
             } else {
                 return redirect()->intended('dashboard/home')
-                ->withSuccess('Kamu Berhasil Masuk di Halaman '.Auth::user()->fullname);
+                    ->withSuccess('Kamu Berhasil Masuk di Halaman ' . Auth::user()->fullname);
             }
 
         }
@@ -93,7 +98,7 @@ class AuthController extends Controller
     {
 
         return UserMain::create([
-            'userid' => 'UID-'.Str::random(4),
+            'userid' => 'UID-' . Str::random(4),
             'fullname' => $data['fullname'],
             'username' => $data['username'],
             'number_handphone' => $data['no_hp'],
@@ -106,13 +111,16 @@ class AuthController extends Controller
         ]);
 
     }
-    public function confrim_user(){
+    public function confrim_user()
+    {
         return view('auth.confrim-page');
     }
-    public function register_status(){
+    public function register_status()
+    {
         return view('auth.register_status');
     }
-    public function forget_password(){
+    public function forget_password()
+    {
         return view('auth.forget_password');
     }
 

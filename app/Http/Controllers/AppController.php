@@ -309,6 +309,25 @@ class AppController extends Controller
 
     // KITCHEN
     public function kitchen_req(){
-        return view('app.kitchen');
+        $data = DB::table('m_order_list')->where('m_order_status',0)->get();
+        return view('app.kitchen',['data'=>$data]);
+    }
+    public function kitchen_req_detail(Request $request){
+        $data = DB::table('m_order_list')
+        ->join('m_table_master','m_table_master.m_table_master_code','=','m_order_list.m_order_table')
+        ->where('m_order_list.no_reg_order',$request->code)->first();
+
+        return view('app.kitchen.detail',['data'=>$data]);
+    }
+    public function kitchen_req_check(Request $request){
+        DB::table('m_order_list_detail')->where('id',$request->code)->update(['order_status'=>1]);
+        return true;
+    }
+    public function kitchen_req_finish(Request $request){
+        $check = DB::table('m_order_list_detail')->where('no_reg_order',$request->code)->where('order_status',0)->first();
+        if (!$check) {
+            DB::table('m_order_list')->where('no_reg_order',$request->code)->update(['m_order_status'=>1]);
+        }
+        return true;
     }
 }

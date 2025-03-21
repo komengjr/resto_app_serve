@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use DB;
 class DashboarController extends Controller
 {
     public function __construct()
@@ -13,7 +13,9 @@ class DashboarController extends Controller
     public function index()
     {
         if (Auth::user()->access_code == 'admin') {
-            return view('dashboard.admin');
+            $order = DB::table('m_order_list')->get();
+            $ordertoday = DB::table('m_order_list')->where('m_order_date','like','%'.date('Y-m-d').'%')->get();
+            return view('dashboard.admin',['order'=>$order,'ordertoday'=>$ordertoday]);
         } elseif (Auth::user()->access_code == 'kasir') {
             return view('dashboard.kasir');
         } elseif (Auth::user()->access_code == 'user') {

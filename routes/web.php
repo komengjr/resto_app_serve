@@ -77,5 +77,8 @@ Route::prefix('app')->group(function () {
     Route::post('order-list/payment-save', [AppController::class, 'list_order_prosess_payment_save'])->name('list_order_prosess_payment_save');
 
     Route::get('kitchen-request', [AppController::class, 'kitchen_req'])->name('kitchen_req');
+    Route::post('kitchen-request/detail', [AppController::class, 'kitchen_req_detail'])->name('kitchen_req_detail');
+    Route::post('kitchen-request/check', [AppController::class, 'kitchen_req_check'])->name('kitchen_req_check');
+    Route::post('kitchen-request/finish', [AppController::class, 'kitchen_req_finish'])->name('kitchen_req_finish');
 });
 
