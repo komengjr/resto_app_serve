@@ -14,12 +14,13 @@
                             <h5 class="mb-2 mb-md-0">Order {{ $data[0]->no_order }}</h5>
                         </div>
                         <div class="col-auto">
-                            <button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button" id="button-create-order-fix"><span
-                                    class="fas fa-file-contract me-1"> </span>Create Order</button>
-                            <button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button"><span
-                                    class="fas fa-print me-1"> </span>Print</button>
-                            <button class="btn btn-falcon-success btn-sm mb-2 mb-sm-0" type="button"><span
-                                    class="fas fa-money-check me-1"></span>Receive Payment</button>
+                            <span id="button-change-order">
+                                <button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button" id="button-create-order-fix"> <span
+                                        class="fas fa-file-contract me-1"> </span>Create Order</button>
+                            </span>
+
+                            <a class="btn btn-falcon-danger btn-sm mb-2 mb-sm-0" type="button" href="{{ route('menu_order') }}"><span
+                                    class="fas fa-sign-out-alt me-1"></span>Exit</a>
                         </div>
                     </div>
                 </div>
@@ -33,9 +34,10 @@
                         <div class="col text-sm-end mt-3 mt-sm-0">
                             <h2 class="mb-3">Invoice</h2>
                             <h5>Resto Managemen System</h5>
-                            <h6>{{$table->m_table_master_name}} <input type="text" name="no_table" id="no_table" value="{{$table->m_table_master_code}}" hidden></h6>
+                            <h6>{{ $table->m_table_master_name }} <input type="text" name="no_table" id="no_table"
+                                    value="{{ $table->m_table_master_code }}" hidden></h6>
                             <p class="fs--1 mb-0">156 Pangeran Samsudin, Toronto<br />On, Kalimantan Barat, M5H 2H7</p>
-                            <input type="text" name="fix-order" id="fix-order" value="{{$order}}" hidden>
+                            <input type="text" name="fix-order" id="fix-order" value="{{ $order }}" hidden>
                         </div>
                         <div class="col-12">
                             <hr />

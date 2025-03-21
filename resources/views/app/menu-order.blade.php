@@ -316,7 +316,37 @@
                     },
                     dataType: 'html',
                 }).done(function(data) {
+                    $('#button-change-order').html('<button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button" id="button-print-order-fix"><span class="fas fa-print me-1"> </span>Print</button>');
                     $('#loading-fix-order').html(data);
+                }).fail(function() {
+                    $('#loading-fix-order').html('eror');
+                });
+            }
+        });
+        $(document).on("click", "#button-print-order-fix", function(e) {
+            e.preventDefault();
+            var fix_order = document.getElementById("fix-order").value;
+            // var no_table = document.getElementById("no_table").value;
+            if (table == "") {
+                $('#liveToastBtn').click();
+            } else {
+                $('#loading-fix-order').html(
+                    '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+                );
+                $.ajax({
+                    url: "{{ route('menu_print_order_fix') }}",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "fix_order": fix_order,
+                    },
+                    dataType: 'html',
+                }).done(function(data) {
+                    $('#loading-fix-order').html(
+                        '<iframe src="data:application/pdf;base64, ' +
+                        data +
+                        '" style="width:100%; height:533px;" frameborder="0"></iframe>');
                 }).fail(function() {
                     $('#loading-fix-order').html('eror');
                 });

@@ -1,29 +1,35 @@
 @extends('layouts.base')
 @section('content')
-<div class="row mb-3">
-    <div class="col">
-      <div class="card bg-100 shadow-none border">
-        <div class="row gx-0 flex-between-center">
-          <div class="col-sm-auto d-flex align-items-center"><img class="ms-n2" src="../assets/img/illustrations/crm-bar-chart.png" alt="" width="90" />
-            <div>
-              <h6 class="text-primary fs--1 mb-0">Welcome to </h6>
-              <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">CRM</span></h4>
-            </div><img class="ms-n4 d-md-none d-lg-block" src="../assets/img/illustrations/crm-line-chart.png" alt="" width="150" />
-          </div>
-          <div class="col-md-auto p-3">
-            <form class="row align-items-center g-3">
-              <div class="col-auto">
-                <h6 class="text-700 mb-0">Showing Data For: </h6>
-              </div>
-              <div class="col-md-auto position-relative">
-                <input class="form-control form-control-sm datetimepicker ps-4" id="CRMDateRange" type="text" data-options="{&quot;mode&quot;:&quot;range&quot;,&quot;dateFormat&quot;:&quot;M d&quot;,&quot;disableMobile&quot;:true , &quot;defaultDate&quot;: [&quot;Sep 12&quot;, &quot;Sep 19&quot;] }" /><span class="fas fa-calendar-alt text-primary position-absolute top-50 translate-middle-y ms-2"> </span>
-              </div>
-            </form>
-          </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card bg-100 shadow-none border">
+                <div class="row gx-0 flex-between-center">
+                    <div class="col-sm-auto d-flex align-items-center"><img class="ms-n2"
+                            src="../assets/img/illustrations/crm-bar-chart.png" alt="" width="90" />
+                        <div>
+                            <h6 class="text-primary fs--1 mb-0">Welcome to </h6>
+                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">CRM</span></h4>
+                        </div><img class="ms-n4 d-md-none d-lg-block" src="../assets/img/illustrations/crm-line-chart.png"
+                            alt="" width="150" />
+                    </div>
+                    <div class="col-md-auto p-3">
+                        <form class="row align-items-center g-3">
+                            <div class="col-auto">
+                                <h6 class="text-700 mb-0">Showing Data For: </h6>
+                            </div>
+                            <div class="col-md-auto position-relative">
+                                <input class="form-control form-control-sm datetimepicker ps-4" id="CRMDateRange"
+                                    type="text"
+                                    data-options="{&quot;mode&quot;:&quot;range&quot;,&quot;dateFormat&quot;:&quot;M d&quot;,&quot;disableMobile&quot;:true , &quot;defaultDate&quot;: [&quot;Sep 12&quot;, &quot;Sep 19&quot;] }" /><span
+                                    class="fas fa-calendar-alt text-primary position-absolute top-50 translate-middle-y ms-2">
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
     <div class="card mb-3" id="ordersTable"
         data-list='{"valueNames":["order","date","address","status","amount"],"page":10,"pagination":true}'>
         <div class="card-header">
@@ -71,95 +77,81 @@
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">Order</th>
                             <th class="sort pe-1 align-middle white-space-nowrap pe-7" data-sort="date">Date</th>
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">Request Order</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">Table Order</th>
                             <th class="sort pe-1 align-middle white-space-nowrap text-center" data-sort="status">Status</th>
                             <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">Amount</th>
                             <th class="no-sort"></th>
                         </tr>
                     </thead>
                     <tbody class="list" id="table-orders-body">
-                        <tr class="btn-reveal-trigger">
-                            <td class="align-middle" style="width: 28px;">
-                                <div class="form-check fs-0 mb-0 d-flex align-items-center">
-                                    <input class="form-check-input" type="checkbox" id="checkbox-0"
-                                        data-bulk-select-row="data-bulk-select-row" />
-                                </div>
-                            </td>
-                            <td class="order py-2 align-middle white-space-nowrap"><a
-                                    href="../../../app/e-commerce/orders/order-details.html"> <strong>#181</strong></a> by
-                                <strong>Ricky Antony</strong><br /><a href="mailto:ricky@example.com">ricky@example.com</a>
-                            </td>
-                            <td class="date py-2 align-middle">20/04/2019</td>
-                            <td class="address py-2 align-middle white-space-nowrap">
-                                <p class="mb-0 text-900">Via Flat Rate</p>
-                                <p class="mb-0 text-900">Via Flat Rate</p>
-                                <p class="mb-0 text-900">Via Flat Rate</p>
-                            </td>
-                            <td class="status py-2 align-middle text-center fs-0 white-space-nowrap"><span
-                                    class="badge badge rounded-pill d-block badge-soft-success">Completed<span
-                                        class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>
-                            </td>
-                            <td class="amount py-2 align-middle text-end fs-0 fw-medium">@currency(122000)</td>
-                            <td class="py-2 align-middle white-space-nowrap text-end">
-                                <div class="dropdown font-sans-serif position-static">
-                                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button"
-                                        id="order-dropdown-0" data-bs-toggle="dropdown" data-boundary="viewport"
-                                        aria-haspopup="true" aria-expanded="false"><span
-                                            class="fas fa-ellipsis-h fs--1"></span></button>
-                                    <div class="dropdown-menu dropdown-menu-end border py-0"
-                                        aria-labelledby="order-dropdown-0">
-                                        <div class="bg-white py-2"><a class="dropdown-item" href="#!">Completed</a><a
-                                                class="dropdown-item" href="#!">Processing</a><a class="dropdown-item"
-                                                href="#!">On Hold</a><a class="dropdown-item"
-                                                href="#!">Pending</a>
-                                            <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a>
-                                        </div>
+                        @foreach ($data as $item)
+                            <tr class="btn-reveal-trigger">
+                                <td class="align-middle" style="width: 28px;">
+                                    <div class="form-check fs-0 mb-0 d-flex align-items-center">
+                                        <input class="form-check-input" type="checkbox" id="checkbox-0"
+                                            data-bulk-select-row="data-bulk-select-row" />
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="btn-reveal-trigger">
-                            <td class="align-middle" style="width: 28px;">
-                                <div class="form-check fs-0 mb-0 d-flex align-items-center">
-                                    <input class="form-check-input" type="checkbox" id="checkbox-1"
-                                        data-bulk-select-row="data-bulk-select-row" />
-                                </div>
-                            </td>
-                            <td class="order py-2 align-middle white-space-nowrap"><a
-                                    href="../../../app/e-commerce/orders/order-details.html"> <strong>#182</strong></a> by
-                                <strong>Kin Rossow</strong><br /><a href="mailto:kin@example.com">kin@example.com</a>
-                            </td>
-                            <td class="date py-2 align-middle">20/04/2019</td>
-                            <td class="address py-2 align-middle white-space-nowrap">
-                                <p class="mb-0 text-900">Via Free Shipping</p>
-                                <p class="mb-0 text-900">Via Free Shipping</p>
-                                <p class="mb-0 text-900">Via Free Shipping</p>
-                            </td>
-                            <td class="status py-2 align-middle text-center fs-0 white-space-nowrap"><span
-                                    class="badge badge rounded-pill d-block badge-soft-primary">Processing<span
-                                        class="ms-1 fas fa-redo" data-fa-transform="shrink-2"></span></span>
-                            </td>
-                            <td class="amount py-2 align-middle text-end fs-0 fw-medium">@currency(250000)</td>
-                            <td class="py-2 align-middle white-space-nowrap text-end">
-                                <div class="dropdown font-sans-serif position-static">
-                                    <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button"
-                                        id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
-                                        aria-haspopup="true" aria-expanded="false"><span
-                                            class="fas fa-ellipsis-h fs--1"></span></button>
-                                    <div class="dropdown-menu dropdown-menu-end border py-0"
-                                        aria-labelledby="order-dropdown-1">
-                                        <div class="bg-white py-2"><a class="dropdown-item"
-                                                href="#!">Completed</a><a class="dropdown-item"
-                                                href="#!">Processing</a><a class="dropdown-item" href="#!">On
-                                                Hold</a><a class="dropdown-item" href="#!">Pending</a>
-                                            <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
-                                                href="#!">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="order py-2 align-middle white-space-nowrap"><a
+                                        href="../../../app/e-commerce/orders/order-details.html"> <strong>#{{$item->id}}</strong></a>
+                                    by
+                                    <strong>{{ $item->m_order_user }}</strong><br /><a
+                                        href="mailto:ricky@example.com">{{ $item->no_reg_order }}</a>
+                                </td>
+                                <td class="date py-2 align-middle">{{ $item->m_order_date }}</td>
+                                <td class="address py-2 align-middle white-space-nowrap">
+                                    @php
+                                        $total = 0;
+                                        $menu = DB::table('m_order_list_detail')
+                                            ->join(
+                                                't_product',
+                                                't_product.t_product_code',
+                                                '=',
+                                                'm_order_list_detail.t_product_code',
+                                            )
+                                            ->where('m_order_list_detail.no_reg_order',$item->no_reg_order)
+                                            ->get();
+                                    @endphp
+                                    @foreach ($menu as $menus)
+                                        <p class="mb-0 text-900">{{ $menus->t_product_name }}</p>
+                                        @php
+                                            $total = $menus->order_price + $total;
+                                        @endphp
+                                    @endforeach
 
+                                </td>
+                                <td>{{$item->m_order_table}}</td>
+                                <td class="status py-2 align-middle text-center fs-0 white-space-nowrap">
+                                    @if ($item->m_order_status == 0)
+                                        <span class="badge badge rounded-pill d-block badge-soft-warning">Prosess<span
+                                                class="ms-1 fas fa-cogs" data-fa-transform="shrink-2"></span></span>
+                                    @else
+                                        <span class="badge badge rounded-pill d-block badge-soft-success">Completed<span
+                                                class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>
+                                    @endif
+                                </td>
+                                <td class="amount py-2 align-middle text-end fs-0 fw-medium">@currency($total)</td>
+                                <td class="py-2 align-middle white-space-nowrap text-end">
+                                    <div class="dropdown font-sans-serif position-static">
+                                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal"
+                                            type="button" id="order-dropdown-0" data-bs-toggle="dropdown"
+                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span
+                                                class="fas fa-ellipsis-h fs--1"></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-0">
+                                            <div class="bg-white py-2"><a class="dropdown-item"
+                                                    href="#!">Completed</a><a class="dropdown-item"
+                                                    href="#!">Processing</a><a class="dropdown-item"
+                                                    href="#!">On Hold</a><a class="dropdown-item"
+                                                    href="#!">Pending</a>
+                                                <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+                                                    href="#!">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

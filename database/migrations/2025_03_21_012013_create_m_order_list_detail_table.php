@@ -17,7 +17,8 @@ class CreateMOrderListDetailTable extends Migration
             $table->id();
             $table->string('no_reg_order');
             $table->string('t_product_code');
-            $table->string('order_price');
+            $table->integer('order_qty');
+            $table->bigInteger('order_price');
             $table->string('order_status');
             $table->timestamps();
         });
