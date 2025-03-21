@@ -208,27 +208,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="card m-2">
-                    <div class="list-group">
+                <div class=" m-2">
+                    @foreach ($proses as $prosess)
+
+                    <div class="list-group bg-light mb-2 border border-warning">
                         <a class="list-group-item list-group-item-action flex-column align-items-start p-2 p-sm-3"
                             href="#">
-                            <div class="d-flex flex-column flex-sm-row justify-content-between mb-1 mb-md-0">
-                                <h5 class="mb-0">Nama Table</h5><small class="text-muted">23 Minutes ago</small>
+                            <div class="d-flex flex-column flex-sm-row justify-content-between mb-0 mb-md-0">
+                                <h5 class="mb-0">{{$prosess->m_table_master_name}}</h5><small class="text-muted">{{$prosess->m_order_date}}</small>
                             </div>
-                            <p class="mb-0">Order</p><small
-                                class="text-muted">Donec id elit non mi porta.</small>
+                            <p class="mb-0">Proses</p><small
+                                class="text-muted">{{$prosess->no_reg_order }}</small>
                         </a>
                     </div>
-                    <div class="list-group">
-                        <a class="list-group-item list-group-item-action flex-column align-items-start p-2 p-sm-3"
-                            href="#">
-                            <div class="d-flex flex-column flex-sm-row justify-content-between mb-1 mb-md-0">
-                                <h5 class="mb-0">Nama Table</h5><small class="text-muted">23 Minutes ago</small>
-                            </div>
-                            <p class="mb-0">Order</p><small
-                                class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

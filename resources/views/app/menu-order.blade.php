@@ -142,7 +142,7 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content border-0">
-                <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1">
+                <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1" id="button-x">
                     <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -318,6 +318,7 @@
                 }).done(function(data) {
                     $('#button-change-order').html('<button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button" id="button-print-order-fix"><span class="fas fa-print me-1"> </span>Print</button>');
                     $('#loading-fix-order').html(data);
+                    $('#button-x').html("");
                 }).fail(function() {
                     $('#loading-fix-order').html('eror');
                 });

@@ -139,7 +139,10 @@ class AppController extends Controller
     public function app_table()
     {
         $data = DB::table('m_table_master')->get();
-        return view('app.table-service', ['data' => $data]);
+        $proses = DB::table('m_table_master')
+        ->join('m_order_list','m_order_list.m_order_table','=','m_table_master.m_table_master_code')
+        ->where('m_order_list.m_order_status',0)->get();
+        return view('app.table-service', ['data' => $data,'proses'=>$proses]);
     }
     public function app_table_add()
     {
