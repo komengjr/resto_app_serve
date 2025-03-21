@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="dropdown font-sans-serif btn-reveal-trigger">
                                     <button
-                                        class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                                        class="btn btn-falcon-primary text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
                                         type="button" id="dropdown-new-contact" data-bs-toggle="dropdown"
                                         data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span
                                             class="fas fa-ellipsis-h fs--2"></span></button>
@@ -217,7 +217,7 @@
                 <div class="card-header d-flex flex-between-center py-2 border-bottom">
                     <h6 class="mb-0">Analis Category</h6>
                     <div class="dropdown font-sans-serif btn-reveal-trigger">
-                        <button class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                        <button class="btn btn-falcon-primary text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
                             type="button" id="dropdown-most-leads" data-bs-toggle="dropdown" data-boundary="viewport"
                             aria-haspopup="true" aria-expanded="false"><span
                                 class="fas fa-ellipsis-h fs--2"></span></button>
@@ -247,35 +247,12 @@
                             <div class="d-flex flex-between-center border-bottom py-3 pt-md-0 pt-xxl-3">
                                 <div class="d-flex"><img class="me-2" src="../assets/img/crm/email.svg "
                                         width="16" height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Email </h6>
+                                    <h6 class="text-700 mb-0">Data </h6>
                                 </div>
                                 <p class="fs--1 text-500 mb-0 fw-semi-bold">5200 vs 1052</p>
                                 <h6 class="text-700 mb-0">12%</h6>
                             </div>
-                            <div class="d-flex flex-between-center border-bottom py-3">
-                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/social.svg "
-                                        width="16" height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Social </h6>
-                                </div>
-                                <p class="fs--1 text-500 mb-0 fw-semi-bold">5623 vs 4929</p>
-                                <h6 class="text-700 mb-0">25%</h6>
-                            </div>
-                            <div class="d-flex flex-between-center border-bottom py-3">
-                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/call.svg " width="16"
-                                        height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Call </h6>
-                                </div>
-                                <p class="fs--1 text-500 mb-0 fw-semi-bold">2535 vs 1486</p>
-                                <h6 class="text-700 mb-0">63%</h6>
-                            </div>
-                            <div class="d-flex flex-between-center border-bottom py-3 border-bottom-0 pb-0">
-                                <div class="d-flex"><img class="me-2" src="../assets/img/crm/other.svg "
-                                        width="16" height="16" alt="..." />
-                                    <h6 class="text-700 mb-0">Other </h6>
-                                </div>
-                                <p class="fs--1 text-500 mb-0 fw-semi-bold">256 vs 189</p>
-                                <h6 class="text-700 mb-0">53%</h6>
-                            </div>
+
                         </div>
                     </div>
                 </div>

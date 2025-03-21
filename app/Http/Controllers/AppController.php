@@ -179,7 +179,9 @@ class AppController extends Controller
     }
     public function menu_order_create_table()
     {
-        $table = DB::table('m_table_master')->get();
+        $table = DB::table('m_table_master')
+        // ->join('m_order_list','m_order_list.m_order_table','=','m_table_master.m_table_master_code')
+        ->get();
         return view('app.menu-order.choose-table', ['table' => $table]);
     }
     public function menu_order_create_table_fix(Request $request)
@@ -289,5 +291,19 @@ class AppController extends Controller
     {
         $data = DB::table('m_order_list')->orderBy('id', 'DESC')->get();
         return view('app.order-list',['data'=>$data]);
+    }
+    public function list_order_prosess(Request $request){
+        $data = DB::table('m_order_list')
+        ->join('m_table_master','m_table_master.m_table_master_code','=','m_order_list.m_order_table')
+        ->where('m_order_list.no_reg_order',$request->code)->first();
+        return view('app.list-order.proses',['data'=>$data]);
+    }
+    public function list_order_prosess_payment(Request $request){
+
+        return view('app.list-order.choose-payment',['code'=>$request->code]);
+    }
+    public function list_order_prosess_payment_save(Request $request){
+        DB::table('m_order_list')->where('no_reg_order',$request->code)->update(['m_order_status'=>1,'updated_at'=>now()]);
+        return redirect()->back()->withSuccess('Great! Berhasil Melakukan Payment');
     }
 }

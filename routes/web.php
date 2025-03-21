@@ -72,5 +72,8 @@ Route::prefix('app')->group(function () {
     Route::post('order-menu/confrim-order-customer', [AppController::class, 'menu_confrim_order_customer'])->name('menu_confrim_order_customer');
 
     Route::get('order-list', [AppController::class, 'list_order'])->name('list_order');
+    Route::post('order-list/prosess', [AppController::class, 'list_order_prosess'])->name('list_order_prosess');
+    Route::post('order-list/payment', [AppController::class, 'list_order_prosess_payment'])->name('list_order_prosess_payment');
+    Route::post('order-list/payment-save', [AppController::class, 'list_order_prosess_payment_save'])->name('list_order_prosess_payment_save');
 });
 

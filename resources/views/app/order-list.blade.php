@@ -93,7 +93,8 @@
                                     </div>
                                 </td>
                                 <td class="order py-2 align-middle white-space-nowrap"><a
-                                        href="../../../app/e-commerce/orders/order-details.html"> <strong>#{{$item->id}}</strong></a>
+                                        href="../../../app/e-commerce/orders/order-details.html">
+                                        <strong>#{{ $item->id }}</strong></a>
                                     by
                                     <strong>{{ $item->m_order_user }}</strong><br /><a
                                         href="mailto:ricky@example.com">{{ $item->no_reg_order }}</a>
@@ -109,7 +110,7 @@
                                                 '=',
                                                 'm_order_list_detail.t_product_code',
                                             )
-                                            ->where('m_order_list_detail.no_reg_order',$item->no_reg_order)
+                                            ->where('m_order_list_detail.no_reg_order', $item->no_reg_order)
                                             ->get();
                                     @endphp
                                     @foreach ($menu as $menus)
@@ -120,14 +121,12 @@
                                     @endforeach
 
                                 </td>
-                                <td>{{$item->m_order_table}}</td>
+                                <td>{{ $item->m_order_table }}</td>
                                 <td class="status py-2 align-middle text-center fs-0 white-space-nowrap">
                                     @if ($item->m_order_status == 0)
-                                        <span class="badge badge rounded-pill d-block badge-soft-warning">Prosess<span
-                                                class="ms-1 fas fa-cogs" data-fa-transform="shrink-2"></span></span>
+                                        <span class="badge badge rounded-pill d-block badge-soft-warning">Prosess</span>
                                     @else
-                                        <span class="badge badge rounded-pill d-block badge-soft-success">Completed<span
-                                                class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>
+                                        <span class="badge badge rounded-pill d-block badge-soft-success">Payment</span>
                                     @endif
                                 </td>
                                 <td class="amount py-2 align-middle text-end fs-0 fw-medium">@currency($total)</td>
@@ -139,11 +138,11 @@
                                                 class="fas fa-ellipsis-h fs--1"></span></button>
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-0">
-                                            <div class="bg-white py-2"><a class="dropdown-item"
-                                                    href="#!">Completed</a><a class="dropdown-item"
-                                                    href="#!">Processing</a><a class="dropdown-item"
-                                                    href="#!">On Hold</a><a class="dropdown-item"
-                                                    href="#!">Pending</a>
+                                            <div class="bg-white py-2">
+                                                <a class="dropdown-item" href="#!" data-bs-toggle="modal" data-bs-target="#modal-order-list"
+                                                    id="button-prosess-order" data-code="{{ $item->no_reg_order }}">Processing</a>
+                                                <a class="dropdown-item" href="#!">Cetak</a>
+                                                <a class="dropdown-item" href="#!">Detail</a>
                                                 <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
                                                     href="#!">Delete</a>
                                             </div>
@@ -166,4 +165,66 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('base.js')
+    <div class="modal fade" id="modal-order-list" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+                <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1" id="button-x">
+                    <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="menu-order-list-modal"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on("click", "#button-prosess-order", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            // $('#button-create-hide').html("");
+            $('#menu-order-list-modal').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('list_order_prosess') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-order-list-modal').html(data);
+            }).fail(function() {
+                $('#menu-order-list-modal').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-payment-order", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#loading-proses-payment').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('list_order_prosess_payment') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#loading-proses-payment').html(data);
+            }).fail(function() {
+                $('#loading-proses-payment').html('eror');
+            });
+
+        });
+    </script>
 @endsection
