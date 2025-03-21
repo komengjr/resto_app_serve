@@ -56,7 +56,7 @@
                 @endfor
                 <div class="col-12 text-center">
                     <h5 class="mt-5">Looking for personal or small team task management?</h5>
-                    <p class="fs-1">Try the <a href="#">basic version</a> of Falcon</p>
+
                 </div>
             </div>
         </div>
