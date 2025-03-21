@@ -140,7 +140,7 @@
 @section('base.js')
     <div class="modal fade" id="modal-order" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg mt-6" role="document" style="max-width: 80%;">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content border-0">
                 <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1">
                     <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
@@ -171,6 +171,48 @@
                 $('#detail-order').html(data);
             }).fail(function() {
                 $('#detail-order').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-chosse-table", function(e) {
+            e.preventDefault();
+            $('#menu-order-modal').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('menu_order_create_table') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": 0
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-order-modal').html(data);
+            }).fail(function() {
+                $('#menu-order-modal').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-fix-table", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            console.log(code);
+
+            $.ajax({
+                url: "{{ route('menu_order_create_table_fix') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#table-no').html(data);
+            }).fail(function() {
+                $('#table-no').html('eror');
             });
 
         });
@@ -229,24 +271,56 @@
         $(document).on("click", "#button-confrim-order", function(e) {
             e.preventDefault();
             var order = document.getElementById("no_order").value;
-            $('#menu-order-modal').html(
-                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
-            );
-            $.ajax({
-                url: "{{ route('menu_confrim_order_customer') }}",
-                type: "POST",
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "order": order
-                },
-                dataType: 'html',
-            }).done(function(data) {
-                $('#menu-order-modal').html(data);
-            }).fail(function() {
-                $('#menu-order-modal').html('eror');
-            });
-
+            var table = document.getElementById("table").value;
+            if (table == "") {
+                $('#liveToastBtn').click();
+            } else {
+                $('#menu-order-modal').html(
+                    '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+                );
+                $.ajax({
+                    url: "{{ route('menu_confrim_order_customer') }}",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "order": order,
+                        "table": table
+                    },
+                    dataType: 'html',
+                }).done(function(data) {
+                    $('#menu-order-modal').html(data);
+                }).fail(function() {
+                    $('#menu-order-modal').html('eror');
+                });
+            }
+        });
+        $(document).on("click", "#button-create-order-fix", function(e) {
+            e.preventDefault();
+            var fix_order = document.getElementById("fix-order").value;
+            var no_table = document.getElementById("no_table").value;
+            if (table == "") {
+                $('#liveToastBtn').click();
+            } else {
+                $('#loading-fix-order').html(
+                    '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+                );
+                $.ajax({
+                    url: "{{ route('menu_order_create_fix') }}",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "fix_order": fix_order,
+                        "no_table": no_table
+                    },
+                    dataType: 'html',
+                }).done(function(data) {
+                    $('#loading-fix-order').html(data);
+                }).fail(function() {
+                    $('#loading-fix-order').html('eror');
+                });
+            }
         });
     </script>
 @endsection

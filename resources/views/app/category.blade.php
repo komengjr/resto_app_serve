@@ -198,7 +198,7 @@
                                                     Edit</button>
                                                 <button class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#loading-modal" id="button-send-replay-massage-wa"
-                                                    data-code="123"><span class="far fa-folder-open"></span> Show
+                                                    data-code="{{ $item->t_category_code }}"><span class="far fa-folder-open"></span> Show
                                                     Product</button>
 
 
@@ -288,7 +288,7 @@
 @section('base.js')
     <div class="modal fade" id="modal-category" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg mt-6" role="document" style="max-width: 60%;">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" >
             <div class="modal-content border-0">
                 <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1">
                     <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"

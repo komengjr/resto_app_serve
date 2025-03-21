@@ -158,6 +158,7 @@ class AppController extends Controller
     {
         return view('app.order-list');
     }
+    // MENU ORDER
     public function menu_order()
     {
         $data = DB::table('t_product')->where('t_product_status',1)->get();
@@ -166,6 +167,14 @@ class AppController extends Controller
     }
     public function menu_order_create(){
         return view('app.menu-order.detail-order');
+    }
+    public function menu_order_create_table(){
+        $table = DB::table('m_table_master')->get();
+        return view('app.menu-order.choose-table',['table'=>$table]);
+    }
+    public function menu_order_create_table_fix(Request $request){
+        $data = DB::table('m_table_master')->where('m_table_master_code',$request->code)->first();
+        return $data->m_table_master_name.'<input type="text" name="table" id="table" value="'.$request->code.'" hidden>';
     }
     public function menu_search_category(Request $request){
         if ($request->id == "all") {
@@ -195,9 +204,34 @@ class AppController extends Controller
         return view('app.menu-order.list-order',['data'=>$data]);
     }
     public function menu_confrim_order_customer(Request $request){
+        $table = DB::table('m_table_master')->where('m_table_master_code',$request->table)->first();
         $data = DB::table('log_order_request')
         ->join('t_product','t_product.t_product_code','=','log_order_request.t_product_code')
         ->where('log_order_request.no_order',$request->order)->get();
-        return view('app.menu-order.confrim-order',['data'=>$data]);
+        return view('app.menu-order.confrim-order',['data'=>$data,'table'=>$table ,'order'=>$request->order]);
+    }
+    public function menu_order_create_fix(Request $request){
+        DB::table('m_order_list')->insert([
+            'no_reg_order'=>$request->fix_order,
+            'm_order_user'=>'user'.$request->fix_order,
+            'm_order_table'=>$request->no_table,
+            'm_order_status'=>0,
+            'm_order_no'=>'089',
+            'm_order_date'=>now(),
+            'created_at'=>now(),
+        ]);
+        $cek = DB::table('log_order_request')
+        ->join('t_product','t_product.t_product_code','=','log_order_request.t_product_code')
+        ->where('log_order_request.no_order',$request->fix_order)->get();
+        foreach ($cek as $value) {
+            DB::table('m_order_list_detail')->insert([
+                'no_reg_order'=>$request->fix_order,
+                't_product_code'=>$value->t_product_code,
+                'order_price'=>$value->t_product_code,
+                'order_status'=>0,
+                'created_at'=>now(),
+            ]);
+        }
+        return true;
     }
 }

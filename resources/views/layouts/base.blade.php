@@ -416,7 +416,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait"
-                                href="../app/e-commerce/shopping-cart.html"><span class="fas fa-shopping-cart"
+                                href="#"><span class="fas fa-shopping-cart"
                                     data-fa-transform="shrink-7" style="font-size: 33px;"></span><span
                                     class="notification-indicator-number">1</span></a>
 
@@ -875,7 +875,7 @@
                 <button class="btn-close btn-close-white" type="button" data-bs-dismiss="toast"
                     aria-label="Close"></button>
             </div>
-            <div class="toast-body">Hubungi Admin</div>
+            <div class="toast-body">Data Error</div>
         </div>
     </div>
 </body>

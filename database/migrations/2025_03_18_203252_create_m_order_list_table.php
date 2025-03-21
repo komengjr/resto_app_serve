@@ -17,6 +17,9 @@ class CreateMOrderListTable extends Migration
             $table->id();
             $table->string('no_reg_order')->unique();
             $table->string('m_order_user');
+            $table->string('m_order_table');
+            $table->string('m_order_status');
+            $table->string('m_order_no')->nullable();
             $table->string('m_order_date');
             $table->timestamps();
         });

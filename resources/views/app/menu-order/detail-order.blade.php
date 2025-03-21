@@ -1,9 +1,10 @@
 <div class="card mb-3" id="detail">
     <div class="card-header bg-light btn-reveal-trigger d-flex flex-between-center">
-        <h5 class="mb-0">No Order : {{ date('YmdHis') }}</h5>
+        <h5 class="mb-0">No Order : {{ date('YmdHis') }} <br><small id="table-no"><input type="text" name="table" id="table" value="" hidden></small> </h5>
         <input type="text" name="no_order" value="{{ date('YmdHis') }}" id="no_order" hidden>
-        <button class="btn btn-falcon-default btn-sm btn-reveal text-600" href="#"><span
-                class="fas fa-pencil-alt"></span>
+
+        <button class="btn btn-falcon-default btn-sm btn-reveal text-600" data-bs-toggle="modal" data-bs-target="#modal-order" id="button-chosse-table"><span
+                class="fas fa-chair"></span> Table
         </button>
     </div>
     <div id="menu-table-order">
