@@ -306,4 +306,9 @@ class AppController extends Controller
         DB::table('m_order_list')->where('no_reg_order',$request->code)->update(['m_order_status'=>1,'updated_at'=>now()]);
         return redirect()->back()->withSuccess('Great! Berhasil Melakukan Payment');
     }
+
+    // KITCHEN
+    public function kitchen_req(){
+        return view('app.kitchen');
+    }
 }

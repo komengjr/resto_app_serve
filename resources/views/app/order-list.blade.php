@@ -139,8 +139,11 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-0">
                                             <div class="bg-white py-2">
-                                                <a class="dropdown-item" href="#!" data-bs-toggle="modal" data-bs-target="#modal-order-list"
-                                                    id="button-prosess-order" data-code="{{ $item->no_reg_order }}">Processing</a>
+                                                @if ($item->m_order_status == 0)
+                                                    <a class="dropdown-item" href="#!" data-bs-toggle="modal"
+                                                        data-bs-target="#modal-order-list" id="button-prosess-order"
+                                                        data-code="{{ $item->no_reg_order }}">Processing</a>
+                                                @endif
                                                 <a class="dropdown-item" href="#!">Cetak</a>
                                                 <a class="dropdown-item" href="#!">Detail</a>
                                                 <div class="dropdown-divider"></div><a class="dropdown-item text-danger"

@@ -192,6 +192,23 @@
                                         <!-- more inner pages-->
                                     </li>
                                 </ul>
+                                <a class="nav-link dropdown-indicator" href="#kitchen" role="button"
+                                    data-bs-toggle="collapse" aria-expanded="false" aria-controls="email">
+                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                class="far fa-building"></span></span><span
+                                            class="nav-link-text ps-1">Kitchen</span>
+                                    </div>
+                                </a>
+                                <ul class="nav collapse false" id="kitchen">
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('kitchen_req') }}"
+                                            aria-expanded="false">
+                                            <div class="d-flex align-items-center"><span
+                                                    class="nav-link-text ps-1">Kitchen Request</span>
+                                            </div>
+                                        </a>
+                                        <!-- more inner pages-->
+                                    </li>
+                                </ul>
                                 <a class="nav-link dropdown-indicator" href="#rekap" role="button"
                                     data-bs-toggle="collapse" aria-expanded="false" aria-controls="email">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
