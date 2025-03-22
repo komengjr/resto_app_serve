@@ -18,7 +18,7 @@
         </div>
     @endforeach
 
-    <div class="list-group-title border-bottom">EARLIER</div>
+    {{-- <div class="list-group-title border-bottom">EARLIER</div>
     <div class="list-group-item">
         <a class="notification notification-flush" href="#!">
             <div class="notification-avatar">
@@ -73,5 +73,5 @@
             </div>
         </a>
 
-    </div>
+    </div> --}}
 </div>
