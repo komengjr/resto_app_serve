@@ -36,6 +36,7 @@ Route::prefix('menu')->group(function () {
 
 Route::prefix('dashboard')->group(function () {
     Route::get('home', [DashboarController::class, 'index'])->name('dashboard.home');
+    Route::post('notification', [DashboarController::class, 'dashboard_notif'])->name('dashboard_notif');
     Route::get('news', [DashboarController::class, 'news'])->name('dashboard.news');
     Route::get('actifity', [DashboarController::class, 'actifity'])->name('dashboard.actifity');
     Route::get('profile', [DashboarController::class, 'profile'])->name('dashboard.profile');

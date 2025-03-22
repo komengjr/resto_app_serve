@@ -237,15 +237,15 @@
                                         <hr class="mb-0 navbar-vertical-divider" />
                                     </div>
                                 </div>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('master_user') }}" role="button"
-                                    aria-expanded="false">
+                                <!-- parent pages--><a class="nav-link" href="{{ route('master_user') }}"
+                                    role="button" aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                                 class="fas fa-user-alt"></span></span><span
                                             class="nav-link-text ps-1">User</span>
                                     </div>
                                 </a>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('master_setting') }}" role="button"
-                                    aria-expanded="false">
+                                <!-- parent pages--><a class="nav-link" href="{{ route('master_setting') }}"
+                                    role="button" aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                                 class="fas fa-cog"></span></span><span
                                             class="nav-link-text ps-1">Setting</span>
@@ -431,13 +431,13 @@
                                     title="Switch to dark theme"><span class="fas fa-moon fs-0"></span></label>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait"
                                 href="#"><span class="fas fa-shopping-cart"
                                     data-fa-transform="shrink-7" style="font-size: 33px;"></span><span
                                     class="notification-indicator-number">1</span></a>
 
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
                                 id="navbarDropdownNotification" href="#" role="button"
@@ -456,113 +456,8 @@
                                                     href="#">Mark all as read</a></div>
                                         </div>
                                     </div>
-                                    <div class="scrollbar-overlay" style="max-height:19rem">
-                                        <div class="list-group list-group-flush fw-normal fs--1">
-                                            <div class="list-group-title border-bottom">NEW</div>
-                                            <div class="list-group-item">
-                                                <a class="notification notification-flush notification-unread"
-                                                    href="#!">
-                                                    <div class="notification-avatar">
-                                                        <div class="avatar avatar-2xl me-3">
-                                                            <img class="rounded-circle"
-                                                                src="../assets/img/team/1-thumb.png" alt="" />
+                                    <div class="scrollbar-overlay" style="max-height:19rem" id="show-notification">
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="notification-body">
-                                                        <p class="mb-1"><strong>Emma Watson</strong> replied to your
-                                                            comment : "Hello world 😍"</p>
-                                                        <span class="notification-time"><span class="me-2"
-                                                                role="img" aria-label="Emoji">💬</span>Just
-                                                            now</span>
-
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                            <div class="list-group-item">
-                                                <a class="notification notification-flush notification-unread"
-                                                    href="#!">
-                                                    <div class="notification-avatar">
-                                                        <div class="avatar avatar-2xl me-3">
-                                                            <div class="avatar-name rounded-circle"><span>AB</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="notification-body">
-                                                        <p class="mb-1"><strong>Albert Brooks</strong> reacted to
-                                                            <strong>Mia Khalifa's</strong> status
-                                                        </p>
-                                                        <span class="notification-time"><span
-                                                                class="me-2 fab fa-gratipay text-danger"></span>9hr</span>
-
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                            <div class="list-group-title border-bottom">EARLIER</div>
-                                            <div class="list-group-item">
-                                                <a class="notification notification-flush" href="#!">
-                                                    <div class="notification-avatar">
-                                                        <div class="avatar avatar-2xl me-3">
-                                                            <img class="rounded-circle"
-                                                                src="../assets/img/icons/weather-sm.jpg"
-                                                                alt="" />
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="notification-body">
-                                                        <p class="mb-1">The forecast today shows a low of 20&#8451;
-                                                            in California. See today's weather.</p>
-                                                        <span class="notification-time"><span class="me-2"
-                                                                role="img" aria-label="Emoji">🌤️</span>1d</span>
-
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                            <div class="list-group-item">
-                                                <a class="border-bottom-0 notification-unread  notification notification-flush"
-                                                    href="#!">
-                                                    <div class="notification-avatar">
-                                                        <div class="avatar avatar-xl me-3">
-                                                            <img class="rounded-circle"
-                                                                src="../assets/img/logos/oxford.png" alt="" />
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="notification-body">
-                                                        <p class="mb-1"><strong>University of Oxford</strong>
-                                                            created an event : "Causal Inference Hilary 2019"</p>
-                                                        <span class="notification-time"><span class="me-2"
-                                                                role="img" aria-label="Emoji">✌️</span>1w</span>
-
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                            <div class="list-group-item">
-                                                <a class="border-bottom-0 notification notification-flush"
-                                                    href="#!">
-                                                    <div class="notification-avatar">
-                                                        <div class="avatar avatar-xl me-3">
-                                                            <img class="rounded-circle"
-                                                                src="../assets/img/team/10.jpg" alt="" />
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="notification-body">
-                                                        <p class="mb-1"><strong>James Cameron</strong> invited to
-                                                            join the group: United Nations International Children's Fund
-                                                        </p>
-                                                        <span class="notification-time"><span class="me-2"
-                                                                role="img" aria-label="Emoji">🙋‍</span>2d</span>
-
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="card-footer text-center border-top"><a class="card-link d-block"
                                             href="../app/social/notifications.html">View all</a></div>
@@ -885,7 +780,7 @@
 
 
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
-        <div class="toast fade" id="liveToast"  role="alert" aria-live="assertive" aria-atomic="true"
+        <div class="toast fade" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
             data-options='{"autoShow":true,"showOnce":true,"cookieExpireTime":720}' data-autohide="false">
             <div class="toast-header bg-danger text-white"><strong class="me-auto">Notice</strong><small>1 sec
                     ago</small>
@@ -895,6 +790,31 @@
             <div class="toast-body">Data Error</div>
         </div>
     </div>
+
+    <script>
+        $(document).on("click", "#navbarDropdownNotification", function(e) {
+            e.preventDefault();
+            // var code = $(this).data("code");
+            $('#show-notification').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('dashboard_notif') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": 0
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#show-notification').html(data);
+            }).fail(function() {
+                $('#show-notification').html('eror');
+            });
+
+        });
+    </script>
 </body>
 
 </html>

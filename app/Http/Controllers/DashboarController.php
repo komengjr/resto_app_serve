@@ -31,6 +31,13 @@ class DashboarController extends Controller
             return Redirect('/');
         }
     }
+    public function dashboard_notif(Request $request){
+        $data = DB::table('m_order_list')
+        ->select('user_mains.fullname','m_order_list.*')
+        ->join('user_mains','user_mains.userid','=','m_order_list.userid')
+        ->where('m_order_list.m_order_status',0)->get();
+        return view('notif.notification',['data'=>$data]);
+    }
     public function profile(){
         return view('dashboard.profile');
     }
