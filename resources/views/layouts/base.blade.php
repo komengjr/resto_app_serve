@@ -91,7 +91,7 @@
                             data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span
                                 class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
 
-                    </div><a class="navbar-brand" href="../index.html">
+                    </div><a class="navbar-brand" href="#">
                         <div class="d-flex align-items-center py-3"><img class="me-2"
                                 src="../assets/img/icons/spot-illustrations/falcon.png" alt=""
                                 width="40" /><span class="font-sans-serif">Resto</span>
@@ -237,14 +237,14 @@
                                         <hr class="mb-0 navbar-vertical-divider" />
                                     </div>
                                 </div>
-                                <!-- parent pages--><a class="nav-link" href="#" role="button"
+                                <!-- parent pages--><a class="nav-link" href="{{ route('master_user') }}" role="button"
                                     aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                                 class="fas fa-user-alt"></span></span><span
                                             class="nav-link-text ps-1">User</span>
                                     </div>
                                 </a>
-                                <!-- parent pages--><a class="nav-link" href="#" role="button"
+                                <!-- parent pages--><a class="nav-link" href="{{ route('master_setting') }}" role="button"
                                     aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                                 class="fas fa-cog"></span></span><span
@@ -267,7 +267,7 @@
                         aria-controls="navbarVerticalCollapse" aria-expanded="false"
                         aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span
                                 class="toggle-line"></span></span></button>
-                    <a class="navbar-brand me-1 me-sm-3" href="../index.html">
+                    <a class="navbar-brand me-1 me-sm-3" href="#">
                         <div class="d-flex align-items-center"><img class="me-2"
                                 src="../assets/img/icons/spot-illustrations/falcon.png" alt=""
                                 width="40" /><span class="font-sans-serif">Resto</span>

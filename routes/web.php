@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\DashboarController;
+use App\Http\Controllers\MasterController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -86,3 +87,7 @@ Route::prefix('app')->group(function () {
     Route::post('kitchen-request/finish', [AppController::class, 'kitchen_req_finish'])->name('kitchen_req_finish');
 });
 
+Route::prefix('master')->group(function () {
+    Route::get('user', [MasterController::class, 'master_user'])->name('master_user');
+    Route::get('setting', [MasterController::class, 'master_setting'])->name('master_setting');
+});
