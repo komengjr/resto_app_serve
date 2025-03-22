@@ -6,10 +6,11 @@
     <form class="row gy-2 gx-2 align-items-center p-4">
         <div class="col-10">
             <label class="visually-hidden" for="autoSizingInput">Nama Product</label>
-            <input class="form-control" id="autoSizingInput" type="text" placeholder="Nasi Goreng" />
+            <input class="form-control" id="find-input" type="text" placeholder="Nasi Goreng" />
         </div>
         <div class="col-2">
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary form-control" id="button-find-product">Find</button>
         </div>
     </form>
+    <div id="hasil-pencarian"></div>
 </div>

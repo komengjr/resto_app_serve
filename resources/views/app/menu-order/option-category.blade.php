@@ -32,7 +32,8 @@
             <div>
                 <a class="btn btn-sm btn-falcon-default" href="#!"
                     data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Add to Cart"><span class="fas fa-cart-plus"></span> Add</a>
+                    title="Add to Cart" id="button-add-product-list"
+                    data-code="{{ $item->t_product_code }}"><span class="fas fa-cart-plus"></span> Add</a>
             </div>
         </div>
     </div>

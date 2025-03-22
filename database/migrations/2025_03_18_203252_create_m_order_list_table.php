@@ -21,6 +21,7 @@ class CreateMOrderListTable extends Migration
             $table->string('m_order_status');
             $table->string('m_order_no')->nullable();
             $table->string('m_order_date');
+            $table->string('userid');
             $table->timestamps();
         });
     }

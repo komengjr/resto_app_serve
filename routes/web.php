@@ -54,8 +54,12 @@ Route::prefix('app')->group(function () {
     Route::post('product/edit', [AppController::class, 'app_product_edit'])->name('app_product_edit');
     Route::post('product/update', [AppController::class, 'app_product_update'])->name('app_product_update');
     Route::post('product/detail', [AppController::class, 'app_product_detail'])->name('app_product_detail');
+
     Route::get('stok', [AppController::class, 'app_stok'])->name('app_stok');
     Route::post('stok/find', [AppController::class, 'app_stok_find'])->name('app_stok_find');
+    Route::post('stok/find-search', [AppController::class, 'app_stok_find_search'])->name('app_stok_find_search');
+    Route::post('stok/find-detail', [AppController::class, 'app_stok_find_detail'])->name('app_stok_find_detail');
+
     Route::get('table', [AppController::class, 'app_table'])->name('app_table');
     Route::post('table/add', [AppController::class, 'app_table_add'])->name('app_table_add');
     Route::post('table/save', [AppController::class, 'app_table_save'])->name('app_table_save');

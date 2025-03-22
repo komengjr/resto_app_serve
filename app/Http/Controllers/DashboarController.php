@@ -15,7 +15,16 @@ class DashboarController extends Controller
         if (Auth::user()->access_code == 'admin') {
             $order = DB::table('m_order_list')->get();
             $ordertoday = DB::table('m_order_list')->where('m_order_date','like','%'.date('Y-m-d').'%')->get();
-            return view('dashboard.admin',['order'=>$order,'ordertoday'=>$ordertoday]);
+            $total = DB::table('m_order_list_detail')->sum('order_price');
+            $totalmin = DB::table('m_order_list_detail')->where('order_status',0)->sum('order_price');
+            $item = DB::table('m_order_list_detail')->sum('order_qty');
+            return view('dashboard.admin',[
+                'order'=>$order,
+                'ordertoday'=>$ordertoday,
+                'total'=>$total,
+                'totalmin'=>$totalmin,
+                'item'=>$item,
+            ]);
         } elseif (Auth::user()->access_code == 'kasir') {
             return view('dashboard.kasir');
         } elseif (Auth::user()->access_code == 'user') {

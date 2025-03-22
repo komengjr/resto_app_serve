@@ -135,6 +135,18 @@ class AppController extends Controller
     {
         return view('app.stok.cari-data');
     }
+    public function app_stok_find_search(Request $request)
+    {
+        $data = DB::table('t_product')->where('t_product_name','like','%'.$request->code.'%')->get();
+        return view('app.stok.hasil-pencarian',['data'=>$data]);
+    }
+    public function app_stok_find_detail(Request $request)
+    {
+        $data = DB::table('t_product')
+        ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')
+        ->where('t_product.t_product_code',$request->code)->first();
+        return view('app.stok.detail-stok',['data'=>$data]);
+    }
     // Table Management
     public function app_table()
     {
@@ -235,6 +247,7 @@ class AppController extends Controller
             'm_order_status' => 0,
             'm_order_no' => '089',
             'm_order_date' => now(),
+            'userid' => Auth::user()->userid,
             'created_at' => now(),
         ]);
         $cek = DB::table('log_order_request')
