@@ -48,7 +48,7 @@
                                         <h4 class="fw-light text-primary fs-3 mb-0">Order #{{$datas->id}}</h4>
                                         <h2 class="fw-light text-primary mt-0"><sup class="fs-1">{{$datas->no_reg_order}}</h2>
                                     </div>
-                                    <div class="pe-3"><img src="{{ asset('resto.png') }}" width="70" alt="">
+                                    <div class="pe-3"><img src="{{ asset('assets/img/team/order.png') }}" width="70" alt="">
                                     </div>
                                 </div>
                                 <div class="px-4 pb-3 bg-light">
