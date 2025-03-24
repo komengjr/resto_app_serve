@@ -240,8 +240,15 @@
                                 <!-- parent pages--><a class="nav-link" href="{{ route('master_user') }}"
                                     role="button" aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-user-alt"></span></span><span
+                                                class="fas fa-user-shield"></span></span><span
                                             class="nav-link-text ps-1">User</span>
+                                    </div>
+                                </a>
+                                <!-- parent pages--><a class="nav-link" href="{{ route('master_akses_menu') }}"
+                                    role="button" aria-expanded="false">
+                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                class="fas fa-shield-alt"></span></span><span
+                                            class="nav-link-text ps-1">Access Menu</span>
                                     </div>
                                 </a>
                                 <!-- parent pages--><a class="nav-link" href="{{ route('master_setting') }}"

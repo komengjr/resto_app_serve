@@ -14,8 +14,8 @@
                             src="../assets/img/illustrations/crm-bar-chart.png" alt="" width="90" />
                         <div>
                             <h6 class="text-primary fs--1 mb-0">Welcome to </h6>
-                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">Master Data
-                                    User</span></h4>
+                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">Master Akses
+                                    Menu</span></h4>
                         </div><img class="ms-n4 d-md-none d-lg-block" src="../assets/img/illustrations/crm-line-chart.png"
                             alt="" width="150" />
                     </div>
@@ -27,8 +27,39 @@
         </div>
     </div>
     <div class="row mb-3 g-3">
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-header d-flex flex-between-center py-2 border-bottom">
+                    <h5 class="mb-0">User Akses</h5>
+                    <div class="dropdown font-sans-serif btn-reveal-trigger">
+                        <button
+                            class="btn btn-falcon-primary text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
+                            type="button" id="dropdown-most-leads" data-bs-toggle="dropdown" data-boundary="viewport"
+                            aria-haspopup="true" aria-expanded="false"><span
+                                class="fas fa-ellipsis-h fs--2"></span></button>
+                        <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown-most-leads"><a
+                                class="dropdown-item" href="#!">View</a><a class="dropdown-item"
+                                href="#!">Export</a>
+                            <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+                                href="#!">Remove</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-3">
+                    <label for="organizerSingle">Choose Access</label>
+                    <select class="form-select js-choice" id="organizerSingle" size="1" name="organizerSingle"
+                        data-options='{"removeItemButton":true,"placeholder":true}'>
+                        <option value="">Select Access...</option>
+                        <option value="admin">Admin</option>
+                        <option >Kasir</option>
+                        <option>Kitchen</option>
+                        <option>User</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="col-xl-8 col-xxl-9">
-            <div class="card mb-3">
+            {{-- <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-4 border-lg-end border-bottom border-lg-0 pb-3 pb-lg-0">
@@ -137,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="card mb-3">
                 <div class="card-header">
                     <div class="row align-items-center">
@@ -168,83 +199,13 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $item->fullname }}</td>
-                                    <td>{{ $item->username }}</td>
-                                    <td>{{ $item->access_code }}</td>
-                                    <td>
-                                        @if ($item->access_status == 1)
-                                            <span class="badge bg-success">Aktif</span>
-                                        @else
-                                            <span class="badge bg-danger">Not Aktif</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-primary dropdown-toggle"
-                                                id="btnGroupVerticalDrop2" type="button" data-bs-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false"><span
-                                                    class="fas fa-align-left me-1"
-                                                    data-fa-transform="shrink-3"></span>Option</button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop2">
 
-                                                <button class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-product" id="button-display-product"
-                                                    data-code="123"><span
-                                                        class="fas fa-chalkboard-teacher"></span>
-                                                    Detail</button>
-                                                <button class="dropdown-item" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-product" id="button-edit-product"
-                                                    data-code="123"><span
-                                                        class="far fa-edit"></span>
-                                                    Edit</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-header d-flex flex-between-center py-2 border-bottom">
-                    <h5 class="mb-0">Table Status Order</h5>
-                    <div class="dropdown font-sans-serif btn-reveal-trigger">
-                        <button
-                            class="btn btn-falcon-primary text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                            type="button" id="dropdown-most-leads" data-bs-toggle="dropdown" data-boundary="viewport"
-                            aria-haspopup="true" aria-expanded="false"><span
-                                class="fas fa-ellipsis-h fs--2"></span></button>
-                        <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown-most-leads"><a
-                                class="dropdown-item" href="#!">View</a><a class="dropdown-item"
-                                href="#!">Export</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
-                                href="#!">Remove</a>
-                        </div>
-                    </div>
-                </div>
-                <div class=" m-2">
-                    {{-- @foreach ($proses as $prosess)
-                        <div class="list-group bg-light mb-2 border border-warning">
-                            <a class="list-group-item list-group-item-action flex-column align-items-start p-2 p-sm-3"
-                                href="#">
-                                <div class="d-flex flex-column flex-sm-row justify-content-between mb-0 mb-md-0">
-                                    <h5 class="mb-0">{{ $prosess->m_table_master_name }}</h5><small
-                                        class="text-muted">{{ $prosess->m_order_date }}</small>
-                                </div>
-                                <p class="mb-0">Proses</p><small class="text-muted">{{ $prosess->no_reg_order }}</small>
-                            </a>
-                        </div>
-                    @endforeach --}}
-                </div>
-            </div>
-        </div>
+
     </div>
 @endsection
 @section('base.js')

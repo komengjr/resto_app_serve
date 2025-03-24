@@ -90,5 +90,8 @@ Route::prefix('app')->group(function () {
 
 Route::prefix('master')->group(function () {
     Route::get('user', [MasterController::class, 'master_user'])->name('master_user');
+    Route::post('user/add', [MasterController::class, 'master_user_add'])->name('master_user_add');
+    Route::post('user/save', [MasterController::class, 'master_user_save'])->name('master_user_save');
+    Route::get('menu-akses', [MasterController::class, 'master_akses_menu'])->name('master_akses_menu');
     Route::get('setting', [MasterController::class, 'master_setting'])->name('master_setting');
 });
