@@ -51,7 +51,12 @@ class MasterController extends Controller
     }
     // AKSES MENU
     public function master_akses_menu(){
-        return view('master.menu-akses');
+        $akses = DB::table('z_access')->get();
+        return view('master.menu-akses',['akses'=>$akses]);
+    }
+    public function master_akses_menu_detail(Request $request){
+        $data = DB::table('user_mains')->where('access_code',$request->id)->get();
+        return view('master.menu-akses.detail-akses',['data'=>$data]);
     }
     // SETTING
     public function master_setting(){

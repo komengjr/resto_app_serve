@@ -50,10 +50,9 @@
                     <select class="form-select js-choice" id="organizerSingle" size="1" name="organizerSingle"
                         data-options='{"removeItemButton":true,"placeholder":true}'>
                         <option value="">Select Access...</option>
-                        <option value="admin">Admin</option>
-                        <option >Kasir</option>
-                        <option>Kitchen</option>
-                        <option>User</option>
+                        @foreach ($akses as $item)
+                            <option data-id="{{ $item->access_code }}">{{ $item->access_name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -169,40 +168,18 @@
                     </div>
                 </div>
             </div> --}}
-            <div class="card mb-3">
+            <div class="card mb-3" id="menu-akses-detail">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
                             <h5 class="mb-0">Data User</h5>
                         </div>
                         <div class="col-auto">
-                            <a class="btn btn-falcon-primary btn-sm" href="#!" data-bs-toggle="modal"
-                                data-bs-target="#modal-table" id="button-add-table">
-                                <span class="fas fa-calendar-plus fs--2 me-1"></span>Add User</a>
+
                         </div>
                     </div>
                 </div>
-                <div class="card-body border-top p-2">
-                    <table id="example" class="table table-striped nowrap" style="width:100%">
-                        <thead class="bg-200 text-700">
-                            <tr>
-                                <th>No</th>
-                                <th>Nama User</th>
-                                <th>Username</th>
-                                <th>Akses</th>
-                                <th>Status</th>
-                                <th>Created</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
 
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
 
@@ -231,11 +208,7 @@
 
 
     {{-- <script src="{{ asset('assets/img/animated-icons/loading.json') }}"></script> --}}
-    <script>
-        new DataTable('#example', {
-            responsive: true
-        });
-    </script>
+
     <script>
         $(document).on("click", "#button-add-table", function(e) {
             e.preventDefault();
@@ -258,6 +231,27 @@
                 $('#menu-table').html('eror');
             });
 
+        });
+        $('#organizerSingle').on("change", function() {
+            var dataid = $("#organizerSingle option:selected").attr('data-id');
+            if (dataid == null) {
+                location.reload();
+            } else {
+                $.ajax({
+                    url: "{{ route('master_akses_menu_detail') }}",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": dataid,
+                    },
+                    dataType: 'html',
+                }).done(function(data) {
+                    $("#menu-akses-detail").html(data);
+                }).fail(function() {
+                    console.log('eror');
+                });
+            }
         });
     </script>
 @endsection
