@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="row mb-3 g-3">
-        <div class="col-xl-8 col-xxl-9">
+        <div class="col-xl-8">
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">

@@ -6,7 +6,7 @@
 
         <div class="col">
             <div class="row g-3">
-                <div class="col-md-4 col-xxl-12">
+                <div class="col-md-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <div class="row flex-between-center g-0">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-xxl-12">
+                <div class="col-md-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <div class="row flex-between-center">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-xxl-12">
+                <div class="col-md-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <div class="row flex-between-center">
@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="row g-3">
-        <div class="col-xxl-9">
+        <div class="col-xl-12">
             <div class="card bg-light my-3">
                 <div class="card-body p-3">
                     <p class="fs--1 mb-0"><a href="#!"><span class="fas fa-exchange-alt me-2"
@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="row g-3 mb-3">
-                <div class="col-sm-6 col-md-4">
+                <div class="col-xl-4">
                     <div class="card overflow-hidden" style="min-width: 12rem">
                         <div class="bg-holder bg-card"
                             style="background-image:url(../assets/img/icons/spot-illustrations/corner-1.png);">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-4">
+                <div class="col-xl-4">
                     <div class="card overflow-hidden" style="min-width: 12rem">
                         <div class="bg-holder bg-card"
                             style="background-image:url(../assets/img/icons/spot-illustrations/corner-2.png);">
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-xl-4">
                     <div class="card overflow-hidden" style="min-width: 12rem">
                         <div class="bg-holder bg-card"
                             style="background-image:url(../assets/img/icons/spot-illustrations/corner-3.png);">

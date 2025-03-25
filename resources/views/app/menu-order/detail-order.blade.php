@@ -16,7 +16,7 @@
     </div>
     <div class="card-body">
             <div class="row">
-                <div class="col-md-5 col-xl-12 col-xxl-5 ps-lg-4 ps-xl-2 ps-xxl-5 text-center text-md-start text-xl-center text-xxl-start">
+                <div class="col-md-5 col-xl-12 col-xxl-12 ps-lg-4 ps-xl-2 ps-xxl-5 text-center text-md-start text-xl-center text-xxl-center">
                     <button class="btn btn-success mt-3 px-5" data-bs-toggle="modal" data-bs-target="#modal-order" id="button-confrim-order">Confirm &amp; Pay</button>
                     <p class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to
                         the <a href="#!">Terms &amp; Conditions</a></p>
