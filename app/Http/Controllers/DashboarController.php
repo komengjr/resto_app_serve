@@ -12,6 +12,7 @@ class DashboarController extends Controller
     }
     public function index()
     {
+
         if (Auth::user()->access_code == 'admin') {
             $order = DB::table('m_order_list')->get();
             $ordertoday = DB::table('m_order_list')->where('m_order_date','like','%'.date('Y-m-d').'%')->get();

@@ -130,7 +130,23 @@
                                         <hr class="mb-0 navbar-vertical-divider" />
                                     </div>
                                 </div>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('app_category') }}"
+                                @php
+                                    $menu = DB::table('z_menu_user')
+                                        ->join('z_menu', 'z_menu.menu_code', '=', 'z_menu_user.menu_code')
+                                        ->where('z_menu_user.access_code', Auth::user()->access_code)
+                                        ->get();
+                                @endphp
+                                @foreach ($menu as $menus)
+                                    <a class="nav-link" href="{{ url($menus->menu_link) }}" role="button"
+                                        aria-expanded="false">
+                                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                    class="far fa-list-alt"></span></span><span
+                                                class="nav-link-text ps-1">{{ $menus->menu_name }}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
+                                <!-- parent pages-->
+                                {{-- <a class="nav-link" href="{{ route('app_category') }}"
                                     role="button" aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                                 class="far fa-list-alt"></span></span><span
@@ -225,49 +241,50 @@
                                         </a>
                                         <!-- more inner pages-->
                                     </li>
-                                </ul>
+                                </ul> --}}
 
                             </li>
-                            <li class="nav-item">
-                                <!-- label-->
-                                <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                                    <div class="col-auto navbar-vertical-label">Master Data
+                            @if (Auth::user()->access_code == 'admin')
+                                <li class="nav-item">
+                                    <!-- label-->
+                                    <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
+                                        <div class="col-auto navbar-vertical-label">Master Data
+                                        </div>
+                                        <div class="col ps-0">
+                                            <hr class="mb-0 navbar-vertical-divider" />
+                                        </div>
                                     </div>
-                                    <div class="col ps-0">
-                                        <hr class="mb-0 navbar-vertical-divider" />
-                                    </div>
-                                </div>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('master_user') }}"
-                                    role="button" aria-expanded="false">
-                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-user-shield"></span></span><span
-                                            class="nav-link-text ps-1">User</span>
-                                    </div>
-                                </a>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('master_menu') }}"
-                                    role="button" aria-expanded="false">
-                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="far fa-newspaper"></span></span><span
-                                            class="nav-link-text ps-1">Menu</span>
-                                    </div>
-                                </a>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('master_akses_menu') }}"
-                                    role="button" aria-expanded="false">
-                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-shield-alt"></span></span><span
-                                            class="nav-link-text ps-1">Access Menu</span>
-                                    </div>
-                                </a>
-                                <!-- parent pages--><a class="nav-link" href="{{ route('master_setting') }}"
-                                    role="button" aria-expanded="false">
-                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                class="fas fa-cog"></span></span><span
-                                            class="nav-link-text ps-1">Setting</span>
-                                    </div>
-                                </a>
+                                    <!-- parent pages--><a class="nav-link" href="{{ route('master_user') }}"
+                                        role="button" aria-expanded="false">
+                                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                    class="fas fa-user-shield"></span></span><span
+                                                class="nav-link-text ps-1">User</span>
+                                        </div>
+                                    </a>
+                                    <!-- parent pages--><a class="nav-link" href="{{ route('master_menu') }}"
+                                        role="button" aria-expanded="false">
+                                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                    class="far fa-newspaper"></span></span><span
+                                                class="nav-link-text ps-1">Menu</span>
+                                        </div>
+                                    </a>
+                                    <!-- parent pages--><a class="nav-link" href="{{ route('master_akses_menu') }}"
+                                        role="button" aria-expanded="false">
+                                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                    class="fas fa-shield-alt"></span></span><span
+                                                class="nav-link-text ps-1">Access Menu</span>
+                                        </div>
+                                    </a>
+                                    <!-- parent pages--><a class="nav-link" href="{{ route('master_setting') }}"
+                                        role="button" aria-expanded="false">
+                                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                    class="fas fa-cog"></span></span><span
+                                                class="nav-link-text ps-1">Setting</span>
+                                        </div>
+                                    </a>
 
-                            </li>
-
+                                </li>
+                            @endif
                         </ul>
 
                     </div>

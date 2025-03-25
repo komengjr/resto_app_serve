@@ -100,5 +100,6 @@ Route::prefix('master')->group(function () {
     Route::get('menu-akses', [MasterController::class, 'master_akses_menu'])->name('master_akses_menu');
     Route::post('menu-akses/detail', [MasterController::class, 'master_akses_menu_detail'])->name('master_akses_menu_detail');
     Route::post('menu-akses/setup-menu', [MasterController::class, 'master_akses_setup_menu'])->name('master_akses_setup_menu');
+    Route::post('menu-akses/setup-menu-verif', [MasterController::class, 'master_akses_setup_menu_verif'])->name('master_akses_setup_menu_verif');
     Route::get('setting', [MasterController::class, 'master_setting'])->name('master_setting');
 });

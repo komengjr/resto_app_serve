@@ -77,7 +77,21 @@ class MasterController extends Controller
         return view('master.menu-akses.detail-akses',['data'=>$data,'id'=>$request->id]);
     }
     public function master_akses_setup_menu(Request $request){
-        return view('master.menu-akses.setup-menu',['code'=>$request->code]);
+        $data = DB::table('z_menu')->get();
+        return view('master.menu-akses.setup-menu',['code'=>$request->code,'data'=>$data]);
+    }
+    public function master_akses_setup_menu_verif(Request $request){
+        $cek = DB::table('z_menu_user')->where('menu_code',$request->code)->where('access_code',$request->id)->first();
+        if ($cek) {
+            DB::table('z_menu_user')->where('menu_code',$request->code)->where('access_code',$request->id)->delete();
+            return 'Non Aktif';
+        } else {
+            DB::table('z_menu_user')->insert([
+                'menu_code'=>$request->code,
+                'access_code'=>$request->id,
+            ]);
+            return 'Aktif';
+        }
     }
     // SETTING
     public function master_setting(){
