@@ -49,6 +49,24 @@ class MasterController extends Controller
         ]);
         return redirect()->back()->withSuccess('Great! Berhasil Menambahkan Data');
     }
+    // MENU
+    public function master_menu(){
+        $data = DB::table('z_menu')->get();
+        return view('master.menu',['data'=>$data]);
+    }
+    public function master_menu_add(Request $request){
+        return view('master.menu.form-add');
+    }
+    public function master_menu_save(Request $request){
+        DB::table('z_menu')->insert([
+            'menu_code'=>str::uuid(),
+            'menu_name'=>$request->menu,
+            'menu_link'=>$request->link,
+            'menu_status'=>1,
+            'created_at'=>now(),
+        ]);
+        return redirect()->back()->withSuccess('Great! Berhasil Menambahkan Data');
+    }
     // AKSES MENU
     public function master_akses_menu(){
         $akses = DB::table('z_access')->get();
@@ -56,7 +74,10 @@ class MasterController extends Controller
     }
     public function master_akses_menu_detail(Request $request){
         $data = DB::table('user_mains')->where('access_code',$request->id)->get();
-        return view('master.menu-akses.detail-akses',['data'=>$data]);
+        return view('master.menu-akses.detail-akses',['data'=>$data,'id'=>$request->id]);
+    }
+    public function master_akses_setup_menu(Request $request){
+        return view('master.menu-akses.setup-menu',['code'=>$request->code]);
     }
     // SETTING
     public function master_setting(){

@@ -194,7 +194,7 @@
                     <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="menu-table"></div>
+                <div id="menu-akses"></div>
             </div>
         </div>
     </div>
@@ -210,28 +210,7 @@
     {{-- <script src="{{ asset('assets/img/animated-icons/loading.json') }}"></script> --}}
 
     <script>
-        $(document).on("click", "#button-add-table", function(e) {
-            e.preventDefault();
-            // var code = $(this).data("code");
-            $('#menu-table').html(
-                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
-            );
-            $.ajax({
-                url: "{{ route('master_user_add') }}",
-                type: "POST",
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "code": 0
-                },
-                dataType: 'html',
-            }).done(function(data) {
-                $('#menu-table').html(data);
-            }).fail(function() {
-                $('#menu-table').html('eror');
-            });
 
-        });
         $('#organizerSingle').on("change", function() {
             var dataid = $("#organizerSingle option:selected").attr('data-id');
             if (dataid == null) {
@@ -252,6 +231,28 @@
                     console.log('eror');
                 });
             }
+        });
+        $(document).on("click", "#button-setup-menu", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-akses').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('master_akses_setup_menu') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-akses').html(data);
+            }).fail(function() {
+                $('#menu-akses').html('eror');
+            });
+
         });
     </script>
 @endsection

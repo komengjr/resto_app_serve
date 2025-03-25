@@ -217,7 +217,7 @@
                                     </div>
                                 </a>
                                 <ul class="nav collapse false" id="rekap">
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('list_order') }}"
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('rekap_laporan') }}"
                                             aria-expanded="false">
                                             <div class="d-flex align-items-center"><span
                                                     class="nav-link-text ps-1">Laporan</span>
@@ -242,6 +242,13 @@
                                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                                 class="fas fa-user-shield"></span></span><span
                                             class="nav-link-text ps-1">User</span>
+                                    </div>
+                                </a>
+                                <!-- parent pages--><a class="nav-link" href="{{ route('master_menu') }}"
+                                    role="button" aria-expanded="false">
+                                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                                class="far fa-newspaper"></span></span><span
+                                            class="nav-link-text ps-1">Menu</span>
                                     </div>
                                 </a>
                                 <!-- parent pages--><a class="nav-link" href="{{ route('master_akses_menu') }}"
@@ -363,7 +370,6 @@
                                             href="../app/social/notifications.html">View all</a></div>
                                 </div>
                             </div>
-
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser"
                                 href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -381,12 +387,12 @@
 
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#!">Set status</a>
-                                    <a class="dropdown-item" href="../pages/user/profile.html">Profile &amp;
+                                    <a class="dropdown-item" href="#">Profile &amp;
                                         account</a>
                                     <a class="dropdown-item" href="#!">Feedback</a>
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="../pages/user/settings.html">Settings</a>
+                                    <a class="dropdown-item" href="#">Settings</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                                 </div>
                             </div>

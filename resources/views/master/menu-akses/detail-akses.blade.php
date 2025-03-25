@@ -5,7 +5,7 @@
         </div>
         <div class="col-auto">
             <a class="btn btn-falcon-primary btn-sm" href="#!" data-bs-toggle="modal" data-bs-target="#modal-table"
-                id="button-add-table">
+                id="button-setup-menu" data-code="{{$id}}">
                 <span class="far fa-list-alt fs--2 me-1"></span>Setup Menu</a>
         </div>
     </div>

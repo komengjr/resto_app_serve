@@ -343,4 +343,9 @@ class AppController extends Controller
         }
         return true;
     }
+
+    // REKAP LAPORAN
+    public function rekap_laporan(){
+        return view('app.rekap-laporan');
+    }
 }

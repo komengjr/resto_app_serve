@@ -86,13 +86,19 @@ Route::prefix('app')->group(function () {
     Route::post('kitchen-request/detail', [AppController::class, 'kitchen_req_detail'])->name('kitchen_req_detail');
     Route::post('kitchen-request/check', [AppController::class, 'kitchen_req_check'])->name('kitchen_req_check');
     Route::post('kitchen-request/finish', [AppController::class, 'kitchen_req_finish'])->name('kitchen_req_finish');
+
+    Route::get('rekap-laporan', [AppController::class, 'rekap_laporan'])->name('rekap_laporan');
 });
 
 Route::prefix('master')->group(function () {
     Route::get('user', [MasterController::class, 'master_user'])->name('master_user');
     Route::post('user/add', [MasterController::class, 'master_user_add'])->name('master_user_add');
     Route::post('user/save', [MasterController::class, 'master_user_save'])->name('master_user_save');
+    Route::get('menu', [MasterController::class, 'master_menu'])->name('master_menu');
+    Route::post('menu/add', [MasterController::class, 'master_menu_add'])->name('master_menu_add');
+    Route::post('menu/save', [MasterController::class, 'master_menu_save'])->name('master_menu_save');
     Route::get('menu-akses', [MasterController::class, 'master_akses_menu'])->name('master_akses_menu');
     Route::post('menu-akses/detail', [MasterController::class, 'master_akses_menu_detail'])->name('master_akses_menu_detail');
+    Route::post('menu-akses/setup-menu', [MasterController::class, 'master_akses_setup_menu'])->name('master_akses_setup_menu');
     Route::get('setting', [MasterController::class, 'master_setting'])->name('master_setting');
 });
