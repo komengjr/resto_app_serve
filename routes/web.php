@@ -82,6 +82,8 @@ Route::prefix('app')->group(function () {
     Route::post('order-list/prosess', [AppController::class, 'list_order_prosess'])->name('list_order_prosess');
     Route::post('order-list/payment', [AppController::class, 'list_order_prosess_payment'])->name('list_order_prosess_payment');
     Route::post('order-list/payment-save', [AppController::class, 'list_order_prosess_payment_save'])->name('list_order_prosess_payment_save');
+    Route::post('order-list/print-invoice', [AppController::class, 'list_order_print_invoice'])->name('list_order_print_invoice');
+    Route::post('order-list/detail-order', [AppController::class, 'list_order_detail'])->name('list_order_detail');
 
     Route::get('kitchen-request', [AppController::class, 'kitchen_req'])->name('kitchen_req');
     Route::post('kitchen-request/detail', [AppController::class, 'kitchen_req_detail'])->name('kitchen_req_detail');

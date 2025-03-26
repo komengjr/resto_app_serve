@@ -1,6 +1,5 @@
 @extends('layouts.base')
 @section('base.css')
-
     <link href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
 @endsection
 @section('content')
@@ -147,10 +146,12 @@
                                                 @if ($item->m_order_status == 1)
                                                     <a class="dropdown-item" href="#!" data-bs-toggle="modal"
                                                         data-bs-target="#modal-order-list" id="button-prosess-order"
-                                                        data-code="{{ $item->no_reg_order }}">Processing</a>
+                                                        data-code="{{ $item->no_reg_order }}"><span class="fas fa-money-check"></span> Prosess Payment</a>
                                                 @endif
-                                                <a class="dropdown-item" href="#!">Cetak</a>
-                                                <a class="dropdown-item" href="#!">Detail</a>
+                                                <a class="dropdown-item" href="#!" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-order-list" id="button-print-invoice" data-code="{{ $item->no_reg_order }}"><span class="fas fa-file-invoice"></span> Print Order</a>
+                                                <a class="dropdown-item" href="#!" data-bs-toggle="modal"
+                                                data-bs-target="#modal-order-list" id="button-detail-order" data-code="{{ $item->no_reg_order }}"><span class="far fa-file-alt"></span> Detail Order</a>
                                                 <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
                                                     href="#!">Return</a>
                                             </div>
@@ -232,6 +233,56 @@
                 $('#loading-proses-payment').html(data);
             }).fail(function() {
                 $('#loading-proses-payment').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-detail-order", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-order-list-modal').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('list_order_detail') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-order-list-modal').html(data);
+            }).fail(function() {
+                $('#menu-order-list-modal').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-print-invoice", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            console.log(code);
+
+            $('#menu-order-list-modal').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('list_order_print_invoice') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                // $('#menu-order-list-modal').html(data);
+                $('#menu-order-list-modal').html(
+                        '<iframe src="data:application/pdf;base64, ' +
+                        data +
+                        '" style="width:100%; height:533px;" frameborder="0"></iframe>');
+            }).fail(function() {
+                $('#menu-order-list-modal').html('eror');
             });
 
         });

@@ -321,6 +321,36 @@ class AppController extends Controller
         DB::table('m_order_list')->where('no_reg_order',$request->code)->update(['m_order_status'=>2,'updated_at'=>now()]);
         return redirect()->back()->withSuccess('Great! Berhasil Melakukan Payment');
     }
+    public function list_order_print_invoice(Request $request){
+        $image = base64_encode(file_get_contents(public_path('resto.png')));
+        // $qrcode = base64_encode(QrCode::format('png')->size(500)->errorCorrection('H')->generate('123123'));
+        $reg = DB::table('m_order_list')
+        ->join('m_table_master','m_table_master.m_table_master_code','=','m_order_list.m_order_table')
+        ->where('m_order_list.no_reg_order',$request->code)->first();
+        $data = DB::table('log_order_request')
+            ->join('t_product', 't_product.t_product_code', '=', 'log_order_request.t_product_code')
+            ->where('log_order_request.no_order', $request->code)->get();
+        $pdf = PDF::loadview('app.menu-order.report.nota',['data'=>$data,'reg'=>$reg], compact('image'))->setPaper('A5', 'potrait')->setOptions(['defaultFont' => 'Courier']);
+        $pdf->output();
+        $canvas = $pdf->getDomPDF()->getCanvas();
+
+        $height = $canvas->get_height();
+        $width = $canvas->get_width();
+
+        $canvas->set_opacity(.2, "Multiply");
+
+        $canvas->set_opacity(.1);
+
+        // $canvas->page_text($width/5, $height/2, 'Lunas', '123', 30, array(22,0,0),1,2,0);
+        $canvas->page_script('
+            $pdf->set_opacity(.1);
+            $pdf->image("resto.png", 80, 180, 255, 220);
+            ');
+        return base64_encode($pdf->stream());
+    }
+    public function list_order_detail(Request $request){
+        return view('app.list-order.detail-order');
+    }
 
     // KITCHEN
     public function kitchen_req(){
