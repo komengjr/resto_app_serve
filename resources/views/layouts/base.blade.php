@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="SB-Mid-client-TzBZ-AB8Hng2jGB_"></script>
 
     <!-- ===============================================-->
     <!--    Document Title-->
@@ -140,7 +141,7 @@
                                     <a class="nav-link" href="{{ url($menus->menu_link) }}" role="button"
                                         aria-expanded="false">
                                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                    class="far fa-dot-circle"></span></span><span
+                                                    class="far fa-folder"></span></span><span
                                                 class="nav-link-text ps-1">{{ $menus->menu_name }}</span>
                                         </div>
                                     </a>

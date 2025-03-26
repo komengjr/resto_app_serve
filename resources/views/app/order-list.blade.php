@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('base.css')
+
     <link href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
 @endsection
 @section('content')
@@ -78,9 +79,9 @@
                         @endphp
                         @foreach ($data as $item)
                             <tr class="btn-reveal-trigger">
-                                <td class="order py-2 align-middle white-space-nowrap" >
+                                <td class="order py-2 align-middle white-space-nowrap">
 
-                                        {{ $no++ }}
+                                    {{ $no++ }}
 
                                 </td>
                                 <td class="order py-2 align-middle white-space-nowrap"><a href="#">
@@ -114,10 +115,13 @@
                                 <td>{{ $item->m_table_master_name }}</td>
                                 <td class="address py-2 align-middle white-space-nowrap">
                                     @php
-                                        $user = DB::table('user_mains')->select('user_mains.fullname')->where('userid',$item->userid)->first();
+                                        $user = DB::table('user_mains')
+                                            ->select('user_mains.fullname')
+                                            ->where('userid', $item->userid)
+                                            ->first();
                                     @endphp
                                     @if ($user)
-                                        {{$user->fullname}}
+                                        {{ $user->fullname }}
                                     @endif
                                 </td>
                                 <td class="status py-2 align-middle text-center fs-0 white-space-nowrap">
@@ -230,6 +234,46 @@
                 $('#loading-proses-payment').html('eror');
             });
 
+        });
+    </script>
+    <script>
+        $(document).on("click", "#button-payment-token", function(e) {
+            e.preventDefault();
+            var id = $(this).data("id");
+            // $("#button-payment-test-load").html(
+            //     '<button class="btn btn-outline-info d-block w-100" type="button"" disabled><i class="fas fa-credit-card"></i> Loading..</button>'
+            // );
+            $.ajax({
+                url: "{{ route('create-payemnt-token') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id,
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                snap.pay(data, {
+                    onSuccess: function(result) {
+                        alert("payment success!");
+                    },
+                    onPending: function(result) {
+                        alert("wating your payment!");
+                        console.log(result);
+                        window.location.href = "{{ route('list_order') }}";
+                    },
+                    onError: function(result) {
+                        alert("payment failed!");
+                        console.log(result);
+                    },
+                    onClose: function() {
+                        alert('you closed the popup without finishing the payment');
+                        location.reload();
+                    }
+                });
+            }).fail(function() {
+                console.log('eror');
+            });
         });
     </script>
 @endsection

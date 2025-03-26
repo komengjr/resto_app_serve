@@ -1,9 +1,18 @@
 <div class="card-body">
     <form action="{{ route('list_order_prosess_payment_save') }}" method="post">
         @csrf
-        <div class="form-check mb-0">
+        <div class="form-check mb-3">
             <input class="form-check-input" type="radio" value="" id="credit-card" checked="checked"
                 name="payment-method" />
+            <label class="form-check-label mb-2 fs-1" for="credit-card">Cash
+            </label>
+
+            <div class="mb-3">
+                <input class="form-control" id="inputNumber" type="text" placeholder="•••• •••• •••• ••••" />
+            </div>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" value="" id="paypal" name="payment-method" />
             <label class="form-check-label mb-2 fs-1" for="credit-card">Credit Card
             </label>
         </div>
@@ -39,15 +48,16 @@
                 </div>
             </div>
         </div>
+        {{-- PAYMENT --}}
         <div class="form-check d-flex align-items-center">
             <input class="form-check-input" type="radio" value="" id="paypal" name="payment-method" />
-            <label class="form-check-label mb-0 ms-2" for="paypal"><img
-                    src="../../assets/img/icons/icon-paypal-full.png" height="20" alt="" />
+            <label class="form-check-label mb-0 ms-2" for="paypal">
+                <button class="btn btn-falcon-primary" id="button-payment-token" data-id="{{$code}}"><span class="fas fa-money-check"></span> Midtrans Payment</button>
             </label>
         </div>
         <div class="border-dashed-bottom my-5"></div>
         <div class="row">
-            <div class="col-md-7 col-xl-12 col-xxl-7 px-md-3 mb-xxl-0 position-relative">
+            <div class="col-md-7 col-xl-7 col-xxl-7 px-md-3 mb-xxl-0 position-relative">
                 <div class="d-flex"><img class="me-3" src="../../assets/img/icons/shield.png" alt=""
                         width="60" height="60" />
                     <div class="flex-1">
@@ -68,11 +78,11 @@
                                 data-fa-transform="down-2"> </span></a>
                     </div>
                 </div>
-                <div class="vertical-line d-none d-md-block d-xl-none d-xxl-block"> </div>
+                <div class="vertical-line d-none d-md-block d-xl-block d-xxl-block"> </div>
             </div>
             <div
-                class="col-md-5 col-xl-12 col-xxl-5 ps-lg-4 ps-xl-2 ps-xxl-5 text-center text-md-start text-xl-center text-xxl-start">
-                <div class="border-dashed-bottom d-block d-md-none d-xl-block d-xxl-none my-4"></div>
+                class="col-md-5 col-xl-5 col-xxl-5 ps-lg-4 ps-xl-2 ps-xl-5 text-center text-md-start text-xl-center text-xxl-start">
+                <div class="border-dashed-bottom d-block d-md-none d-xl-none d-xxl-none my-4"></div>
                 <div class="fs-2 fw-semi-bold">All Total: <span class="text-primary">@currency($total)</span></div>
                 <button class="btn btn-success mt-3 px-5" type="submit">Confirm &amp; Pay</button>
                 <p class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\DashboarController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -102,4 +103,10 @@ Route::prefix('master')->group(function () {
     Route::post('menu-akses/setup-menu', [MasterController::class, 'master_akses_setup_menu'])->name('master_akses_setup_menu');
     Route::post('menu-akses/setup-menu-verif', [MasterController::class, 'master_akses_setup_menu_verif'])->name('master_akses_setup_menu_verif');
     Route::get('setting', [MasterController::class, 'master_setting'])->name('master_setting');
+});
+
+
+// PAYMENT
+Route::prefix('payment')->group(function () {
+    Route::post('token', [PaymentController::class, 'payemnt_token'])->name('create-payemnt-token');
 });
