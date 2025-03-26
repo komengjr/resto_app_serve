@@ -73,7 +73,7 @@
             <div
                 class="col-md-5 col-xl-12 col-xxl-5 ps-lg-4 ps-xl-2 ps-xxl-5 text-center text-md-start text-xl-center text-xxl-start">
                 <div class="border-dashed-bottom d-block d-md-none d-xl-block d-xxl-none my-4"></div>
-                <div class="fs-2 fw-semi-bold">All Total: <span class="text-primary">$3320</span></div>
+                <div class="fs-2 fw-semi-bold">All Total: <span class="text-primary">@currency($total)</span></div>
                 <button class="btn btn-success mt-3 px-5" type="submit">Confirm &amp; Pay</button>
                 <p class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a
                         href="#!">Terms &amp; Conditions</a></p>

@@ -1,14 +1,18 @@
 @extends('layouts.base')
+@section('base.css')
+    <link href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
+@endsection
 @section('content')
     <div class="row mb-3">
         <div class="col">
             <div class="card bg-100 shadow-none border">
                 <div class="row gx-0 flex-between-center">
                     <div class="col-sm-auto d-flex align-items-center"><img class="ms-n2"
-                            src="../assets/img/illustrations/crm-bar-chart.png" alt="" width="90" />
+                            src="{{ asset('assets/img/illustrations/crm-bar-chart.png') }}" alt="" width="90" />
                         <div>
                             <h6 class="text-primary fs--1 mb-0">Welcome to </h6>
-                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">CRM</span></h4>
+                            <h4 class="text-primary fw-bold mb-0">Resto <span class="text-info fw-medium">List Order</span>
+                            </h4>
                         </div><img class="ms-n4 d-md-none d-lg-block" src="../assets/img/illustrations/crm-line-chart.png"
                             alt="" width="150" />
                     </div>
@@ -38,27 +42,16 @@
                     <h5 class="fs-0 mb-0 text-nowrap py-2 py-xl-0">Orders</h5>
                 </div>
                 <div class="col-8 col-sm-auto ms-auto text-end ps-0">
-                    <div class="d-none" id="orders-bulk-actions">
-                        <div class="d-flex">
-                            <select class="form-select form-select-sm" aria-label="Bulk actions">
-                                <option selected="">Bulk actions</option>
-                                <option value="Refund">Refund</option>
-                                <option value="Delete">Delete</option>
-                                <option value="Archive">Archive</option>
-                            </select>
-                            <button class="btn btn-falcon-default btn-sm ms-2" type="button">Apply</button>
-                        </div>
-                    </div>
+
                     <div id="orders-actions">
-                        <button class="btn btn-falcon-default btn-sm" type="button"><span class="fas fa-plus"
-                                data-fa-transform="shrink-3 down-2"></span><span
-                                class="d-none d-sm-inline-block ms-1">New</span></button>
-                        <button class="btn btn-falcon-default btn-sm mx-2" type="button"><span class="fas fa-filter"
-                                data-fa-transform="shrink-3 down-2"></span><span
-                                class="d-none d-sm-inline-block ms-1">Filter</span></button>
-                        <button class="btn btn-falcon-default btn-sm" type="button"><span class="fas fa-external-link-alt"
-                                data-fa-transform="shrink-3 down-2"></span><span
-                                class="d-none d-sm-inline-block ms-1">Export</span></button>
+                        <div class="input-group">
+                            <input class="form-control" type="text"
+                                aria-label="Dollar amount (with dot and two decimal places)" /><button
+                                class="btn btn-falcon-default btn-sm" type="button"><span class="fas fa-search"
+                                    data-fa-transform="shrink-3 down-2"></span><span
+                                    class="d-none d-sm-inline-block ms-1">Find</span></button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -68,32 +61,29 @@
                 <table class="table table-sm table-striped fs--1 mb-0 overflow-hidden">
                     <thead class="bg-200 text-900">
                         <tr>
-                            <th>
-                                <div class="form-check fs-0 mb-0 d-flex align-items-center">
-                                    <input class="form-check-input" id="checkbox-bulk-customers-select" type="checkbox"
-                                        data-bulk-select='{"body":"table-orders-body","actions":"orders-bulk-actions","replacedElement":"orders-actions"}' />
-                                </div>
-                            </th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">No</th>
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">Order</th>
                             <th class="sort pe-1 align-middle white-space-nowrap pe-7" data-sort="date">Date</th>
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">Request Order</th>
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">Table Order</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">user</th>
                             <th class="sort pe-1 align-middle white-space-nowrap text-center" data-sort="status">Status</th>
                             <th class="sort pe-1 align-middle white-space-nowrap text-end" data-sort="amount">Amount</th>
                             <th class="no-sort"></th>
                         </tr>
                     </thead>
                     <tbody class="list" id="table-orders-body">
+                        @php
+                            $no = 1;
+                        @endphp
                         @foreach ($data as $item)
                             <tr class="btn-reveal-trigger">
-                                <td class="align-middle" style="width: 28px;">
-                                    <div class="form-check fs-0 mb-0 d-flex align-items-center">
-                                        <input class="form-check-input" type="checkbox" id="checkbox-0"
-                                            data-bulk-select-row="data-bulk-select-row" />
-                                    </div>
+                                <td class="order py-2 align-middle white-space-nowrap" >
+
+                                        {{ $no++ }}
+
                                 </td>
-                                <td class="order py-2 align-middle white-space-nowrap"><a
-                                        href="../../../app/e-commerce/orders/order-details.html">
+                                <td class="order py-2 align-middle white-space-nowrap"><a href="#">
                                         <strong>#{{ $item->id }}</strong></a>
                                     by
                                     <strong>{{ $item->m_order_user }}</strong><br /><a
@@ -121,12 +111,23 @@
                                     @endforeach
 
                                 </td>
-                                <td>{{ $item->m_order_table }}</td>
+                                <td>{{ $item->m_table_master_name }}</td>
+                                <td class="address py-2 align-middle white-space-nowrap">
+                                    @php
+                                        $user = DB::table('user_mains')->select('user_mains.fullname')->where('userid',$item->userid)->first();
+                                    @endphp
+                                    @if ($user)
+                                        {{$user->fullname}}
+                                    @endif
+                                </td>
                                 <td class="status py-2 align-middle text-center fs-0 white-space-nowrap">
-                                    @if ($item->m_order_status == 0)
-                                        <span class="badge badge rounded-pill d-block badge-soft-warning">Prosess</span>
+                                    @if ($item->m_order_status == 2)
+                                        <span class="badge badge rounded-pill d-block badge-soft-success">Done</span>
+                                    @elseif ($item->m_order_status == 1)
+                                        <span class="badge badge rounded-pill d-block badge-soft-warning">Prosess
+                                            Payment</span>
                                     @else
-                                        <span class="badge badge rounded-pill d-block badge-soft-success">Payment</span>
+                                        <span class="badge badge rounded-pill d-block badge-soft-info">Prosess Cook</span>
                                     @endif
                                 </td>
                                 <td class="amount py-2 align-middle text-end fs-0 fw-medium">@currency($total)</td>
@@ -139,7 +140,7 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-0">
                                             <div class="bg-white py-2">
-                                                @if ($item->m_order_status == 0)
+                                                @if ($item->m_order_status == 1)
                                                     <a class="dropdown-item" href="#!" data-bs-toggle="modal"
                                                         data-bs-target="#modal-order-list" id="button-prosess-order"
                                                         data-code="{{ $item->no_reg_order }}">Processing</a>
@@ -147,7 +148,7 @@
                                                 <a class="dropdown-item" href="#!">Cetak</a>
                                                 <a class="dropdown-item" href="#!">Detail</a>
                                                 <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
-                                                    href="#!">Delete</a>
+                                                    href="#!">Return</a>
                                             </div>
                                         </div>
                                     </div>
@@ -183,6 +184,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('assets/js/flatpickr.js') }}"></script>
     <script>
         $(document).on("click", "#button-prosess-order", function(e) {
             e.preventDefault();

@@ -140,7 +140,7 @@
                                     <a class="nav-link" href="{{ url($menus->menu_link) }}" role="button"
                                         aria-expanded="false">
                                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                                    class="far fa-list-alt"></span></span><span
+                                                    class="far fa-dot-circle"></span></span><span
                                                 class="nav-link-text ps-1">{{ $menus->menu_name }}</span>
                                         </div>
                                     </a>

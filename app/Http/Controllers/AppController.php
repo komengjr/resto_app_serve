@@ -302,7 +302,9 @@ class AppController extends Controller
     // LIST ORDER
     public function list_order()
     {
-        $data = DB::table('m_order_list')->orderBy('id', 'DESC')->get();
+        $data = DB::table('m_order_list')
+        ->join('m_table_master','m_table_master.m_table_master_code','=','m_order_list.m_order_table')
+        ->orderBy('m_order_list.id', 'DESC')->get();
         return view('app.order-list',['data'=>$data]);
     }
     public function list_order_prosess(Request $request){
@@ -312,11 +314,11 @@ class AppController extends Controller
         return view('app.list-order.proses',['data'=>$data]);
     }
     public function list_order_prosess_payment(Request $request){
-
-        return view('app.list-order.choose-payment',['code'=>$request->code]);
+        $total = DB::table('m_order_list_detail')->where('no_reg_order',$request->code)->where('order_status',1)->sum('order_price');
+        return view('app.list-order.choose-payment',['code'=>$request->code,'total'=>$total]);
     }
     public function list_order_prosess_payment_save(Request $request){
-        DB::table('m_order_list')->where('no_reg_order',$request->code)->update(['m_order_status'=>1,'updated_at'=>now()]);
+        DB::table('m_order_list')->where('no_reg_order',$request->code)->update(['m_order_status'=>2,'updated_at'=>now()]);
         return redirect()->back()->withSuccess('Great! Berhasil Melakukan Payment');
     }
 
