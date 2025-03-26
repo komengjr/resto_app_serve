@@ -25,6 +25,20 @@
                     </div>
                 </div>
             </div>
+            <div class="card mb-3" id="form-user">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Customer Name</label>
+                            <input type="text" class="form-control" name="user" id="user">
+                        </div>
+                        <div class="col-6">
+                            <label for="">Customer No Handphone</label>
+                            <input type="text" class="form-control" name="no_hp" id="no_hp">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="loading-fix-order"></div>
             <div class="card mb-3">
                 <div class="card-body">

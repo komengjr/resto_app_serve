@@ -299,7 +299,9 @@
             e.preventDefault();
             var fix_order = document.getElementById("fix-order").value;
             var no_table = document.getElementById("no_table").value;
-            if (table == "") {
+            var user = document.getElementById("user").value;
+            var no_hp = document.getElementById("no_hp").value;
+            if (no_table == "" || user =="" || no_hp =="") {
                 $('#liveToastBtn').click();
             } else {
                 $('#loading-fix-order').html(
@@ -312,13 +314,16 @@
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "fix_order": fix_order,
-                        "no_table": no_table
+                        "no_table": no_table,
+                        "user": user,
+                        "no_hp": no_hp
                     },
                     dataType: 'html',
                 }).done(function(data) {
                     $('#button-change-order').html('<button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button" id="button-print-order-fix"><span class="fas fa-print me-1"> </span>Print</button>');
                     $('#loading-fix-order').html(data);
                     $('#button-x').html("");
+                    $('#form-user').html("");
                 }).fail(function() {
                     $('#loading-fix-order').html('eror');
                 });

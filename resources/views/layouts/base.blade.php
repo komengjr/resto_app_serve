@@ -679,7 +679,7 @@
     @if (session('success'))
         <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
             <div class="toast show" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true"
-                data-options='{"autoShow":true,"showOnce":true,"cookieExpireTime":720}' data-autohide="false">
+                data-options='{"autoShow":true,"showOnce":true,"cookieExpireTime":3}' data-autohide="false">
                 <div class="toast-header bg-primary text-white"><strong class="me-auto">Notice</strong><small>1 sec
                         ago</small>
                     <button class="btn-close btn-close-white" type="button" data-bs-dismiss="toast"

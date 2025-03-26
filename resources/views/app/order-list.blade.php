@@ -63,7 +63,7 @@
                     <thead class="bg-200 text-900">
                         <tr>
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">No</th>
-                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">Order</th>
+                            <th class="sort pe-1 align-middle white-space-nowrap" data-sort="order">Custemer Order</th>
                             <th class="sort pe-1 align-middle white-space-nowrap pe-7" data-sort="date">Date</th>
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">Request Order</th>
                             <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">Table Order</th>

@@ -10,7 +10,7 @@
                     @php
                         $cek = DB::table('m_order_list')
                             ->where('m_order_table', $item->m_table_master_code)
-                            ->where('m_order_status', 0)
+                            ->where('m_order_status','<', 2)
                             ->first();
                     @endphp
                     @if (!$cek)

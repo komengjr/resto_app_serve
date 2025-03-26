@@ -242,10 +242,10 @@ class AppController extends Controller
     {
         DB::table('m_order_list')->insert([
             'no_reg_order' => $request->fix_order,
-            'm_order_user' => 'user' . $request->fix_order,
+            'm_order_user' => $request->user,
             'm_order_table' => $request->no_table,
             'm_order_status' => 0,
-            'm_order_no' => '089',
+            'm_order_no' => $request->no_hp,
             'm_order_date' => now(),
             'userid' => Auth::user()->userid,
             'created_at' => now(),
