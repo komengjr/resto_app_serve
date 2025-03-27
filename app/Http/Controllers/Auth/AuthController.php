@@ -9,15 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Hash;
 use Illuminate\Support\Str;
+use DB;
 class AuthController extends Controller
 {
     public function fisrt()
     {
-        if (Auth::check()) {
-            return Redirect('dashboard/home');
-        } else {
-            return view('auth.login');
-        }
+        $cat = DB::table('t_category')->get();
+        return view('index',['cat'=>$cat]);
+        // if (Auth::check()) {
+        //     return Redirect('dashboard/home');
+        // } else {
+        //     return view('auth.login');
+        // }
     }
 
     public function index()

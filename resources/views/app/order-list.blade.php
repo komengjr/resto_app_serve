@@ -307,6 +307,7 @@
                 snap.pay(data, {
                     onSuccess: function(result) {
                         alert("payment success!");
+                        location.reload();
                     },
                     onPending: function(result) {
                         alert("wating your payment!");

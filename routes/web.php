@@ -31,8 +31,8 @@ Route::controller(App\Http\Controllers\Auth\AuthController::class)->group(functi
     // Route::get('dashboard', [AuthController::class, 'dashboard']);
 });
 
-Route::prefix('menu')->group(function () {
-    Route::get('list', [PublicController::class, 'list_menu'])->name('list_menu');
+Route::prefix('/')->group(function () {
+    Route::get('menu', [PublicController::class, 'list_menu'])->name('list_menu');
 });
 
 Route::prefix('dashboard')->group(function () {
