@@ -58,7 +58,7 @@ class AuthController extends Controller
                 return redirect()->intended('register_status')
                     ->withSuccess('Gagal Login');
             } else {
-                return redirect()->intended('dashboard/home')
+                return redirect()->intended('/')
                     ->withSuccess('Kamu Berhasil Masuk di Halaman ' . Auth::user()->fullname);
             }
 

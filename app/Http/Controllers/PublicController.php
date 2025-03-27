@@ -12,4 +12,13 @@ class PublicController extends Controller
         $data = DB::table('t_product')->get();
         return view('public.shop',['cat'=>$cat,'disc'=>$disc,'data'=>$data]);
     }
+    public function brand(){
+        return view('public.brand');
+    }
+    public function about(){
+        return view('public.about');
+    }
+    public function contact(){
+        return view('public.contact');
+    }
 }

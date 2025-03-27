@@ -174,9 +174,9 @@
                                     <li><a href="{{ route('list_menu') }}">List Menu</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Brand</a> </li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('brand') }}">Brand</a> </li>
+                            <li><a href="{{ route('about') }}">About</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
