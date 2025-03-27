@@ -44,7 +44,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="{{ asset('logo.png') }}" alt=""></a>
+            <a href="#"><img src="{{ asset('logo.png') }}" alt="" width="150"></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -78,18 +78,16 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
+                <li><a href="{{ route('/') }}">Home</a></li>
+                <li>
+                    <a href="#">Menu</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
+                        <li><a href="{{ route('list_menu') }}">List Menu</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="{{ route('brand') }}">Brand</a> </li>
+                <li><a href="{{ route('about') }}">About</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -206,7 +204,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="{{ route('/') }}"><img src="img/logo.png" alt=""
+                            <a href="{{ route('/') }}"><img src="{{ asset('img/logo.png') }}" alt=""
                                     width="200"></a>
                         </div>
                         <ul>
