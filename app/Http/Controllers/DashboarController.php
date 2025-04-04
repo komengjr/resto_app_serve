@@ -32,6 +32,12 @@ class DashboarController extends Controller
             return Redirect('/');
         }
     }
+    public function transaction(){
+        $data = DB::table('m_order_list')
+        ->join('m_table_master','m_table_master.m_table_master_code','=','m_order_list.m_order_table')
+        ->orderBy('m_order_list.id', 'DESC')->get();
+        return view('dashboard.transaction',['data'=>$data]);
+    }
     public function dashboard_notif(Request $request){
         $data = DB::table('m_order_list')
         ->select('user_mains.fullname','m_order_list.*')

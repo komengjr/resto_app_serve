@@ -68,7 +68,9 @@
         </div>
     </div>
     <div class="card-footer border-top text-end">
-        <a class="btn btn-falcon-default btn-sm ms-2" href="#!"><span class="fas fa-check fs--2 me-1"></span>Input
+        <a class="btn btn-falcon-default btn-sm ms-2" href="#!" data-bs-toggle="modal"
+            data-bs-target="#modal-add-stok" id="button-add-stok" data-code="{{ $data->t_product_code }}"><span
+                class="fas fa-check fs--2 me-1"></span>Input
             Stok</a>
     </div>
 </div>
@@ -77,36 +79,65 @@
         <h5 class="mb-0">Logs</h5>
     </div>
     <div class="card-body border-top p-0">
+        <div class="row g-0 align-items-center border-bottom py-2 px-4">
+            <div class="col-md-auto pe-3">
+                status
+            </div>
+            <div class="col-md mt-1 mt-md-0">
+                <code>Product Name</code>
+            </div>
+            <div class="col-md mt-1 mt-md-0">
+                <code>Created By</code>
+            </div>
+            <div class="col-md mt-1 mt-md-0">
+                <code>Quantity</code>
+            </div>
+            <div class="col-md mt-1 mt-md-0 text-right">
+                <code>Used</code>
+            </div>
+            <div class="col-md mt-1 mt-md-0">
+                <code>Sisa</code>
+            </div>
+            <div class="col-md-auto">
+                <p class="mb-0">Created Date</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-body border-top p-0" id="menu-log-stok">
         @php
-            $log = DB::table('m_order_list_detail')
-                ->join('m_order_list', 'm_order_list.no_reg_order', '=', 'm_order_list_detail.no_reg_order')
-                ->join('t_product', 't_product.t_product_code', '=', 'm_order_list_detail.t_product_code')
-                ->where('m_order_list_detail.t_product_code', $data->t_product_code)
+            $log = DB::table('t_product_stok')
+                ->select('t_product_stok.*', 't_product.t_product_name', 't_product.t_product_price')
+                ->join('t_product', 't_product.t_product_code', '=', 't_product_stok.t_product_code')
+                ->where('t_product_stok.t_product_code', $data->t_product_code)
+                ->orderBy('t_product_stok.id', 'DESC')
                 ->get();
         @endphp
         @foreach ($log as $logs)
             <div class="row g-0 align-items-center border-bottom py-2 px-3">
                 <div class="col-md-auto pe-3">
-                    @if ($logs->order_status == 1)
-                        <span class="badge badge-soft-success rounded-pill">done</span>
+                    @if ($logs->stok_status == 1)
+                        <span class="badge badge-soft-success rounded-pill">Aktif</span>
                     @else
-                        <span class="badge badge-soft-warning rounded-pill">proses</span>
+                        <span class="badge badge-soft-warning rounded-pill">Not Aktif</span>
                     @endif
                 </div>
                 <div class="col-md mt-1 mt-md-0">
                     <code>{{ $logs->t_product_name }}</code>
                 </div>
                 <div class="col-md mt-1 mt-md-0">
-                    <code>{{ $logs->no_reg_order }}</code>
+                    <code>{{ $logs->userid }}</code>
                 </div>
                 <div class="col-md mt-1 mt-md-0">
-                    <code>{{ $logs->order_qty }}</code>
+                    <code>{{ $logs->t_stok_qty }}</code>
                 </div>
-                <div class="col-md mt-1 mt-md-0">
-                    <code>@currency($logs->order_price)</code>
+                <div class="col-md mt-1 mt-md-0 text-center">
+                    <code>{{ $logs->t_stok_used }}</code>
+                </div>
+                <div class="col-md mt-1 mt-md-0 text-center text-success">
+                    {{ $logs->t_stok_qty - $logs->t_stok_used }}
                 </div>
                 <div class="col-md-auto">
-                    <p class="mb-0">2019/02/23 15:29:45</p>
+                    <p class="mb-0">{{ $logs->created_at }}</p>
                 </div>
             </div>
         @endforeach

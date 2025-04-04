@@ -27,7 +27,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
 
-            return Redirect('dashboard/home');
+            return Redirect('/');
 
         } else {
             return view('auth.login');

@@ -40,6 +40,7 @@ Route::prefix('/')->group(function () {
 
 Route::prefix('dashboard')->group(function () {
     Route::get('home', [DashboarController::class, 'index'])->name('dashboard.home');
+    Route::get('transaction', [DashboarController::class, 'transaction'])->name('dashboard.transaction');
     Route::post('notification', [DashboarController::class, 'dashboard_notif'])->name('dashboard_notif');
     Route::get('news', [DashboarController::class, 'news'])->name('dashboard.news');
     Route::get('actifity', [DashboarController::class, 'actifity'])->name('dashboard.actifity');
@@ -62,9 +63,12 @@ Route::prefix('app')->group(function () {
     Route::post('product/detail', [AppController::class, 'app_product_detail'])->name('app_product_detail');
 
     Route::get('stok', [AppController::class, 'app_stok'])->name('app_stok');
+    Route::post('stok/find-keyword', [AppController::class, 'app_stok_find_keyword'])->name('app_stok_find_keyword');
+    Route::post('stok/find-keyword/save', [AppController::class, 'app_stok_find_keyword_save'])->name('app_stok_find_keyword_save');
     Route::post('stok/find', [AppController::class, 'app_stok_find'])->name('app_stok_find');
     Route::post('stok/find-search', [AppController::class, 'app_stok_find_search'])->name('app_stok_find_search');
     Route::post('stok/find-detail', [AppController::class, 'app_stok_find_detail'])->name('app_stok_find_detail');
+    Route::post('stok/add', [AppController::class, 'app_stok_add'])->name('app_stok_add');
 
     Route::get('table', [AppController::class, 'app_table'])->name('app_table');
     Route::post('table/add', [AppController::class, 'app_table_add'])->name('app_table_add');
@@ -92,6 +96,10 @@ Route::prefix('app')->group(function () {
     Route::post('kitchen-request/detail', [AppController::class, 'kitchen_req_detail'])->name('kitchen_req_detail');
     Route::post('kitchen-request/check', [AppController::class, 'kitchen_req_check'])->name('kitchen_req_check');
     Route::post('kitchen-request/finish', [AppController::class, 'kitchen_req_finish'])->name('kitchen_req_finish');
+
+    Route::get('verivication', [AppController::class, 'verivication'])->name('verivication');
+    Route::post('verivication/detail', [AppController::class, 'verivication_detail'])->name('verivication_detail');
+    Route::post('verivication/verif', [AppController::class, 'verivication_verif'])->name('verivication_verif');
 
     Route::get('rekap-laporan', [AppController::class, 'rekap_laporan'])->name('rekap_laporan');
 });

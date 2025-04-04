@@ -127,6 +127,7 @@ class AppController extends Controller
     {
         return view('app.product.detail-product');
     }
+    // STOK
     public function app_stok()
     {
         return view('app.stok');
@@ -146,6 +147,32 @@ class AppController extends Controller
         ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')
         ->where('t_product.t_product_code',$request->code)->first();
         return view('app.stok.detail-stok',['data'=>$data]);
+    }
+    public function app_stok_add(Request $request)
+    {
+        $data = DB::table('t_product')
+        ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')
+        ->where('t_product.t_product_code',$request->code)->first();
+        return view('app.stok.form-add-stok',['data'=>$data]);
+    }
+    public function app_stok_find_keyword(Request $request){
+        $data = DB::table('t_product')->where('t_product_name','like','%'.$request->code.'%')->get();
+        return view('app.stok.hasil-keyword',['data'=>$data]);
+    }
+    public function app_stok_find_keyword_save(Request $request){
+        DB::table('t_product_stok')->insert([
+            't_product_token' => str::uuid(),
+            't_product_code' => $request->code,
+            't_stok_qty' => $request->qty,
+            'userid' => Auth::user()->userid,
+            't_stok_used' => 0,
+            'stok_status' => 0,
+            'created_at' => now()
+        ]);
+        $data = DB::table('t_product_stok')->select('t_product_stok.*','t_product.t_product_name','t_product.t_product_price')
+        ->join('t_product','t_product.t_product_code','=','t_product_stok.t_product_code')
+        ->where('t_product_stok.t_product_code',$request->code)->orderBy('t_product_stok.id', 'DESC')->get();
+        return view('app.stok.log-stok',['data'=>$data]);
     }
     // Table Management
     public function app_table()
@@ -376,6 +403,31 @@ class AppController extends Controller
         return true;
     }
 
+    // VERIFICATION
+    public function verivication(){
+        $data = DB::table('t_product_stok')->join('t_product','t_product.t_product_code','=','t_product_stok.t_product_code')
+        ->where('t_product_stok.stok_status',0)->get();
+        return view('app.verivication',['data'=>$data]);
+    }
+    public function verivication_detail(Request $request){
+        $data = DB::table('t_product_stok')
+        ->join('t_product','t_product.t_product_code','=','t_product_stok.t_product_code')
+        ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')
+        ->where('t_product_stok.t_product_token',$request->code)->first();
+        return view('app.verification.detail-verification',['data'=>$data]);
+    }
+    public function verivication_verif(Request $request){
+        if ($request->verif == 'Y') {
+            $x = 1;
+        } elseif($request->verif == 'T') {
+            $x = 2;
+        }
+
+        DB::table('t_product_stok')->where('t_product_token',$request->code)->update([
+            'stok_status' => $x
+        ]);
+        return 123;
+    }
     // REKAP LAPORAN
     public function rekap_laporan(){
         return view('app.rekap-laporan');

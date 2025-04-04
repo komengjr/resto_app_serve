@@ -120,6 +120,14 @@
                                         </a>
                                         <!-- more inner pages-->
                                     </li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('dashboard.transaction') }}"
+                                            aria-expanded="false">
+                                            <div class="d-flex align-items-center"><span
+                                                    class="nav-link-text ps-1">Transaction Order</span>
+                                            </div>
+                                        </a>
+                                        <!-- more inner pages-->
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
