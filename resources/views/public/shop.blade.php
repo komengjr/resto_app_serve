@@ -6,10 +6,12 @@
             #menu-cat {
                 display: none;
             }
-            .breadcrumb-section{
+
+            .breadcrumb-section {
                 display: none;
             }
-            .product{
+
+            .product {
                 padding-top: 0px;
             }
         }
@@ -216,13 +218,15 @@
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="{{ asset($datas->t_product_file) }}">
                                         <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            {{-- <li><a href="#"><i class="fa fa-heart"></i></a></li> --}}
+                                            <li><a href="#" data-toggle="modal" data-target="#modal-shop"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#modal-shop"
+                                                    id="button-cart-order" data-code="{{ $datas->t_product_code }}"><i
+                                                        class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6><a href="#">{{$datas->t_product_name}}</a></h6>
+                                        <h6><a href="#">{{ $datas->t_product_name }}</a></h6>
                                         <h5>@currency($datas->t_product_price)</h5>
                                     </div>
                                 </div>
@@ -240,4 +244,75 @@
         </div>
     </section>
     <!-- Product Section End -->
+
+    <div class="modal fade" style="padding: 15px;" id="modal-shop" data-backdrop="static" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" id="menu-shop">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).on("click", "#button-cart-order", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-shop').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('menu_add_cart') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-shop').html(data);
+            }).fail(function() {
+                $('#menu-shop').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-add-cart-product", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            var qty = document.getElementById("product_qty").value;
+            $.ajax({
+                url: "{{ route('menu_add_cart_product_user') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code,
+                    "qty": qty,
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                if (data == 0) {
+                    window.location = "{{ route('login') }}";
+                } else {
+                    location.reload();
+                }
+                $('#modal-shop').modal('hide');
+            }).fail(function() {
+                $('#menu-shop').html('eror');
+            });
+
+        });
+
+    </script>
 @endsection

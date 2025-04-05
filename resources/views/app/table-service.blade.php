@@ -28,7 +28,7 @@
     </div>
     <div class="row mb-3 g-3">
         <div class="col-xl-8">
-            <div class="card mb-3">
+            {{-- <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-4 border-lg-end border-bottom border-lg-0 pb-3 pb-lg-0">
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="card mb-3">
                 <div class="card-header">
                     <div class="row align-items-center">

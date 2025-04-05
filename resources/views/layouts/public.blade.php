@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         @media only screen and (max-width: 950px) {
             #list-category {
@@ -48,10 +51,19 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                @guest
+                @else
+                    @php
+                        $cart = DB::table('user_cart_log')
+                            ->where('userid', Auth::user()->userid)
+                            ->sum('t_product_qty');
+                    @endphp
+                    <li><a href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-bag"></i>
+                            <span>{{ $cart }}</span></a></li>
+
+                @endguest
             </ul>
-            <div class="header__cart__price">item: <span>@currency(20000)</span></div>
+            <div class="header__cart__price">Cost: <span>@currency(0)</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -181,10 +193,21 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            {{-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
+                            @guest
+                            @else
+                                @php
+                                    $cart = DB::table('user_cart_log')
+                                        ->where('userid', Auth::user()->userid)
+                                        ->sum('t_product_qty');
+                                @endphp
+                                <li><a href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-bag"></i>
+                                        <span>{{ $cart }}</span></a></li>
+
+                            @endguest
                         </ul>
-                        <div class="header__cart__price">Cost: <span>@currency(100000)</span></div>
+
+                        <div class="header__cart__price">Cost: <span>@currency(0)</span></div>
                     </div>
                 </div>
             </div>

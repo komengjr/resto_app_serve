@@ -42,8 +42,8 @@
                                         </form>
                                     </div>
                                     <div class="col-auto pe-0">
-                                        <a class="text-600 px-1" href="#"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Product List"><span
+                                        <a class="text-600 px-1" href="#" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Product List"><span
                                                 class="fas fa-list-ul"></span></a>
                                     </div>
                                 </div>
@@ -79,18 +79,26 @@
                                         </div>
                                         <div class="d-flex flex-between-center px-3">
                                             <div>
-                                                <span class="fa fa-star text-warning"></span><span
-                                                    class="fa fa-star text-warning"></span><span
-                                                    class="fa fa-star text-warning"></span><span
-                                                    class="fa fa-star text-warning"></span><span
-                                                    class="fa fa-star text-300"></span><span class="ms-1">(10)</span>
+                                                @php
+                                                    $stok = DB::table('t_product_stok')
+                                                        ->where('t_product_code', $item->t_product_code)
+                                                        ->where('stok_status',1)
+                                                        ->sum('t_stok_qty');
+                                                    $use = DB::table('t_product_stok')
+                                                        ->where('t_product_code', $item->t_product_code)
+                                                        ->where('stok_status',1)
+                                                        ->sum('t_stok_used');
+                                                @endphp
+                                                Stok<span class="ms-1">( {{ $stok - $use }} )</span>
                                             </div>
                                             <div>
-                                                <a class="btn btn-sm btn-falcon-default" href="#!"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"
-                                                    id="button-add-product-list"
-                                                    data-code="{{ $item->t_product_code }}"><span
-                                                        class="fas fa-cart-plus"></span> Add</a>
+                                                @if (($stok - $use) > 0)
+                                                    <a class="btn btn-sm btn-falcon-default" href="#!"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Add to Cart"
+                                                        id="button-add-product-list"
+                                                        data-code="{{ $item->t_product_code }}"><span
+                                                            class="fas fa-cart-plus"></span> Add</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -301,7 +309,7 @@
             var no_table = document.getElementById("no_table").value;
             var user = document.getElementById("user").value;
             var no_hp = document.getElementById("no_hp").value;
-            if (no_table == "" || user =="" || no_hp =="") {
+            if (no_table == "" || user == "" || no_hp == "") {
                 $('#liveToastBtn').click();
             } else {
                 $('#loading-fix-order').html(
@@ -320,7 +328,9 @@
                     },
                     dataType: 'html',
                 }).done(function(data) {
-                    $('#button-change-order').html('<button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button" id="button-print-order-fix"><span class="fas fa-print me-1"> </span>Print</button>');
+                    $('#button-change-order').html(
+                        '<button class="btn btn-falcon-default btn-sm me-1 mb-2 mb-sm-0" type="button" id="button-print-order-fix"><span class="fas fa-print me-1"> </span>Print</button>'
+                        );
                     $('#loading-fix-order').html(data);
                     $('#button-x').html("");
                     $('#form-user').html("");
