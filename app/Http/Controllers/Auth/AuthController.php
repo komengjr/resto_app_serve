@@ -27,7 +27,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
 
-            return Redirect('/');
+            return Redirect('/menu');
 
         } else {
             return view('auth.login');
@@ -58,7 +58,7 @@ class AuthController extends Controller
                 return redirect()->intended('register_status')
                     ->withSuccess('Gagal Login');
             } else {
-                return redirect()->intended('/')
+                return redirect()->intended('/menu')
                     ->withSuccess('Kamu Berhasil Masuk di Halaman ' . Auth::user()->fullname);
             }
 

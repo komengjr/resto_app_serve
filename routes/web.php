@@ -126,4 +126,5 @@ Route::prefix('master')->group(function () {
 // PAYMENT
 Route::prefix('payment')->group(function () {
     Route::post('token', [PaymentController::class, 'payemnt_token'])->name('create-payemnt-token');
+    Route::post('user', [PaymentController::class, 'payemnt_user'])->name('create-payemnt-user');
 });
