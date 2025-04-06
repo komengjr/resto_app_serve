@@ -1,7 +1,28 @@
 @extends('layouts.public')
 @section('content')
     <style>
+        @media only screen and (max-width: 600px) {
+            .shoping__cart__table table tbody tr td.shoping__cart__price {
+                font-size: 10px;
+            }
 
+            .shoping__cart__table table tbody tr td.shoping__cart__total {
+                font-size: 10px;
+            }
+            .shoping__cart__table table thead tr th{
+                padding: 10px;
+            }
+            .shoping__cart__table table thead tr th.shoping__product {
+
+                font-size: 12px;
+                border: solid;
+                border-width: thin;
+                border-color: #0ae9b5;
+            }
+            .modal-footer{
+                padding: 0;
+            }
+        }
     </style>
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="{{ asset('img/breadcrumb.jpg') }}">
@@ -30,12 +51,12 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Products</th>
-                                    <th>Price</th>
-                                    <th>Disc</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th></th>
+                                    <th class="shoping__product" style="">Products</th>
+                                    <th class="shoping__product">Price</th>
+                                    <th class="shoping__product">Disc</th>
+                                    <th class="shoping__product">Quantity</th>
+                                    <th class="shoping__product">Total</th>
+                                    <th class="shoping__product"></th>
                                 </tr>
                             </thead>
                             <tbody>

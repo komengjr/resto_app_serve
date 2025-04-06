@@ -1,11 +1,11 @@
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Menu Cart</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Cart Option</h5>
     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><span class="fa fa-x"></span></button>
 </div>
 <div class="modal-body">
     <div class="row">
         <div class="col-lg-6 col-md-6">
-            <div class="product__details__pic">
+            <div class="product__details__pic" style="margin-bottom: 0px;">
                 <div class="product__details__pic__item">
                     <img class="product__details__pic__item--large" src="{{ asset($data->t_product_file) }}"
                         alt="" />
@@ -14,12 +14,11 @@
         </div>
         <div class="col-lg-6 col-md-6">
             <div class="product__details__text">
-                <h3>{{ $data->t_product_name }}</h3>
-                <div class="product__details__rating">
-
-                    <span>(18 )</span>
+                <h3 style="padding: 0; margin: 0;">{{ $data->t_product_name }}</h3>
+                <div class="product__details__rating" style="padding: 0; margin: 0;">
+                    <span>(18 Porsi)</span>
                 </div>
-                <div class="product__details__price">@currency($data->t_product_price)</div>
+                <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(47, 198, 212);">@currency($data->t_product_price) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del></div>
                 {{-- <p>
                     {{$data->t_product_desc}}
                 </p> --}}
@@ -54,7 +53,8 @@
 
     </div>
 </div>
-<div class="modal-footer">
-    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary">Save changes</button> --}}
+<div class="modal-footer" style=" padding: 0;">
+    <marquee width="100%" direction="left" height="25px">
+        This is a sample scrolling text that has scrolls in the upper direction.
+        </marquee>
 </div>

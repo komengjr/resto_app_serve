@@ -21,6 +21,15 @@
             .product {
                 padding-top: 0px;
             }
+
+            .modal-dialog {
+                width: 100%;
+                position: absolute;
+                top: auto;
+                right: -8px;
+                left: -8px;
+                bottom: -8px;
+            }
         }
     </style>
     <!-- Hero Section Begin -->
@@ -35,7 +44,8 @@
                         </div>
                         <ul id="category_at">
                             @foreach ($cat as $cats)
-                                <li style="border-bottom: solid; border-width: thin; border-color: #119c5d;"><a href="#" onclick="myFunction()"><span class="fa fa-cutlery pr-2"> </span>
+                                <li style="border-bottom: solid; border-width: thin; border-color: #119c5d;"><a href="#"
+                                        onclick="myFunction()"><span class="fa fa-cutlery pr-2"> </span>
                                         {{ $cats->t_category_name }}</a></li>
                             @endforeach
                         </ul>
@@ -256,9 +266,9 @@
     </section>
     <!-- Product Section End -->
 
-    <div class="modal fade" style="padding: 15px;" id="modal-shop" data-backdrop="static" tabindex="-1"
+    <div class="modal fade" id="modal-shop" data-backdrop="static" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content" id="menu-shop">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -320,7 +330,7 @@
                 if (data == 0) {
                     window.location = "{{ route('login') }}";
                 } else {
-                    window.location.replace("{{route('list_menu_notif')}}");
+                    window.location.replace("{{ route('list_menu_notif') }}");
                 }
                 $('#modal-shop').modal('hide');
             }).fail(function() {
