@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use DB;
 class PublicController extends Controller
 {
@@ -14,6 +15,9 @@ class PublicController extends Controller
         $disc = DB::table('t_product')->where('t_product_disc', '>', 0)->get();
         $data = DB::table('t_product')->get();
         return view('public.shop', ['cat' => $cat, 'disc' => $disc, 'data' => $data]);
+    }
+    public function list_menu_notif(){
+        return redirect("menu")->withError('Succsess Add Order Item');
     }
     public function list_menu_cart()
     {

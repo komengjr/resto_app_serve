@@ -34,6 +34,14 @@
             #list-category {
                 display: none;
             }
+
+            .header__cart {
+                display: none;
+            }
+
+            .hero__search__phone {
+                display: none;
+            }
         }
     </style>
     <style>
@@ -51,7 +59,6 @@
             /* background-color: rgba(5, 5, 5, 0.9); */
 
         }
-
     </style>
 </head>
 
@@ -312,7 +319,7 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-    <div class="d-lg-none kaki bg-light">
+    <div class="d-lg-none kaki bg-dark">
         <ul class="nav nav-pills nav-fill mt-0">
             <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
                     href="{{ route('/') }}"><i class="fas fa-home"></i><br> Home</a></li>
@@ -322,11 +329,73 @@
                     href="{{ route('list_menu') }}"><i class="fas fa-book-open"></i><br> Menu</a></li>
             <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
                     href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i><br> Order</a></li>
-            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-3 m-0"
-                    href="#"><i class="fas fa-user"></i><br> User</a></li>
+            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-3 m-0" href="#"  type="button"><i class="fas fa-user"></i><br> User</a></li>
         </ul>
     </div>
+    {{-- <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+            data-delay="2000">
+            <div class="toast-header">
+                <img src="{{ asset('img/cart/cart-1.jpg') }}" class="rounded mr-2" alt="..." width="50">
+                <strong class="mr-auto">Notification</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Berhasil Menambahkan Order.
+            </div>
+        </div>
+    </div> --}}
     <!-- Js Plugins -->
+    @if ($message = Session::get('success'))
+        <script>
+            $(document).ready(function() {
+                $('#liveToast').toast('show');
+                $('#liveToastBtn').click();
+            });
+        </script>
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+            <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+                data-delay="2000">
+                <div class="toast-header">
+                    <img src="{{ asset('img/language.png') }}" class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Notification</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    {{ $message }}
+                </div>
+            </div>
+        </div>
+    @elseif($message = Session::get('error'))
+        <script>
+            $(document).ready(function() {
+                $('#liveToast').toast('show')
+                $('#liveToastBtn').click();
+            });
+        </script>
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 10%;">
+            <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+                data-delay="3000">
+                <div class="toast-header">
+                    <img src="{{ asset('assets/img/icons/alert.jpg') }}" class="rounded mr-2" alt="..." width="30">
+                    <strong class="mr-auto">Notification</strong>
+                    <small>11 mins ago</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    {{ $message }}
+                </div>
+            </div>
+        </div>
+    @endif
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>

@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-        li:hover {
+        #category_at li:hover {
             background: #95c8b1;
         }
         @media only screen and (max-width: 600px) {
@@ -225,7 +225,7 @@
                     <div class="row">
                         @foreach ($data as $datas)
                             <div class="col-lg-4 col-md-3 col-sm-3">
-                                <div class="product__item">
+                                <div class="product__item ">
                                     <div class="product__item__pic set-bg" data-setbg="{{ asset($datas->t_product_file) }}">
                                         <ul class="product__item__pic__hover">
                                             {{-- <li><a href="#"><i class="fa fa-heart"></i></a></li> --}}
@@ -320,7 +320,7 @@
                 if (data == 0) {
                     window.location = "{{ route('login') }}";
                 } else {
-                    location.reload();
+                    window.location.replace("{{route('list_menu_notif')}}");
                 }
                 $('#modal-shop').modal('hide');
             }).fail(function() {
