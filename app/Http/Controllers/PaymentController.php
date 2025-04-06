@@ -88,4 +88,41 @@ class PaymentController extends Controller
             return $snapToken;
         }
     }
+    public function payemnt_user_success(Request $request)
+    {
+        $no_payment = "PAY-" . Str::uuid();
+        $code = 'ON-'. Str::uuid();
+        DB::table('m_order_user')->insert([
+            'no_reg_order_user'=> $code,
+            'm_order_user'=> Auth::user()->userid,
+            'm_order_type'=>'Online',
+            'm_order_date'=>now(),
+            'm_order_status'=>1
+        ]);
+        $cek = DB::table('user_cart_log')
+        ->join('t_product','t_product.t_product_code','user_cart_log.t_product_code')
+        ->where('user_cart_log.userid', Auth::user()->userid)->get();
+        foreach ($cek as $value) {
+            DB::table('m_order_user_detail')->insert([
+                'no_reg_order_user' => $code,
+                't_product_code' => $value->t_product_code,
+                'order_qty' => $value->t_product_qty,
+                'order_price' => $value->t_product_price - (($value->t_product_price * $value->t_product_disc) / 100),
+                'order_status' => 0,
+                'created_at' => now(),
+            ]);
+            DB::table('user_cart_log')->where('id_user_cart_log', $value->id_user_cart_log )->delete();
+        }
+        // DB::table('payment_history')->insert([
+        //     'no_payment' => $no_payment,
+        //     'id_user' => Auth::user()->id_user,
+        //     'code_gorup' => 'book',
+        //     'code' => $request->id,
+        //     'date_payment_history' => now(),
+        //     'desc_payment' => "Order Id : " . $request->order_id,
+        //     'total_payment' => $request->total_payment,
+        //     'created_at' => now(),
+        // ]);
+        return 1;
+    }
 }

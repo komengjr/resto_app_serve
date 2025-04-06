@@ -2,8 +2,15 @@
 
 @section('content')
     <style>
+        li:hover {
+            background: #95c8b1;
+        }
         @media only screen and (max-width: 600px) {
             #menu-cat {
+                display: none;
+            }
+
+            .filter__item {
                 display: none;
             }
 
@@ -26,9 +33,10 @@
                             <i class="fa fa-bars"></i>
                             <span>All Category</span>
                         </div>
-                        <ul>
+                        <ul id="category_at">
                             @foreach ($cat as $cats)
-                                <li><a href="#">{{ $cats->t_category_name }}</a></li>
+                                <li style="border-bottom: solid; border-width: thin; border-color: #119c5d;"><a href="#" onclick="myFunction()"><span class="fa fa-cutlery pr-2"> </span>
+                                        {{ $cats->t_category_name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -41,7 +49,7 @@
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
-                        <div class="hero__search__phone">
+                        {{-- <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
                             </div>
@@ -49,7 +57,7 @@
                                 <h5>+65 11.188.888</h5>
                                 <span>support 24/7 time</span>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -158,7 +166,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-7">
-                    <div class="product__discount">
+                    {{-- <div class="product__discount">
                         <div class="section-title product__discount__title">
                             <h2>Promo</h2>
                         </div>
@@ -187,15 +195,17 @@
                                 @endforeach
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
-                                    <span>Sort By</span>
+                                    <span>Category By</span>
                                     <select>
                                         <option value="0">Default</option>
-                                        <option value="0">Default</option>
+                                        @foreach ($cat as $cats)
+                                            <option value="0">{{ $cats->t_category_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -204,22 +214,23 @@
                                     <h6><span>{{ $data->count() }}</span> Products found</h6>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-3">
+                            {{-- <div class="col-lg-4 col-md-3">
                                 <div class="filter__option">
-                                    {{-- <span class="icon_grid-2x2"></span> --}}
+                                    <span class="icon_grid-2x2"></span>
                                     <span class="fa fa-tasks"></span>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="row">
                         @foreach ($data as $datas)
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-3 col-sm-3">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="{{ asset($datas->t_product_file) }}">
                                         <ul class="product__item__pic__hover">
                                             {{-- <li><a href="#"><i class="fa fa-heart"></i></a></li> --}}
-                                            <li><a href="#" data-toggle="modal" data-target="#modal-shop"><i class="fa fa-retweet"></i></a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#modal-shop"><i
+                                                        class="fa fa-retweet"></i></a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#modal-shop"
                                                     id="button-cart-order" data-code="{{ $datas->t_product_code }}"><i
                                                         class="fa fa-shopping-cart"></i></a></li>
@@ -263,7 +274,11 @@
             </div>
         </div>
     </div>
-
+    <script>
+        function myFunction() {
+            category_at.style.display = "none";
+        }
+    </script>
     <script>
         $(document).on("click", "#button-cart-order", function(e) {
             e.preventDefault();
@@ -313,6 +328,5 @@
             });
 
         });
-
     </script>
 @endsection

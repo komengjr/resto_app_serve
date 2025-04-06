@@ -1,5 +1,8 @@
 @extends('layouts.public')
 @section('content')
+    <style>
+
+    </style>
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="{{ asset('img/breadcrumb.jpg') }}">
         <div class="container">
@@ -19,7 +22,7 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Shoping Cart Section Begin -->
-    <section class="shoping-cart spad">
+    <section class="shoping-cart spad" style="padding-top: 2%;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -49,7 +52,7 @@
                                             @currency($datas->t_product_price)
                                         </td>
                                         <td class="shoping__cart__price">
-                                            {{$datas->t_product_disc}} %
+                                            {{ $datas->t_product_disc }} %
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
@@ -59,7 +62,7 @@
                                             </div>
                                         </td>
                                         <td class="shoping__cart__total">
-                                            @currency(($datas->t_product_price - $datas->t_product_price * $datas->t_product_disc /100) * $datas->t_product_qty)
+                                            @currency(($datas->t_product_price - ($datas->t_product_price * $datas->t_product_disc) / 100) * $datas->t_product_qty)
                                         </td>
                                         <td class="shoping__cart__item__close">
                                             <span class="icon_close" id="button-remove-cart"
@@ -67,7 +70,11 @@
                                         </td>
                                     </tr>
                                     @php
-                                        $total = $total + (($datas->t_product_price - $datas->t_product_price * $datas->t_product_disc /100) * $datas->t_product_qty);
+                                        $total =
+                                            $total +
+                                            ($datas->t_product_price -
+                                                ($datas->t_product_price * $datas->t_product_disc) / 100) *
+                                                $datas->t_product_qty;
                                     @endphp
                                 @endforeach
                             </tbody>
@@ -152,7 +159,24 @@
                     snap.pay(data, {
                         onSuccess: function(result) {
                             alert("payment success!");
-                            location.reload();
+                            $.ajax({
+                                url: "{{ route('create-payment-user-success') }}",
+                                type: "POST",
+                                cache: false,
+                                data: {
+                                    "_token": "{{ csrf_token() }}",
+                                    "id": id,
+                                },
+                                dataType: 'html',
+                            }).done(function(data) {
+                                if (data == 1) {
+                                    // console.log(result);
+                                    window.location.href =
+                                        "{{ route('list_menu_cart') }}";
+                                } else {
+                                    console.log('gagal');
+                                }
+                            })
                         },
                         onPending: function(result) {
                             alert("wating your payment!");

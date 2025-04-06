@@ -54,7 +54,7 @@
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
-    <section class="categories">
+    {{-- <section class="categories">
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
@@ -86,11 +86,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
-    <section class="featured spad">
+    <section class="featured spad" style="padding-top: 0px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

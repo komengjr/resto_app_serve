@@ -36,6 +36,23 @@
             }
         }
     </style>
+    <style>
+        .kaki {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            border-top-right-radius: 15px 15px;
+            border-top-left-radius: 15px 15px;
+            width: 100%;
+            height: 70px;
+            border-style: solid;
+            border-width: thin;
+            border-color: #0ae9b5;
+            /* background-color: rgba(5, 5, 5, 0.9); */
+
+        }
+
+    </style>
 </head>
 
 <body>
@@ -67,16 +84,16 @@
             <div class="header__cart__price">Cost: <span>@currency(0)</span></div>
         </div>
         <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
+            {{-- <div class="header__top__right__language">
+                <img src="{{ asset('img/language.png') }}" alt="">
+                <div>ENG</div>
                 <span class="fa fa-chevron-down"></span>
                 <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">Indonesia</a></li>
+                    <li><a href="#">ENG</a></li>
+                    <li><a href="#">INA</a></li>
                 </ul>
-            </div>
-            <div class="header__top__right__language  ml-3">
+            </div> --}}
+            <div class="header__top__right__language">
                 @guest
                     <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
                 @else
@@ -140,7 +157,7 @@
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
-                            <div class="header__top__right__language">
+                            {{-- <div class="header__top__right__language">
                                 <img src="img/language.png" alt="">
                                 <div>English</div>
                                 <span class="fa fa-chevron-down"></span>
@@ -148,7 +165,7 @@
                                     <li><a href="#">Spanis</a></li>
                                     <li><a href="#">Indonesia</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <div class="header__top__right__language">
                                 @guest
                                     <a href="{{ route('login') }}"><i class="fa fa-user"></i> Login</a>
@@ -287,14 +304,28 @@
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
-                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                        <div class="footer__copyright__payment"><img src="{{ asset('img/payment-item.png') }}"
+                                alt=""></div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
     <!-- Footer Section End -->
-
+    <div class="d-lg-none kaki bg-light">
+        <ul class="nav nav-pills nav-fill mt-0">
+            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
+                    href="{{ route('/') }}"><i class="fas fa-home"></i><br> Home</a></li>
+            {{-- <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
+                    href="#"><i class="fas fa-book"></i><br> </a></li> --}}
+            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
+                    href="{{ route('list_menu') }}"><i class="fas fa-book-open"></i><br> Menu</a></li>
+            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
+                    href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i><br> Order</a></li>
+            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-3 m-0"
+                    href="#"><i class="fas fa-user"></i><br> User</a></li>
+        </ul>
+    </div>
     <!-- Js Plugins -->
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

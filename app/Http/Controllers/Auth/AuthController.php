@@ -26,20 +26,15 @@ class AuthController extends Controller
     public function index()
     {
         if (Auth::check()) {
-
-            return Redirect('/menu');
-
+            return Redirect('/');
         } else {
             return view('auth.login');
         }
-
     }
 
     public function registration()
     {
-
         return view('auth.registration');
-
     }
 
     public function postLogin(Request $request)
@@ -61,7 +56,6 @@ class AuthController extends Controller
                 return redirect()->intended('/menu')
                     ->withSuccess('Kamu Berhasil Masuk di Halaman ' . Auth::user()->fullname);
             }
-
         }
         return redirect("login")->withSuccess('Username dan Password Tidak Sinkron Mohon Untuk Mengingat Kembali');
 
@@ -69,7 +63,6 @@ class AuthController extends Controller
 
     public function postRegistration(Request $request)
     {
-
         $request->validate([
             'fullname' => 'required',
             'no_hp' => 'required',
