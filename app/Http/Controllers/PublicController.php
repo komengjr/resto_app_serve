@@ -49,6 +49,15 @@ class PublicController extends Controller
         DB::table('user_cart_log')->where('id_user_cart_log', $request->code)->where('userid', Auth::user()->userid)->delete();
         return 1;
     }
+    public function menu_tipe_order_cart(Request $request)
+    {
+        // DB::table('user_cart_log')->where('id_user_cart_log', $request->code)->where('userid', Auth::user()->userid)->delete();
+        return view('public.cart.order-type');
+    }
+    public function menu_choosee_table_cart(Request $request){
+        $data = DB::table('m_table_master')->get();
+        return view('public.cart.table-cart',['data'=>$data]);
+    }
     public function menu_add_cart_product_user(Request $request)
     {
         if ($request->qty > 0) {

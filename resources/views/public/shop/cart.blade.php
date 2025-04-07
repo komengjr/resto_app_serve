@@ -10,6 +10,10 @@
                 font-size: 10px;
             }
 
+            .shoping__cart__table table tbody tr td h5 {
+                font-size: 12px;
+            }
+
             .shoping__cart__table table thead tr th {
                 padding: 10px;
             }
@@ -24,6 +28,23 @@
 
             .modal-footer {
                 padding: 0;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .modal-dialog {
+                width: 100%;
+                position: absolute;
+                top: auto;
+                right: -8px;
+                left: -8px;
+                bottom: -8px;
+            }
+        }
+
+        @media only screen and (min-width: 900px) {
+            .modal-dialog {
+                top: 20%;
             }
         }
     </style>
@@ -125,10 +146,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shoping__cart__btns">
-                            <a href="#" class="primary-btn cart-btn bg-dark mr-4 text-white">Tipe Order</a>
+                            <a href="#" class="primary-btn cart-btn bg-dark mr-4 text-white" data-toggle="modal"
+                                data-target="#modal-cart" id="button-order-type">Tipe Order</a>
 
-                            <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                                Upadate Cart</a>
+                            <a href="#" class="primary-btn cart-btn bg-primary cart-btn-right text-white"><span
+                                    class="icon_loading"></span>
+                                Upadate Order</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -157,8 +180,46 @@
             </div>
         </section>
     @endif
+
+    <div class="modal fade" id="modal-cart" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg shake animated">
+            <div class="modal-content" id="menu-cart">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Shoping Cart Section End -->
     <script>
+        $(document).on("click", "#button-order-type", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $.ajax({
+                url: "{{ route('menu_tipe_order_cart') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code,
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-cart').html(data);
+            }).fail(function() {
+                $('#menu-cart').html('eror');
+            });
+
+        });
         $(document).on("click", "#button-remove-cart", function(e) {
             e.preventDefault();
             var code = $(this).data("code");
@@ -175,6 +236,25 @@
                 location.reload();
             }).fail(function() {
                 $('#menu-shop').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-choosse-table", function(e) {
+            e.preventDefault();
+            // var code = $(this).data("code");
+            $.ajax({
+                url: "{{ route('menu_choosee_table_cart') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": 0,
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-table-cart').html(data);
+            }).fail(function() {
+                $('#menu-table-cart').html('eror');
             });
 
         });

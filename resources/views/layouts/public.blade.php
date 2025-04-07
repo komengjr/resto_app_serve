@@ -42,6 +42,12 @@
             .hero__search__phone {
                 display: none;
             }
+            .footer__copyright {
+                display: none;
+            }
+            #mobile-footer{
+                display: none;
+            }
         }
     </style>
     <style>
@@ -263,7 +269,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                    <div class="footer__widget">
+                    <div class="footer__widget" id="mobile-footer">
                         <h6>Useful Links</h6>
                         <ul>
                             <li><a href="#">Home</a></li>
