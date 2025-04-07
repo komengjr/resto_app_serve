@@ -2,9 +2,20 @@
 
 @section('content')
     <style>
+        .modal.fade {
+            opacity: 1;
+        }
+
+        .modal.fade .modal-dialog {
+            -webkit-transform: translate(0);
+            -moz-transform: translate(0);
+            transform: translate(0);
+        }
+
         #category_at li:hover {
             background: #95c8b1;
         }
+
         @media only screen and (max-width: 600px) {
             #menu-cat {
                 display: none;
@@ -29,6 +40,10 @@
                 right: -8px;
                 left: -8px;
                 bottom: -8px;
+            }
+
+            .product__item__pic {
+                height: 70px;
             }
         }
     </style>
@@ -234,8 +249,8 @@
                     </div>
                     <div class="row">
                         @foreach ($data as $datas)
-                            <div class="col-lg-4 col-md-3 col-sm-3">
-                                <div class="product__item ">
+                            <div class="col-lg-4 col-md-4 col-sm-3 col-6">
+                                <div class="product__item card">
                                     <div class="product__item__pic set-bg" data-setbg="{{ asset($datas->t_product_file) }}">
                                         <ul class="product__item__pic__hover">
                                             {{-- <li><a href="#"><i class="fa fa-heart"></i></a></li> --}}
@@ -246,7 +261,7 @@
                                                         class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <div class="product__item__text">
+                                    <div class="product__item__text mb-2">
                                         <h6><a href="#">{{ $datas->t_product_name }}</a></h6>
                                         <h5>@currency($datas->t_product_price)</h5>
                                     </div>
@@ -266,9 +281,9 @@
     </section>
     <!-- Product Section End -->
 
-    <div class="modal fade" id="modal-shop" data-backdrop="static" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="modal-shop" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg shake animated">
             <div class="modal-content" id="menu-shop">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>

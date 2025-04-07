@@ -18,18 +18,23 @@
                 <div class="product__details__rating" style="padding: 0; margin: 0;">
                     <span>(18 Porsi)</span>
                 </div>
-                <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(47, 198, 212);">@currency($data->t_product_price) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del></div>
+                <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(47, 198, 212);">
+                    @currency($data->t_product_price) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del>
+                </div>
                 {{-- <p>
                     {{$data->t_product_desc}}
                 </p> --}}
                 <div class="product__details__quantity">
-                    <div class="">
+                    <div class="quantity">
                         <div class="pro-qty">
-                            <input type="number" value="1" id="product_qty"/>
+                            {{-- <span class="dec qtybtn">-</span> --}}
+                            <input type="text" value="1" id="product_qty" />
+                            {{-- <span class="dec qtybtn">+</span> --}}
                         </div>
                     </div>
                 </div>
-                <button class="primary-btn" id="button-add-cart-product" data-code="{{$data->t_product_code}}">ADD ORDER</button>
+                <button class="primary-btn" id="button-add-cart-product" data-code="{{ $data->t_product_code }}">ADD
+                    ORDER</button>
 
                 {{-- <ul>
                     <li><b>Availability</b> <span>In Stock</span></li>
@@ -56,5 +61,30 @@
 <div class="modal-footer" style=" padding: 0;">
     <marquee width="100%" direction="left" height="25px">
         This is a sample scrolling text that has scrolls in the upper direction.
-        </marquee>
+    </marquee>
 </div>
+{{-- <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/jquery.slicknav.js') }}"></script>
+<script src="{{ asset('js/mixitup.min.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script> --}}
+<script>
+    var proQty = $('.pro-qty');
+    proQty.prepend('<span class="dec qtybtn">-</span>');
+    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.on('click', '.qtybtn', function() {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
+    });
+</script>
