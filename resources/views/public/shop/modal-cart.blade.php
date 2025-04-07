@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Cart Option</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Order Menu</h5>
     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><span class="fa fa-x"></span></button>
 </div>
 <div class="modal-body">
@@ -19,7 +19,7 @@
                     <span>(18 Porsi)</span>
                 </div>
                 <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(47, 198, 212);">
-                    @currency($data->t_product_price) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del>
+                    @currency($data->t_product_price - ($data->t_product_price * $data->t_product_disc / 100)) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del>
                 </div>
                 {{-- <p>
                     {{$data->t_product_desc}}
@@ -60,7 +60,7 @@
 </div>
 <div class="modal-footer" style=" padding: 0;">
     <marquee width="100%" direction="left" height="25px">
-        This is a sample scrolling text that has scrolls in the upper direction.
+        All rights reserved | This template is made with by {{ Env('APP_NAME') }}
     </marquee>
 </div>
 {{-- <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>

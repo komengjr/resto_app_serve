@@ -319,7 +319,7 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-    <div class="d-lg-none kaki bg-dark">
+    <div class="d-lg-none kaki" style="background: #f7faf7;">
         <ul class="nav nav-pills nav-fill mt-0">
             <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
                     href="{{ route('/') }}"><i class="fas fa-home"></i><br> Home</a></li>
@@ -329,7 +329,7 @@
                     href="{{ route('list_menu') }}"><i class="fas fa-book-open"></i><br> Menu</a></li>
             <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
                     href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i><br> Order</a></li>
-            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-3 m-0" href="#"  type="button"><i class="fas fa-user"></i><br> User</a></li>
+            <li class="nav-item m-2"><a class="btn btn-outline-primary btn-sm py-1 px-3 m-0" href="#"  type="button"><i class="fas fa-user"></i><br> User</a></li>
         </ul>
     </div>
     {{-- <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">

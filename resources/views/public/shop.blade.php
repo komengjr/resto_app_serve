@@ -2,6 +2,20 @@
 
 @section('content')
     <style>
+        .product__discount__percent {
+            height: 45px;
+            width: 45px;
+            background: #dd2222;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #ffffff;
+            line-height: 45px;
+            text-align: center;
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+
         .modal.fade {
             opacity: 1;
         }
@@ -14,6 +28,10 @@
 
         #category_at li:hover {
             background: #95c8b1;
+        }
+
+        #button-category-product:hover {
+            background: #d4dfda;
         }
 
         @media only screen and (max-width: 600px) {
@@ -46,6 +64,12 @@
                 height: 70px;
             }
         }
+
+        @media only screen and (min-width: 900px) {
+            .modal-dialog {
+                top: 20%;
+            }
+        }
     </style>
     <!-- Hero Section Begin -->
     <section class="hero hero-normal">
@@ -60,7 +84,8 @@
                         <ul id="category_at">
                             @foreach ($cat as $cats)
                                 <li style="border-bottom: solid; border-width: thin; border-color: #119c5d;"><a href="#"
-                                        onclick="myFunction()"><span class="fa fa-cutlery pr-2"> </span>
+                                        onclick="myFunction()" id="button-category-product"
+                                        data-code="{{ $cats->t_category_code }}"><span class="fa fa-cutlery pr-2"> </span>
                                         {{ $cats->t_category_name }}</a></li>
                             @endforeach
                         </ul>
@@ -118,7 +143,9 @@
                             <h4>Category</h4>
                             <ul>
                                 @foreach ($cat as $cats)
-                                    <li><a href="#">{{ $cats->t_category_name }}</a></li>
+                                    <li><a href="#" class="my-4" id="button-category-product"
+                                            data-code="{{ $cats->t_category_code }}"
+                                            style="border-bottom: #119c5d solid;">{{ $cats->t_category_name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -221,7 +248,7 @@
                             </div>
                         </div>
                     </div> --}}
-                    <div class="filter__item">
+                    {{-- <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-4 col-md-5">
                                 <div class="filter__sort">
@@ -239,22 +266,26 @@
                                     <h6><span>{{ $data->count() }}</span> Products found</h6>
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-4 col-md-3">
+                            <div class="col-lg-4 col-md-3">
                                 <div class="filter__option">
                                     <span class="icon_grid-2x2"></span>
                                     <span class="fa fa-tasks"></span>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
+                    </div> --}}
+                    <div class="row" id="menu-chosse-category">
                         @foreach ($data as $datas)
                             <div class="col-lg-4 col-md-4 col-sm-3 col-6">
                                 <div class="product__item card">
                                     <div class="product__item__pic set-bg" data-setbg="{{ asset($datas->t_product_file) }}">
+                                        @if ($datas->t_product_disc != 0)
+                                            <div class="product__discount__percent">-{{ $datas->t_product_disc }}%</div>
+                                        @endif
                                         <ul class="product__item__pic__hover">
                                             {{-- <li><a href="#"><i class="fa fa-heart"></i></a></li> --}}
-                                            <li><a href="#" data-toggle="modal" data-target="#modal-shop"><i
+                                            <li><a href="#" data-toggle="modal" data-target="#modal-shop"
+                                                    id="button-detail-product" data-code="{{ $datas->t_product_code }}"><i
                                                         class="fa fa-retweet"></i></a></li>
                                             <li><a href="#" data-toggle="modal" data-target="#modal-shop"
                                                     id="button-cart-order" data-code="{{ $datas->t_product_code }}"><i
@@ -269,12 +300,12 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="product__pagination">
+                    {{-- <div class="product__pagination">
                         <a href="#">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -305,6 +336,50 @@
         }
     </script>
     <script>
+        $(document).on("click", "#button-category-product", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-chosse-category').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden"></span></div>'
+            );
+            $.ajax({
+                url: "{{ route('menu_chosse_category') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-chosse-category').html(data);
+            }).fail(function() {
+                $('#menu-chosse-category').html('eror');
+            });
+
+        });
+        $(document).on("click", "#button-detail-product", function(e) {
+            e.preventDefault();
+            var code = $(this).data("code");
+            $('#menu-shop').html(
+                '<div class="spinner-border my-3" style="display: block; margin-left: auto; margin-right: auto;" role="status"><span class="visually-hidden">Loading...</span></div>'
+            );
+            $.ajax({
+                url: "{{ route('menu_detail_product') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": code
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-shop').html(data);
+            }).fail(function() {
+                $('#menu-shop').html('eror');
+            });
+
+        });
         $(document).on("click", "#button-cart-order", function(e) {
             e.preventDefault();
             var code = $(this).data("code");
@@ -331,26 +406,30 @@
             e.preventDefault();
             var code = $(this).data("code");
             var qty = document.getElementById("product_qty").value;
-            $.ajax({
-                url: "{{ route('menu_add_cart_product_user') }}",
-                type: "POST",
-                cache: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "code": code,
-                    "qty": qty,
-                },
-                dataType: 'html',
-            }).done(function(data) {
-                if (data == 0) {
-                    window.location = "{{ route('login') }}";
-                } else {
-                    window.location.replace("{{ route('list_menu_notif') }}");
-                }
-                $('#modal-shop').modal('hide');
-            }).fail(function() {
-                $('#menu-shop').html('eror');
-            });
+            if (qty > 0) {
+                $.ajax({
+                    url: "{{ route('menu_add_cart_product_user') }}",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "code": code,
+                        "qty": qty,
+                    },
+                    dataType: 'html',
+                }).done(function(data) {
+                    if (data == 0) {
+                        window.location = "{{ route('login') }}";
+                    } else {
+                        window.location.replace("{{ route('list_menu_notif') }}");
+                    }
+                    $('#modal-shop').modal('hide');
+                }).fail(function() {
+                    $('#menu-shop').html('eror');
+                });
+            } else {
+                alert('quantity TIdak boleh Kosong')
+            }
 
         });
     </script>

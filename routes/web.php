@@ -35,6 +35,8 @@ Route::prefix('/')->group(function () {
     Route::get('menu', [PublicController::class, 'list_menu'])->name('list_menu');
     Route::get('menu-notif', [PublicController::class, 'list_menu_notif'])->name('list_menu_notif');
     Route::get('menu/cart', [PublicController::class, 'list_menu_cart'])->name('list_menu_cart');
+    Route::post('menu/chosse_category', [PublicController::class, 'menu_chosse_category'])->name('menu_chosse_category');
+    Route::post('menu/detail-product', [PublicController::class, 'menu_detail_product'])->name('menu_detail_product');
     Route::post('menu/add-cart', [PublicController::class, 'menu_add_cart'])->name('menu_add_cart');
     Route::post('menu/remove-cart', [PublicController::class, 'menu_remove_cart'])->name('menu_remove_cart');
     Route::post('menu/add-cart-product', [PublicController::class, 'menu_add_cart_product_user'])->name('menu_add_cart_product_user');
