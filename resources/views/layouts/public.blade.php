@@ -385,7 +385,7 @@ background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%
                     @guest
                     @else
                         <div
-                            style="position: absolute; top: 0; background: rgb(250, 7, 7); border-radius: 50%; line-height: 25px; height: 25px; width: 25px;">
+                            style=" position: absolute; top: -8px; background: rgb(7, 250, 43); border-radius: 50%; line-height: 25px; height: 25px; width: 25px;">
                             {{ $cart }}
                         </div>
                     @endguest

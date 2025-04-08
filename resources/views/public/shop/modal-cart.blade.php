@@ -1,8 +1,8 @@
-<div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Order Menu</h5>
+<div class="modal-header py-2">
+    <h5 class="modal-title" id="exampleModalLabel">{{ $data->t_product_name }}</h5>
     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><span class="fa fa-x"></span></button>
 </div>
-<div class="modal-body">
+<div class="modal-body" style="overflow-y: initial !important;">
     <div class="row">
         <div class="col-lg-6 col-md-6">
             <div class="product__details__pic" style="margin-bottom: 0px;">
@@ -12,19 +12,30 @@
                 </div>
             </div>
         </div>
+        @php
+            $stok = DB::table('t_product_stok')->where('t_product_code', $data->t_product_code)->sum('t_stok_qty');
+            $used = DB::table('t_product_stok')->where('t_product_code', $data->t_product_code)->sum('t_stok_used');
+        @endphp
         <div class="col-lg-6 col-md-6">
             <div class="product__details__text">
-                <h3 style="padding: 0; margin: 0;">{{ $data->t_product_name }}</h3>
+                <h3 style="padding: 0; margin: 0;">{{ $data->t_product_name }} <span style="font-size: 1rem; color: rgb(255, 2, 2);">( Stok : {{ $stok - $used }} )</span></h3>
                 <div class="product__details__rating" style="padding: 0; margin: 0;">
-                    @php
-                        $stok = DB::table('t_product_stok')
-                            ->where('t_product_code', $data->t_product_code)
-                            ->sum('t_stok_qty');
-                        $used = DB::table('t_product_stok')
-                            ->where('t_product_code', $data->t_product_code)
-                            ->sum('t_stok_used');
-                    @endphp
-                    <span>( {{ $stok - $used }} Porsi )</span>
+                    <div class="custom-control custom-radio my-1 mr-sm-2">
+                        <input type="radio" class="custom-control-input" name="exampleRadios"
+                            id="customControlInline">
+                        <label class="custom-control-label" for="customControlInline">Tidak Pedas</label>
+                    </div>
+                    <div class="custom-control custom-radio my-1 mr-sm-2">
+                        <input type="radio" class="custom-control-input" name="exampleRadios"
+                            id="customControlInline1">
+                        <label class="custom-control-label" for="customControlInline1">Sedang Pedas</label>
+                    </div>
+                    <div class="custom-control custom-radio my-1 mr-sm-2">
+                        <input type="radio" class="custom-control-input" name="exampleRadios"
+                            id="customControlInline2">
+                        <label class="custom-control-label" for="customControlInline2">Pedas Sekali</label>
+                    </div>
+                    {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos qui praesentium possimus quis nihil, minima voluptates nemo eligendi assumenda. Cumque voluptatum repellat unde dignissimos eligendi pariatur alias, praesentium error doloribus?</p> --}}
                 </div>
                 <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(47, 198, 212);">
                     @currency($data->t_product_price - ($data->t_product_price * $data->t_product_disc) / 100) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del>
@@ -33,7 +44,7 @@
                     {{$data->t_product_desc}}
                 </p> --}}
                 @if ($stok - $used < 1)
-                <button class="primary-btn bg-danger" disabled>Habis</button>
+                    <button class="primary-btn bg-danger" disabled>Habis</button>
                 @else
                     <div class="product__details__quantity">
                         <div class="quantity">
