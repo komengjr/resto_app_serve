@@ -44,7 +44,7 @@
                             <span>Promo Makanan</span>
                             <h2 class="text-white">Nasi Goreng <br />Spesial</h2>
                             <p class="text-white">Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">ORDER SEKARANG</a>
+                            <a href="{{ route('list_menu') }}" class="primary-btn">ORDER SEKARANG</a>
                         </div>
                     </div>
                 </div>
@@ -116,9 +116,9 @@
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="{{ asset($products->t_product_file) }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="{{ route('list_menu') }}"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('list_menu') }}"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="{{ route('list_menu') }}"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">
@@ -242,12 +242,12 @@
     <div class="banner pb-3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 my-1">
                     <div class="banner__pic">
                         <img src="{{ asset('img/hero/banner.jpg') }}" alt="">
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 my-1">
                     <div class="banner__pic">
                         <img src="{{ asset('img/product/nasgor.jpg') }}" alt="">
                     </div>
