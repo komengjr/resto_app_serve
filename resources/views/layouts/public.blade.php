@@ -37,7 +37,16 @@
 
             .container {
                 padding-top: 0;
+
             }
+
+            #kepala {
+                position: sticky;
+                width: 100%;
+                top: 0;
+                /* height: 70px; */
+            }
+
             .header__cart {
                 display: none;
             }
@@ -45,16 +54,48 @@
             .hero__search__phone {
                 display: none;
             }
+
+            .hero__categories {
+                background: rgb(0, 212, 255);
+                background: linear-gradient(90deg, rgba(0, 212, 255, 1) 5%, rgba(22, 173, 204, 1) 28%, rgba(28, 138, 161, 1) 49%, rgba(16, 166, 196, 1) 74%, rgba(0, 212, 255, 1) 87%, rgba(0, 212, 255, 1) 100%);
+            }
+
             .footer__copyright {
                 display: none;
             }
-            #mobile-footer{
+
+            #mobile-footer {
                 display: none;
+            }
+
+            .kaki a {
+                /* line-height: 55px; */
+                height: 55px;
+                width: 55px;
+            }
+
+            .header {
+                position: sticky;
+                z-index: 100001 !important;
+                top: 0;
+            }
+
+            .humberger__menu__wrapper {
+                width: 250px;
+                top: 80px;
+                border-radius: 0px 20px 10px 10px;
+                padding-top: 10px;
+            }
+            .humberger__open:hover{
+                background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
             }
         }
     </style>
     <style>
         .kaki {
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
             position: fixed;
             bottom: 0;
             left: 0;
@@ -65,6 +106,7 @@
             border-style: solid;
             border-width: thin;
             border-color: #0ae9b5;
+            box-shadow: 0px 0px 5px 5px #dabebe;
             /* background-color: rgba(5, 5, 5, 0.9); */
 
         }
@@ -81,7 +123,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="{{ asset('logo.png') }}" alt="" width="150"></a>
+            {{-- <a href="#"><img src="{{ asset('logox.png') }}" alt="" width="150"></a> --}}
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -200,12 +242,14 @@
                 </div>
             </div>
         </div>
-        <div class="container mb-3" style="border-bottom: rgb(23, 133, 145) solid; border-radius: 0px 0px 20px 20px;border-width: thin; background: #15c1ff;">
+        <div class="container mb-3 " id="kepala"
+            style="border-bottom: rgb(23, 133, 145) solid; border-radius: 0px 0px 20px 0px;border-width: thin; background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);">
             <div class="row p-1">
                 <div class="col-lg-3">
                     <div class="header__logo py-0">
-                        <a href="./index.html"><img src="{{ asset('img/logo.png') }}" alt=""
-                                width="100"></a>
+                        <a href="./index.html"><img src="{{ asset('logox.png') }}" alt=""
+                                width="200"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -328,17 +372,27 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-    <div class="d-lg-none kaki" style="background: #15c1ff;">
+    <div class="d-lg-none kaki">
         <ul class="nav nav-pills nav-fill mt-0">
-            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0"
-                    href="{{ route('/') }}"><i class="fas fa-home"></i><br> Home</a></li>
+            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0" href="{{ route('/') }}"><i
+                        class="fas fa-home"></i><br> Home</a></li>
             {{-- <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
                     href="#"><i class="fas fa-book"></i><br> </a></li> --}}
-            <li class="nav-item m-2"><a class="btn btn-dark btn-sm py-1 px-2 m-0"
-                    href="{{ route('list_menu') }}"><i class="fas fa-book-open"></i><br> Menu</a></li>
-            <li class="nav-item m-2"><a class="btn btn-dark btn-sm py-1 px-2 m-0"
-                    href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i><div style="position: absolute; top: 0; background: rgb(250, 7, 7); border-radius: 50%; line-height: 25px; height: 25px; width: 25px;">{{$cart}}</div><br> Order</a></li>
-            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-3 m-0" href="#"  type="button"><i class="fas fa-user"></i><br> User</a></li>
+            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0" href="{{ route('list_menu') }}"><i
+                        class="fas fa-book-open"></i><br> Menu</a></li>
+            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0"
+                    href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i>
+                    @guest
+                    @else
+                        <div
+                            style="position: absolute; top: 0; background: rgb(250, 7, 7); border-radius: 50%; line-height: 25px; height: 25px; width: 25px;">
+                            {{ $cart }}
+                        </div>
+                    @endguest
+                    <br> Order
+                </a></li>
+            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0" href="#" type="button"><i
+                        class="fas fa-user"></i><br> User</a></li>
         </ul>
     </div>
     {{-- <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
@@ -369,7 +423,8 @@
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                 data-delay="2000">
                 <div class="toast-header">
-                    <img src="{{ asset('assets/img/icons/alert.jpg') }}" class="rounded mr-2" alt="..." width="30">
+                    <img src="{{ asset('assets/img/icons/alert.jpg') }}" class="rounded mr-2" alt="..."
+                        width="30">
                     <strong class="mr-auto">Notification</strong>
                     <small>11 mins ago</small>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -392,7 +447,8 @@
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                 data-delay="3000">
                 <div class="toast-header">
-                    <img src="{{ asset('assets/img/icons/alert.jpg') }}" class="rounded mr-2" alt="..." width="30">
+                    <img src="{{ asset('assets/img/icons/alert.jpg') }}" class="rounded mr-2" alt="..."
+                        width="30">
                     <strong class="mr-auto">Notification</strong>
                     <small>11 mins ago</small>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">

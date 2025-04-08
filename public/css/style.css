@@ -2993,9 +2993,9 @@ ol {
 		width: 300px;
 		background: #ffffff;
 		position: fixed;
-		left: -300px;
-		top: 0;
-		height: 100%;
+		/* left: -300px; */
+		top: 100px;
+		height: 80%;
 		overflow-y: auto;
 		z-index: 99;
 		padding: 30px;
