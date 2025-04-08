@@ -35,6 +35,9 @@
                 display: none;
             }
 
+            .container {
+                padding-top: 0;
+            }
             .header__cart {
                 display: none;
             }
@@ -197,10 +200,10 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
+        <div class="container mb-3" style="border-bottom: rgb(23, 133, 145) solid; border-radius: 0px 0px 20px 20px;border-width: thin; background: #15c1ff;">
+            <div class="row p-1">
                 <div class="col-lg-3">
-                    <div class="header__logo">
+                    <div class="header__logo py-0">
                         <a href="./index.html"><img src="{{ asset('img/logo.png') }}" alt=""
                                 width="100"></a>
                     </div>
@@ -208,7 +211,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{ route('/') }}">Home</a></li>
+                            <li><a href="{{ route('/') }}">Home</a></li>
                             <li>
                                 <a href="#">Menu</a>
                                 <ul class="header__menu__dropdown">
@@ -242,7 +245,7 @@
                     </div>
                 </div>
             </div>
-            <div class="humberger__open">
+            <div class="humberger__open ">
                 <i class="fa fa-bars"></i>
             </div>
         </div>
@@ -325,17 +328,17 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-    <div class="d-lg-none kaki" style="background: #f7faf7;">
+    <div class="d-lg-none kaki" style="background: #15c1ff;">
         <ul class="nav nav-pills nav-fill mt-0">
-            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
+            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0"
                     href="{{ route('/') }}"><i class="fas fa-home"></i><br> Home</a></li>
             {{-- <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
                     href="#"><i class="fas fa-book"></i><br> </a></li> --}}
-            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
+            <li class="nav-item m-2"><a class="btn btn-dark btn-sm py-1 px-2 m-0"
                     href="{{ route('list_menu') }}"><i class="fas fa-book-open"></i><br> Menu</a></li>
-            <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
-                    href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i><br> Order</a></li>
-            <li class="nav-item m-2"><a class="btn btn-outline-primary btn-sm py-1 px-3 m-0" href="#"  type="button"><i class="fas fa-user"></i><br> User</a></li>
+            <li class="nav-item m-2"><a class="btn btn-dark btn-sm py-1 px-2 m-0"
+                    href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i><div style="position: absolute; top: 0; background: rgb(250, 7, 7); border-radius: 50%; line-height: 25px; height: 25px; width: 25px;">{{$cart}}</div><br> Order</a></li>
+            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-3 m-0" href="#"  type="button"><i class="fas fa-user"></i><br> User</a></li>
         </ul>
     </div>
     {{-- <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
@@ -366,7 +369,7 @@
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                 data-delay="2000">
                 <div class="toast-header">
-                    <img src="{{ asset('img/language.png') }}" class="rounded mr-2" alt="...">
+                    <img src="{{ asset('assets/img/icons/alert.jpg') }}" class="rounded mr-2" alt="..." width="30">
                     <strong class="mr-auto">Notification</strong>
                     <small>11 mins ago</small>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
@@ -385,7 +388,7 @@
                 $('#liveToastBtn').click();
             });
         </script>
-        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 10%;">
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; top: 2%;">
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                 data-delay="3000">
                 <div class="toast-header">

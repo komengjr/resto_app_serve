@@ -16,25 +16,37 @@
             <div class="product__details__text">
                 <h3 style="padding: 0; margin: 0;">{{ $data->t_product_name }}</h3>
                 <div class="product__details__rating" style="padding: 0; margin: 0;">
-                    <span>(18 Porsi)</span>
+                    @php
+                        $stok = DB::table('t_product_stok')
+                            ->where('t_product_code', $data->t_product_code)
+                            ->sum('t_stok_qty');
+                        $used = DB::table('t_product_stok')
+                            ->where('t_product_code', $data->t_product_code)
+                            ->sum('t_stok_used');
+                    @endphp
+                    <span>( {{ $stok - $used }} Porsi )</span>
                 </div>
                 <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(47, 198, 212);">
-                    @currency($data->t_product_price - ($data->t_product_price * $data->t_product_disc / 100)) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del>
+                    @currency($data->t_product_price - ($data->t_product_price * $data->t_product_disc) / 100) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del>
                 </div>
                 {{-- <p>
                     {{$data->t_product_desc}}
                 </p> --}}
-                <div class="product__details__quantity">
-                    <div class="quantity">
-                        <div class="pro-qty">
-                            {{-- <span class="dec qtybtn">-</span> --}}
-                            <input type="text" value="1" id="product_qty" />
-                            {{-- <span class="dec qtybtn">+</span> --}}
+                @if ($stok - $used < 1)
+                <button class="primary-btn bg-danger" disabled>Habis</button>
+                @else
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                {{-- <span class="dec qtybtn">-</span> --}}
+                                <input type="text" value="1" id="product_qty" />
+                                {{-- <span class="dec qtybtn">+</span> --}}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button class="primary-btn" id="button-add-cart-product" data-code="{{ $data->t_product_code }}">ADD
-                    ORDER</button>
+                    <button class="primary-btn" id="button-add-cart-product" data-code="{{ $data->t_product_code }}">ADD
+                        ORDER</button>
+                @endif
 
                 {{-- <ul>
                     <li><b>Availability</b> <span>In Stock</span></li>
