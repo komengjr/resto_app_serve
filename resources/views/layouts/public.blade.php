@@ -56,8 +56,8 @@
             }
 
             .hero__categories {
-                background: rgb(0, 212, 255);
-                background: linear-gradient(90deg, rgba(0, 212, 255, 1) 5%, rgba(22, 173, 204, 1) 28%, rgba(28, 138, 161, 1) 49%, rgba(16, 166, 196, 1) 74%, rgba(0, 212, 255, 1) 87%, rgba(0, 212, 255, 1) 100%);
+                background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
             }
 
             .footer__copyright {
@@ -86,9 +86,10 @@
                 border-radius: 0px 20px 10px 10px;
                 padding-top: 10px;
             }
-            .humberger__open:hover{
-                background: rgb(34,193,195);
-background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+
+            .humberger__open:hover {
+                background: rgb(34, 193, 195);
+                background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
             }
         }
     </style>
@@ -378,8 +379,8 @@ background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%
                         class="fas fa-home"></i><br> Home</a></li>
             {{-- <li class="nav-item m-2"><a class="btn btn-outline-info btn-sm py-1 px-2 m-0"
                     href="#"><i class="fas fa-book"></i><br> </a></li> --}}
-            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0" href="{{ route('list_menu') }}"><i
-                        class="fas fa-book-open"></i><br> Menu</a></li>
+            <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0"
+                    href="{{ route('list_menu') }}"><i class="fas fa-book-open"></i><br> Menu</a></li>
             <li class="nav-item m-2"><a class="btn btn-light btn-sm py-1 px-2 m-0"
                     href="{{ route('list_menu_cart') }}"><i class="fa fa-shopping-cart"></i>
                     @guest
@@ -419,7 +420,7 @@ background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%
                 $('#liveToastBtn').click();
             });
         </script>
-        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0; top: 10%;">
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                 data-delay="2000">
                 <div class="toast-header">

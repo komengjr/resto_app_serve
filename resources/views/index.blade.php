@@ -12,7 +12,7 @@
                         </div>
                         <ul id="list-category">
                             @foreach ($cat as $cats)
-                                <li><a href="#">{{ $cats->t_category_name }}</a></li>
+                                <li><a href="{{ route('list_menu') }}">{{ $cats->t_category_name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
