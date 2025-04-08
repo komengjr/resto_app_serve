@@ -23,7 +23,7 @@
     <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
     <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicons/falcon.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <script src="{{ asset('assets/js/config.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/config.js') }}"></script> --}}
     <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
 
 

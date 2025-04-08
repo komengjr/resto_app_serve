@@ -12,7 +12,7 @@
                         </div>
                         <ul id="list-category">
                             @foreach ($cat as $cats)
-                                <li><a href="#">{{$cats->t_category_name}}</a></li>
+                                <li><a href="#">{{ $cats->t_category_name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -95,36 +95,40 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>Category Product</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
+                            @foreach ($cat as $cats)
+                                <li data-filter=".{{$cats->t_category_name}}">{{ $cats->t_category_name }}</li>
+                            @endforeach
+                            {{-- <li data-filter=".fresh-meat">Fresh Meat</li>
                             <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
+                            <li data-filter=".fastfood">Fastfood</li> --}}
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>@currency(100000)</h5>
+                @foreach ($product as $products)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $products->t_category_name }} {{ $products->t_category_code }}">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="{{ asset($products->t_product_file) }}">
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">{{$products->t_product_name}}</a></h6>
+                                <h5>@currency($products->t_product_price)</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                @endforeach
+                {{-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
                             <ul class="featured__item__pic__hover">
@@ -228,24 +232,24 @@
                             <h5>@currency(100000)</h5>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
     <!-- Featured Section End -->
 
     <!-- Banner Begin -->
-    <div class="banner">
+    <div class="banner pb-3">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
+                        <img src="{{ asset('img/hero/banner.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
+                        <img src="{{ asset('img/product/nasgor.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -254,7 +258,7 @@
     <!-- Banner End -->
 
     <!-- Blog Section Begin -->
-    <section class="from-blog spad">
+    {{-- <section class="from-blog spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -311,6 +315,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Blog Section End -->
 @endsection

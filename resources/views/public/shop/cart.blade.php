@@ -34,8 +34,8 @@
         @media only screen and (max-width: 600px) {
             .modal-dialog {
                 width: 100%;
-                position: absolute;
-                top: auto;
+                /* position: absolute; */
+                top: 20%;
                 right: -8px;
                 left: -8px;
                 bottom: -8px;

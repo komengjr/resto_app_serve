@@ -37,7 +37,9 @@
                     </div>
                     {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos qui praesentium possimus quis nihil, minima voluptates nemo eligendi assumenda. Cumque voluptatum repellat unde dignissimos eligendi pariatur alias, praesentium error doloribus?</p> --}}
                 </div>
-                <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(47, 198, 212);">
+                <label for="">Deskripsi</label>
+                <textarea name="" class="form-control" id=""></textarea>
+                <div class="product__details__price" style="padding: 0; margin: 0; color: rgb(0, 0, 0);">
                     @currency($data->t_product_price - ($data->t_product_price * $data->t_product_disc) / 100) <del style="font-size: 1rem;color: rgb(248, 16, 16);">@currency($data->t_product_price)</del>
                 </div>
                 {{-- <p>

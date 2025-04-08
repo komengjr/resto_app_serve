@@ -15,7 +15,10 @@ class AuthController extends Controller
     public function fisrt()
     {
         $cat = DB::table('t_category')->get();
-        return view('index',['cat'=>$cat]);
+        $product = DB::table('t_product')
+        ->join('t_category','t_category.t_category_code','=','t_product.t_category_code')
+        ->get();
+        return view('index',['cat'=>$cat,'product'=>$product]);
         // if (Auth::check()) {
         //     return Redirect('dashboard/home');
         // } else {

@@ -305,7 +305,7 @@ background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="{{ route('/') }}"><img src="{{ asset('img/logo.png') }}" alt=""
+                            <a href="{{ route('/') }}"><img src="{{ asset('logox.png') }}" alt=""
                                     width="200"></a>
                         </div>
                         <ul>

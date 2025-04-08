@@ -17,14 +17,14 @@
         }
 
         .modal.fade {
-            opacity: 1;
+            opacity: 100;
         }
 
-        .modal.fade .modal-dialog {
-            -webkit-transform: translate(0);
-            -moz-transform: translate(0);
-            transform: translate(0);
-        }
+        /* .modal.fade .modal-dialog {
+            -webkit-transform: translate(100);
+            -moz-transform: translate(50);
+            transform: translate(10);
+        } */
 
         #category_at li:hover {
             background: #95c8b1;
@@ -79,13 +79,13 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All Category</span>
+                            <span>PILIH CATEGORY</span>
                         </div>
                         <ul id="category_at">
                             @foreach ($cat as $cats)
                                 <li style="border-bottom: solid; border-width: thin; border-color: #119c5d;"><a href="#"
                                         onclick="myFunction()" id="button-category-product"
-                                        data-code="{{ $cats->t_category_code }}"><span class="fa fa-cutlery pr-2"> </span>
+                                        data-code="{{ $cats->t_category_code }}"><span class="fa fa-book pr-2"> </span>
                                         {{ $cats->t_category_name }}</a></li>
                             @endforeach
                         </ul>
@@ -314,7 +314,7 @@
 
     <div class="modal fade" id="modal-shop" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg shake animated">
+        <div class="modal-dialog modal-lg ">
             <div class="modal-content" id="menu-shop">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
