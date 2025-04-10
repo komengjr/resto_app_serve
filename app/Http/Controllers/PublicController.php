@@ -58,6 +58,13 @@ class PublicController extends Controller
         $data = DB::table('m_table_master')->get();
         return view('public.cart.table-cart',['data'=>$data]);
     }
+    public function menu_choosee_table_cart_save(Request $request){
+        $data = DB::table('m_table_master')->where('m_table_master_code',$request->code)->first();
+        return view('public.cart.table',['data'=>$data]);
+    }
+    public function menu_choosee_cupon_cart_save(Request $request){
+        return view('public.cart.cupon',['id'=>$request->code]);
+    }
     public function menu_add_cart_product_user(Request $request)
     {
         if ($request->qty > 0) {

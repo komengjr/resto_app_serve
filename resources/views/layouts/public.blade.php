@@ -34,27 +34,22 @@
             #list-category {
                 display: none;
             }
-
             .container {
                 padding-top: 0;
 
             }
-
             #kepala {
                 position: sticky;
                 width: 100%;
                 top: 0;
                 /* height: 70px; */
             }
-
             .header__cart {
                 display: none;
             }
-
             .hero__search__phone {
                 display: none;
             }
-
             .hero__categories {
                 background: rgb(238, 174, 202);
             background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
@@ -63,17 +58,14 @@
             .footer__copyright {
                 display: none;
             }
-
             #mobile-footer {
                 display: none;
             }
-
             .kaki a {
                 /* line-height: 55px; */
                 height: 55px;
                 width: 55px;
             }
-
             .header {
                 position: sticky;
                 z-index: 100001 !important;

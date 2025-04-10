@@ -1,6 +1,17 @@
 @extends('layouts.public')
 @section('content')
     <style>
+        #button-choosse-table-resto:hover {
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+            cursor: pointer;
+
+        }
+
+        .product__item {
+            margin-bottom: 20px;
+        }
+
         @media only screen and (max-width: 600px) {
             .shoping__cart__table table tbody tr td.shoping__cart__price {
                 font-size: 10px;
@@ -36,6 +47,7 @@
                 border-radius: 30px;
                 padding: 10px;
             }
+
             .modal-dialog {
                 border-radius: 50%;
                 width: 100%;
@@ -62,7 +74,7 @@
                     <div class="breadcrumb__text">
                         <h2>Chekout Order</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="#">Home</a>
                             <span>Order Cart</span>
                         </div>
                     </div>
@@ -152,33 +164,36 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shoping__cart__btns">
-                            <a href="#" class="primary-btn cart-btn bg-dark mr-4 text-white" data-toggle="modal"
-                                data-target="#modal-cart" id="button-order-type">Tipe Order</a>
-
-                            <a href="#" class="primary-btn cart-btn bg-primary cart-btn-right text-white"><span
+                            {{-- <a href="#" class="primary-btn cart-btn bg-primary  text-white mr-4"><span
                                     class="icon_loading"></span>
-                                Upadate Order</a>
+                                Upadate Order</a> --}}
+                            <a href="#" class="primary-btn cart-btn bg-dark  text-white cart-btn-right"
+                                data-toggle="modal" data-target="#modal-cart" id="button-order-type">Tipe Order</a>
+
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="shoping__continue">
                             <div class="shoping__discount">
-                                <h5>Pilih Meja</h5>
+                                <h5>KODE KUPON</h5>
                                 <form action="#">
-                                    <input type="text" placeholder="Enter your coupon code">
-                                    <button type="submit" class="site-btn">APPLY COUPON</button>
+                                    <input type="text" placeholder="Enter your coupon code" id="input-cupon">
+                                    <button type="submit" class="site-btn" id="button-aplay-cupon">APPLY COUPON</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="shoping__checkout">
+                            <span id="menu-pilihan-table"></span>
+                            <span id="menu-pilihan-cupon"></span>
                             <h5>Cart Total</h5>
                             <ul>
                                 <li>Subtotal <span>@currency($total)</span></li>
                                 <li>Total <span>@currency($total)</span></li>
                             </ul>
-                            <a href="#" class="primary-btn" id="button-payment-token" data-id="123">PROCEED TO
+                            <a href="#" class="primary-btn" id="button-payment-token" data-id="123"
+                                style="display: none;">PROCEED TO
                                 ORDER</a>
                         </div>
                     </div>
@@ -264,67 +279,112 @@
             });
 
         });
-    </script>
-    <script>
-        $(document).on("click", "#button-payment-token", function(e) {
+        $(document).on("click", "#button-choosse-table-resto", function(e) {
             e.preventDefault();
-            var id = $(this).data("id");
-            $("#button-payment-token").html(
-                '<button class="btn btn-outline-info d-block w-100" type="button"" disabled><i class="fas fa-credit-card"></i> Loading..</button>'
-            );
+            var code = $(this).data("code");
             $.ajax({
-                url: "{{ route('create-payemnt-user') }}",
+                url: "{{ route('menu_choosee_table_cart_save') }}",
                 type: "POST",
                 cache: false,
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    "id": id,
+                    "code": code,
                 },
                 dataType: 'html',
             }).done(function(data) {
-                if (data == 0) {
-                    location.reload();
-                } else {
-                    snap.pay(data, {
-                        onSuccess: function(result) {
-                            alert("payment success!");
-                            $.ajax({
-                                url: "{{ route('create-payment-user-success') }}",
-                                type: "POST",
-                                cache: false,
-                                data: {
-                                    "_token": "{{ csrf_token() }}",
-                                    "id": id,
-                                },
-                                dataType: 'html',
-                            }).done(function(data) {
-                                if (data == 1) {
-                                    // console.log(result);
-                                    window.location.href =
-                                        "{{ route('list_menu_cart') }}";
-                                } else {
-                                    console.log('gagal');
-                                }
-                            })
-                        },
-                        onPending: function(result) {
-                            alert("wating your payment!");
-                            console.log(result);
-                            location.reload();
-                        },
-                        onError: function(result) {
-                            alert("payment failed!");
-                            console.log(result);
-                        },
-                        onClose: function() {
-                            alert('you closed the popup without finishing the payment');
-                            location.reload();
-                        }
-                    });
-                }
+                $('#menu-pilihan-table').html(data);
+                document.getElementById("button-order-type").style.display = "none";
+                document.getElementById("button-payment-token").style.display = "block";
             }).fail(function() {
-                console.log('eror');
+                // $('#menu-table-cart').html('eror');
             });
+
+        });
+        $(document).on("click", "#button-aplay-cupon", function(e) {
+            e.preventDefault();
+            var x = document.getElementById("input-cupon").value;
+            $.ajax({
+                url: "{{ route('menu_choosee_cupon_cart_save') }}",
+                type: "POST",
+                cache: false,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "code": x,
+                },
+                dataType: 'html',
+            }).done(function(data) {
+                $('#menu-pilihan-cupon').html(data);
+            }).fail(function() {
+                // $('#menu-table-cart').html('eror');
+            });
+
+        });
+    </script>
+    <script>
+        $(document).on("click", "#button-payment-token", function(e) {
+            e.preventDefault();
+            var x = document.getElementById("pick-table").value;
+            var id = $(this).data("id");
+            $("#button-payment-token").html(
+                '<button class="btn btn-outline-info d-block w-100" type="button"" disabled><i class="fas fa-credit-card"></i> Loading..</button>'
+            );
+            if (x == "") {
+                console.log('eror');
+            } else {
+                $.ajax({
+                    url: "{{ route('create-payemnt-user') }}",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id,
+                    },
+                    dataType: 'html',
+                }).done(function(data) {
+                    if (data == 0) {
+                        location.reload();
+                    } else {
+                        snap.pay(data, {
+                            onSuccess: function(result) {
+                                alert("payment success!");
+                                $.ajax({
+                                    url: "{{ route('create-payment-user-success') }}",
+                                    type: "POST",
+                                    cache: false,
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                        "id": id,
+                                    },
+                                    dataType: 'html',
+                                }).done(function(data) {
+                                    if (data == 1) {
+                                        // console.log(result);
+                                        window.location.href =
+                                            "{{ route('list_menu_cart') }}";
+                                    } else {
+                                        console.log('gagal');
+                                    }
+                                })
+                            },
+                            onPending: function(result) {
+                                alert("wating your payment!");
+                                console.log(result);
+                                location.reload();
+                            },
+                            onError: function(result) {
+                                alert("payment failed!");
+                                console.log(result);
+                            },
+                            onClose: function() {
+                                alert('you closed the popup without finishing the payment');
+                                location.reload();
+                            }
+                        });
+                    }
+                }).fail(function() {
+                    console.log('eror');
+                });
+            }
         });
     </script>
 @endsection

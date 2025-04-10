@@ -80,7 +80,6 @@
                 </ul> --}}
             </div>
         </div>
-
     </div>
 </div>
 <div class="modal-footer" style=" padding: 0;">
