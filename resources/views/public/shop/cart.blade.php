@@ -32,6 +32,10 @@
         }
 
         @media only screen and (max-width: 600px) {
+            .modal-content {
+                border-radius: 30px;
+                padding: 10px;
+            }
             .modal-dialog {
                 border-radius: 50%;
                 width: 100%;
