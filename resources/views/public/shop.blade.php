@@ -20,11 +20,11 @@
             opacity: 100;
         }
 
-        /* .modal.fade .modal-dialog {
+        .modal.fade .modal-dialog {
             -webkit-transform: translate(100);
             -moz-transform: translate(50);
             transform: translate(10);
-        } */
+        }
 
         #category_at li:hover {
             background: #95c8b1;
@@ -53,7 +53,7 @@
 
             .modal-dialog {
                 width: 100%;
-                /* position: absolute; */
+                position: absolute;
                 top: 100px;
                 right: -8px;
                 left: -8px;

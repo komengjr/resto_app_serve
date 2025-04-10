@@ -52,7 +52,7 @@
                         <div class="quantity">
                             <div class="pro-qty">
                                 {{-- <span class="dec qtybtn">-</span> --}}
-                                <input type="text" value="1" id="product_qty" />
+                                <input type="text" value="1" id="product_qty"  style="height: 50px;"/>
                                 {{-- <span class="dec qtybtn">+</span> --}}
                             </div>
                         </div>
@@ -95,8 +95,8 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script> --}}
 <script>
     var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn">-</span>');
-    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.prepend('<span class="dec qtybtn" style="width:20px; height: 150px;">-</span>');
+    proQty.append('<span class="inc qtybtn" style="width:20px; height: 150px;">+</span>');
     proQty.on('click', '.qtybtn', function() {
         var $button = $(this);
         var oldValue = $button.parent().find('input').val();
@@ -107,7 +107,7 @@
             if (oldValue > 0) {
                 var newVal = parseFloat(oldValue) - 1;
             } else {
-                newVal = 0;
+                newVal = 1;
             }
         }
         $button.parent().find('input').val(newVal);

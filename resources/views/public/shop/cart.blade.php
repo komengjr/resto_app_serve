@@ -21,9 +21,9 @@
             .shoping__cart__table table thead tr th.shoping__product {
 
                 font-size: 12px;
-                border: solid;
+                /* border: solid; */
                 border-width: thin;
-                border-color: #0ae9b5;
+                /* border-color: #0ae9b5; */
             }
 
             .modal-footer {
@@ -34,7 +34,7 @@
         @media only screen and (max-width: 600px) {
             .modal-dialog {
                 width: 100%;
-                /* position: absolute; */
+                position: absolute;
                 top: 20%;
                 right: -8px;
                 left: -8px;
@@ -115,7 +115,7 @@
                                             <td class="shoping__cart__price">
                                                 {{ $datas->t_product_disc }} %
                                             </td>
-                                            <td class="shoping__cart__quantity">
+                                            <td class="shoping__cart__quantity" style="padding-bottom: 0px;">
                                                 <div class="quantity">
                                                     <div class="pro-qty">
                                                         <input type="text" value="{{ $datas->t_product_qty }}">

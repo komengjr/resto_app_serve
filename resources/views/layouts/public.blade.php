@@ -7,8 +7,8 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aplikasi Demo</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logo.png') }}">
+    <title>Cafe & Resto</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('logox.png') }}">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
@@ -83,7 +83,7 @@
             .humberger__menu__wrapper {
                 width: 250px;
                 top: 80px;
-                border-radius: 0px 20px 10px 10px;
+                border-radius: 0px 20px 20px 0px;
                 padding-top: 10px;
             }
 
@@ -114,7 +114,7 @@
     </style>
 </head>
 
-<body>
+<body style="font-family: "National Park", sans-serif;">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
