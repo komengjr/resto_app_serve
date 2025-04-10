@@ -436,7 +436,7 @@
                 $('#liveToastBtn').click();
             });
         </script>
-        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; top: 2%;">
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; top: 10%;">
             <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                 data-delay="3000">
                 <div class="toast-header">
