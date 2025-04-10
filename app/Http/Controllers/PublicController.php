@@ -63,7 +63,11 @@ class PublicController extends Controller
         return view('public.cart.table',['data'=>$data]);
     }
     public function menu_choosee_cupon_cart_save(Request $request){
-        return view('public.cart.cupon',['id'=>$request->code]);
+        if ($request->code == 123) {
+            return view('public.cart.cupon',['id'=>$request->code]);
+        } else {
+            return 0;
+        }
     }
     public function menu_add_cart_product_user(Request $request)
     {

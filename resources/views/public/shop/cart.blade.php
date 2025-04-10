@@ -220,6 +220,21 @@
             </div>
         </div>
     </div>
+    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; top: 10%;">
+        <div id="liveToastx" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <img src="{{ asset('assets/img/icons/alert.jpg') }}" class="rounded mr-2" alt="..." width="30">
+                <strong class="mr-auto">Notification </strong>
+                <small> 1 sec ago</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Cupon Tidak ditemukan
+            </div>
+        </div>
+    </div>
     <!-- Shoping Cart Section End -->
     <script>
         $(document).on("click", "#button-order-type", function(e) {
@@ -313,9 +328,14 @@
                 },
                 dataType: 'html',
             }).done(function(data) {
-                $('#menu-pilihan-cupon').html(data);
+                document.getElementById("input-cupon").value = "";
+                if (data == 0) {
+                    $('#liveToastx').toast('show');
+                } else {
+                    $('#menu-pilihan-cupon').html(data);
+                }
             }).fail(function() {
-                // $('#menu-table-cart').html('eror');
+                // $('#liveToastx').toast('show');
             });
 
         });
