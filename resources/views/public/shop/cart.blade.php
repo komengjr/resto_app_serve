@@ -33,6 +33,7 @@
 
         @media only screen and (max-width: 600px) {
             .modal-dialog {
+                border-radius: 50%;
                 width: 100%;
                 position: absolute;
                 top: 20%;
@@ -44,6 +45,7 @@
 
         @media only screen and (min-width: 900px) {
             .modal-dialog {
+                border-radius: 50%;
                 top: 20%;
             }
         }

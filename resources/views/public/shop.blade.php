@@ -50,10 +50,14 @@
             .product {
                 padding-top: 0px;
             }
-
+            .modal-content {
+                border-radius: 30px;
+                padding: 10px;
+            }
             .modal-dialog {
                 width: 100%;
                 position: absolute;
+
                 top: 100px;
                 right: -8px;
                 left: -8px;

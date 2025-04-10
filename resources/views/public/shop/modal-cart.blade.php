@@ -50,7 +50,7 @@
                 @else
                     <div class="product__details__quantity">
                         <div class="quantity">
-                            <div class="pro-qty">
+                            <div class="pro-qty" style="height: 50px;">
                                 {{-- <span class="dec qtybtn">-</span> --}}
                                 <input type="text" value="1" id="product_qty"  style="height: 50px;"/>
                                 {{-- <span class="dec qtybtn">+</span> --}}
@@ -95,7 +95,7 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script> --}}
 <script>
     var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn" style="width:20px; height: 150px;">-</span>');
+    proQty.prepend('<span class="dec qtybtn" style="width:20px; ">-</span>');
     proQty.append('<span class="inc qtybtn" style="width:20px; height: 150px;">+</span>');
     proQty.on('click', '.qtybtn', function() {
         var $button = $(this);
